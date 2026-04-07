@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="de" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SDS-Translate Pro | Professional Safety Data Sheet Management</title>
+    <!-- BEGIN: External Resources -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://unpkg.com/split.js/dist/split.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- END: External Resources -->
+
+    <!-- BEGIN: Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        // NEW THEME COLORS
+                        'minerva-green': '#76B82A',
+                        'minerva-black': '#0A0A0A',
+                        'minerva-card': '#141414',
+                        'minerva-border': '#262626',
+                        'minerva-gray': '#9CA3AF',
+                        'minerva-hover': '#1F1F1F',
+                        // Light mode colors
+                        'light-bg': '#f3f4f6',
+                        'light-card': '#ffffff',
+                        'light-border': '#e5e7eb',
+                        'light-text': '#1f2937',
+                        'light-text-secondary': '#6b7280',
+                    }
+                },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+            }
+        }
+    </script>
+    <!-- END: Tailwind Configuration -->
+
+    <!-- BEGIN: Custom Styles -->
+    <style>
+        /* BASE STYLES */
+        body {
+            overflow-x: hidden;
+            padding-bottom: 120px; /* Space for the fixed bottom status bar */
+        }
+        
+        /* SCROLLBAR */
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #141414; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #76B82A; border-radius: 10px; }
+        .dark .custom-scrollbar::-webkit-scrollbar-track { background: #141414; }
+        .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #76B82A; }
+        .light .custom-scrollbar::-webkit-scrollbar-track { background: #e5e7eb; }
+        .light .custom-scrollbar::-webkit-scrollbar-thumb { background: #76B82A; }
+
+
+        /* IFRAME */
+        .preview-iframe {
+            width: 100%;
+            height: calc(100vh - 380px);
+            min-height: 500px;
+            border: none;
+            background: #FFFFFF;
+            color-scheme: light;
+            color: #000;
+            overflow: auto;
+        }
+
+        /* OTHER */
+        .glass-effect {
+            background: rgba(20, 20, 20, 0.8);
+            backdrop-filter: blur(8px);
+        }
+        html:not(.dark) .glass-effect {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .btn-primary {
+            background-color: #76B82A;
+            color: white;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-primary:hover:not(:disabled) {
+            background-color: #87C93B;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(118, 184, 42, 0.25);
+        }
+        .btn-primary:disabled {
+            background-color: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .tab-active {
+            color: #76B82A;
+            position: relative;
+        }
+        .tab-active::after {
+            content: '';
+            position: absolute;
+            bottom: -17px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: #76B82A;
+        }
+        
+        .section-header {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* MODAL from old file, adapted for Tailwind */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 15, 35, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .modal.active { display: flex; }
+        
+        /* GHS Pictogram styles from old file */
+         .ghs-pictogram-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+        .ghs-pictogram-item {
+            border: 2px solid;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .ghs-pictogram-item:hover {
+            transform: scale(1.05);
+        }
+        .ghs-pictogram-item.selected {
+            border-color: #4ade80; /* green-400 */
+        }
+        .ghs-pictogram-item.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .ghs-pictogram-item img {
+            width: 84px;
+            height: 84px;
+            object-fit: contain;
+        }
+        .ghs-pictogram-item .code {
+            font-weight: bold;
+            font-size: 0.85em;
+            margin-top: 5px;
+        }
+        .ghs-pictogram-item .name {
+            font-size: 0.75em;
+        }
+        .ghs-selected-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-content: flex-start;
+        }
+        .ghs-selected-item {
+            position: relative;
+            border: 2px solid #4ade80; /* green-400 */
+            border-radius: 8px;
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .ghs-selected-item img {
+            width: 84px;
+            height: 84px;
+            object-fit: contain;
+        }
+        .ghs-selected-item .remove-btn {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ef4444; /* red-500 */
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Phrase Table from old file */
+        .phrase-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95em;
+        }
+
+        .phrase-table th,
+        .phrase-table td {
+            padding: 15px;
+            text-align: left;
+        }
+
+        .phrase-table th {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+        }
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-height: 600px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .gutter {
+            background-color: #f1f5f9;
+            background-repeat: no-repeat;
+            background-position: 50%;
+        }
+
+        .gutter.gutter-horizontal {
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bM/5+BgoCnA0MQPqA0MBcw0E0gEh8gAQAUuqMU9v417wAAAABJRU5ErkJggg==');
+            cursor: col-resize;
+        }
+
+        .dark .gutter {
+            background-color: #334155;
+        }
+
+        /* Editor A4 Simulation */
+        .trumbowyg-box {
+            background-color: #525659 !important;
+            padding: 20px 0 !important;
+            overflow-y: auto !important;
+        }
+        .trumbowyg-editor {
+            width: 210mm !important;
+            min-height: 297mm !important;
+            margin: 0 auto !important;
+            background-color: #ffffff !important;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3) !important;
+            padding: 15mm !important;
+            color: #000 !important;
+        }
+        
+        /* Quill Editor Custom Styles */
+        .ql-container {
+            font-family: Arial, Helvetica, "Nimbus Sans", sans-serif !important;
+            font-size: 9.5pt !important;
+        }
+        
+        .ql-editor {
+            padding: 15px !important;
+            min-height: 100% !important;
+        }
+        
+        .ql-toolbar {
+            background-color: #f3f4f6 !important;
+            border-bottom: 1px solid #d1d5db !important;
+        }
+        
+        .ql-toolbar.ql-snow {
+            border: none !important;
+            border-bottom: 1px solid #d1d5db !important;
+        }
+        
+        .ql-container.ql-snow {
+            border: none !important;
+        }
+        
+        /* Ensure Quill editor fills container */
+        #richTextEditor .ql-container,
+        #originalEditor .ql-container {
+            height: calc(100% - 42px) !important;
+        }
+        
+        #richTextEditor .ql-editor,
+        #originalEditor .ql-editor {
+            height: 100% !important;
+            overflow-y: auto !important;
+            caret-color: black !important;
+        }
+        
+        /* Force cursor color in editors */
+        #richTextEditor, #originalEditor, #modalRichTextEditor, #wysiwygEditor {
+            caret-color: black !important;
+        }
+        
+        #richTextEditor:focus, #originalEditor:focus, #modalRichTextEditor:focus, #wysiwygEditor:focus {
+            caret-color: black !important;
+        }
+    </style>
+    <!-- END: Custom Styles -->
+    <!-- Quill.js Rich Text Editor - Open Source, No API Key Required -->
+    <link href="https://cdn.quilljs.com/1.3.7/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.7/quill.min.js"></script>
+    <script>
+        // Fallback: Check if Quill loaded successfully
+        window.addEventListener('load', function() {
+            if (typeof Quill === 'undefined') {
+                console.error('Quill failed to load from CDN. Attempting to load from alternative source...');
+                // Try alternative CDN
+                var script = document.createElement('script');
+                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/quill/1.3.7/quill.min.js';
+                script.onerror = function() {
+                    console.error('Quill failed to load from all sources.');
+                    // Show user-friendly error message
+                    var errorMsg = document.createElement('div');
+                    errorMsg.className = 'fixed top-4 right-4 bg-red-500 text-white px-6 py-4 rounded-lg shadow-lg z-50';
+                    errorMsg.innerHTML = `
+                        <div class="flex items-center gap-3">
+                            <span class="text-xl">⚠️</span>
+                            <div>
+                                <div class="font-bold">Texteditor konnte nicht geladen werden</div>
+                                <div class="text-sm opacity-90">Bitte überprüfen Sie Ihre Internetverbindung</div>
+                            </div>
+                            <button onclick="location.reload()" class="ml-4 bg-white text-red-500 px-3 py-1 rounded font-semibold hover:bg-gray-100 transition-colors">
+                                Neu laden
+                            </button>
+                        </div>
+                    `;
+                    document.body.appendChild(errorMsg);
+                    // Auto-remove after 10 seconds
+                    setTimeout(() => errorMsg.remove(), 10000);
+                };
+                document.head.appendChild(script);
+            }
+        });
+    </script>
+</head>
+<body class="font-sans antialiased bg-light-bg text-light-text dark:bg-minerva-black dark:text-gray-200">
+    <!-- BEGIN: Top Navigation -->
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-minerva-black/90 border-b border-light-border dark:border-minerva-border px-8 py-4 flex items-center justify-between glass-effect">
+        <div class="flex items-center gap-6">
+            <div class="flex items-center gap-3">
+                <div class="flex items-center justify-center w-9 h-9 bg-minerva-green rounded">
+                    <span class="text-white font-bold text-lg">S</span>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-light-text dark:text-white leading-none">SDS-Translate <span class="text-minerva-green">Pro</span></h1>
+                    <p class="text-[10px] text-light-text-secondary dark:text-minerva-gray uppercase font-semibold tracking-wider mt-1">Scientific Documentation Suite</p>
+                </div>
+            </div>
+            <!-- Main Navigation Tabs -->
+            <nav class="hidden lg:flex gap-10 ml-8">
+                <button class="text-xs font-semibold uppercase tracking-wider transition-colors tab-active" onclick="showTab('translate', this)">Übersetzen</button>
+                <button class="text-xs font-semibold uppercase tracking-wider text-light-text-secondary dark:text-minerva-gray hover:text-light-text dark:hover:text-white transition-colors" onclick="showTab('database', this)">Datenbank</button>
+                <button class="text-xs font-semibold uppercase tracking-wider text-light-text-secondary dark:text-minerva-gray hover:text-light-text dark:hover:text-white transition-colors" onclick="showTab('ghs', this)">GHS Pictograms</button>
+                <button class="text-xs font-semibold uppercase tracking-wider text-light-text-secondary dark:text-minerva-gray hover:text-light-text dark:hover:text-white transition-colors" onclick="showTab('stats', this)">Statistiken</button>
+                <button class="text-xs font-semibold uppercase tracking-wider text-light-text-secondary dark:text-minerva-gray hover:text-light-text dark:hover:text-white transition-colors" onclick="showTab('template', this)">Template Bearbeiten</button>
+                <button class="text-xs font-semibold uppercase tracking-wider text-light-text-secondary dark:text-minerva-gray hover:text-light-text dark:hover:text-white transition-colors" onclick="showTab('mapping', this)">Mapping</button>
+            </nav>
+            <!-- Mobile Menu Button -->
+            <div class="lg:hidden">
+                <button id="mobile-menu-button" class="text-light-text-secondary dark:text-minerva-gray">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="flex items-center gap-4">
+             <!-- DB Status -->
+            <div id="dbManagementCard" class="flex items-center gap-2 bg-light-card dark:bg-minerva-card px-3 py-1.5 rounded border border-light-border dark:border-minerva-border">
+                <span class="w-2 h-2 rounded-full bg-minerva-green animate-pulse"></span>
+                <select id="databaseSelect" onchange="handleDatabaseChange(this)" class="text-[10px] font-mono bg-transparent border-none p-0 focus:ring-0 text-light-text-secondary dark:text-minerva-gray">
+                    <!-- Options will be loaded by JS -->
+                </select>
+            </div>
+            <!-- Theme switcher -->
+            <button id="theme-toggle" class="text-xs font-semibold uppercase tracking-wider text-light-text-secondary dark:text-minerva-gray">LIGHT</button>
+        </div>
+    </header>
+    <!-- END: Top Navigation -->
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white dark:bg-minerva-black p-4">
+        <nav class="flex flex-col gap-4">
+            <button class="text-sm font-semibold uppercase tracking-wider transition-colors tab-active" onclick="showTab('translate', this); toggleMobileMenu();">Übersetzen</button>
+            <button class="text-sm font-semibold uppercase tracking-wider text-light-text-secondary dark:text-minerva-gray hover:text-light-text dark:hover:text-white transition-colors" onclick="showTab('database', this); toggleMobileMenu();">Datenbank</button>
+            <button class="text-sm font-semibold uppercase tracking-wider text-light-text-secondary dark:text-minerva-gray hover:text-light-text dark:hover:text-white transition-colors" onclick="showTab('ghs', this); toggleMobileMenu();">GHS Pictograms</button>
+            <button class="text-sm font-semibold uppercase tracking-wider text-light-text-secondary dark:text-minerva-gray hover:text-light-text dark:hover:text-white transition-colors" onclick="showTab('stats', this); toggleMobileMenu();">Statistiken</button>
+            <button class="text-sm font-semibold uppercase tracking-wider text-light-text-secondary dark:text-minerva-gray hover:text-light-text dark:hover:text-white transition-colors" onclick="showTab('template', this); toggleMobileMenu();">Template Bearbeiten</button>
+            <button class="text-sm font-semibold uppercase tracking-wider text-light-text-secondary dark:text-minerva-gray hover:text-light-text dark:hover:text-white transition-colors" onclick="showTab('mapping', this); toggleMobileMenu();">Mapping</button>
+        </nav>
+    </div>
+
+
+    <main class="max-w-[1800px] mx-auto p-8">
+        <!-- Translate Tab -->
+        <div id="translate-tab" class="tab-content">
+            <div class="grid grid-cols-12 gap-8">
+                <!-- Sidebar -->
+                <aside class="col-span-12 lg:col-span-3 space-y-6">
+                    <!-- Upload Section -->
+                    <section class="bg-light-card dark:bg-minerva-card border border-light-border dark:border-minerva-border rounded-lg p-6">
+                        <div class="flex items-center gap-2 mb-6">
+                            <h2 class="section-header text-light-text-secondary dark:text-minerva-gray">Datei-Upload</h2>
+                        </div>
+                        <div class="flex mb-4 bg-light-bg dark:bg-minerva-black p-1 rounded overflow-x-auto">
+                            <button class="flex-1 py-1.5 text-[11px] font-bold rounded text-light-text-secondary dark:text-minerva-gray" id="btnHtml" onclick="selectFileType('html')">HTML</button>
+                            <button class="flex-1 py-1.5 text-[11px] font-bold rounded text-light-text-secondary dark:text-minerva-gray" id="btnPdf" onclick="selectFileType('pdf')">PDF</button>
+                            <button class="flex-1 py-1.5 text-[11px] font-bold rounded text-light-text-secondary dark:text-minerva-gray" id="btnJson" onclick="selectFileType('json')">JSON</button>
+                            <button class="flex-1 py-1.5 text-[11px] font-bold rounded text-light-text-secondary dark:text-minerva-gray" id="btnXml" onclick="selectFileType('xml')">XML</button>
+                            <button class="flex-1 py-1.5 text-[11px] font-bold rounded text-light-text-secondary dark:text-minerva-gray" id="btnCombined" onclick="selectFileType('combined')">XML+PDF</button>
+                        </div>
+                        
+                        <!-- Single File Upload (for HTML, PDF, XML) -->
+                        <div id="single-file-upload" class="relative border-2 border-dashed border-light-border dark:border-minerva-border rounded p-8 text-center transition-all hover:border-minerva-green/50 hover:bg-light-bg/50 dark:hover:bg-minerva-black/40 group">
+                            <input class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" id="main-file-input" type="file" onchange="handleFileSelect(this)"/>
+                            <div id="file-drop-area" class="text-light-text-secondary dark:text-minerva-gray group-hover:text-minerva-green transition-colors">
+                                <p class="text-[11px] font-medium leading-relaxed" id="file-label">{% if template_loaded %}📄 {{ default_template }} (Standard){% else %}Keine Datei ausgewählt{% endif %}</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Combined File Upload (for XML + PDF) -->
+                        <div id="combined-file-upload" class="hidden">
+                            <div class="mb-4">
+                                <label class="block text-xs font-semibold text-light-text-secondary dark:text-minerva-gray mb-2">XML-Datei:</label>
+                                <div class="relative border-2 border-dashed border-light-border dark:border-minerva-border rounded p-4 text-center transition-all hover:border-minerva-green/50 hover:bg-light-bg/50 dark:hover:bg-minerva-black/40 group">
+                                    <input class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" id="xml-file-input" type="file" accept=".xml,.XML" onchange="handleXmlFileSelect(this)"/>
+                                    <div id="xml-file-label" class="text-light-text-secondary dark:text-minerva-gray group-hover:text-minerva-green transition-colors">
+                                        <p class="text-[11px] font-medium leading-relaxed">XML-Datei auswählen...</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-xs font-semibold text-light-text-secondary dark:text-minerva-gray mb-2">PDF-Datei:</label>
+                                <div class="relative border-2 border-dashed border-light-border dark:border-minerva-border rounded p-4 text-center transition-all hover:border-minerva-green/50 hover:bg-light-bg/50 dark:hover:bg-minerva-black/40 group">
+                                    <input class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" id="pdf-file-input" type="file" accept=".pdf,.PDF" onchange="handlePdfFileSelect(this)"/>
+                                    <div id="pdf-file-label" class="text-light-text-secondary dark:text-minerva-gray group-hover:text-minerva-green transition-colors">
+                                        <p class="text-[11px] font-medium leading-relaxed">PDF-Datei auswählen...</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button onclick="uploadCombinedFiles()" id="combined-upload-btn" disabled class="w-full btn-primary py-3 rounded text-sm font-bold">
+                                XML + PDF Importieren
+                            </button>
+                        </div>
+                        <div id="uploadStatus" class="mt-4">
+                            {% if template_loaded %}
+                            <div class="text-green-500 text-xs p-2 bg-green-500/10 rounded">✅ Standard-Template geladen: {{ default_template }}</div>
+                            {% endif %}
+                        </div>
+                    </section>
+                    
+                    <!-- Target Language -->
+                    <section class="bg-light-card dark:bg-minerva-card border border-light-border dark:border-minerva-border rounded-lg p-6 space-y-5">
+                        <div>
+                            <h2 class="section-header text-light-text-secondary dark:text-minerva-gray mb-3">Zielsprache</h2>
+                            <div class="relative">
+                                <select id="languageSelect" class="w-full text-xs font-semibold py-3 pl-4 pr-10 rounded border-light-border dark:border-minerva-border bg-light-bg dark:bg-minerva-black text-light-text dark:text-white focus:ring-1 focus:ring-minerva-green focus:border-minerva-green appearance-none">
+                                    {% for code, name in languages.items() %}
+                                    <option value="{{ code }}">{{ name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <button id="translateBtn" onclick="translateFile()" disabled class="w-full btn-primary py-4 rounded font-bold text-xs uppercase tracking-[0.15em] flex items-center justify-center gap-3">
+                            Übersetzung Starten
+                        </button>
+                    </section>
+
+                    <!-- GHS Pictograms -->
+                    <section class="bg-light-card dark:bg-minerva-card border border-light-border dark:border-minerva-border rounded-lg p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 class="section-header text-light-text-secondary dark:text-minerva-gray">GHS Piktogramme</h2>
+                            <span class="text-[9px] font-bold bg-minerva-green/20 text-minerva-green px-2 py-0.5 rounded border border-minerva-green/20">MAX 3</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-3 mb-5" id="ghsSelectedDisplay">
+                           <!-- GHS pictograms will be shown here -->
+                        </div>
+                        <button onclick="openGHSModal()" class="w-full py-2.5 text-[11px] font-bold border border-minerva-green/40 text-minerva-green rounded hover:bg-minerva-green hover:text-white transition-all uppercase tracking-wider">
+                            Piktogramme Verwalten
+                        </button>
+                    </section>
+                </aside>
+
+                <!-- Editor & Preview Area -->
+                <div class="col-span-12 lg:col-span-9 flex flex-col">
+                    <div class="grid grid-cols-2 gap-6 px-1 mb-5">
+                        <h3 class="text-[11px] font-bold text-light-text-secondary dark:text-minerva-gray uppercase tracking-widest">Originaldokument</h3>
+                        <div class="flex items-center justify-between">
+                             <div class="flex items-center gap-2">
+                                <h3 class="text-[11px] font-bold text-light-text dark:text-white uppercase tracking-widest">Übersetzungsvorschau</h3>
+                                <button onclick="toggleEditor(true)" class="text-xs text-minerva-green" id="editBtn">(Bearbeiten)</button>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span id="saveStatus" class="text-xs text-gray-400 mr-2"></span>
+                                <!-- Document Export Buttons -->
+                                <div class="relative group">
+                                    <button class="px-3 py-1.5 text-[10px] font-bold border border-minerva-green/40 text-minerva-green rounded hover:bg-minerva-green hover:text-white transition-all uppercase tracking-tight">
+                                        📥 Export
+                                    </button>
+                                    <div class="absolute right-0 mt-1 w-36 bg-light-card dark:bg-minerva-card border border-light-border dark:border-minerva-border rounded shadow-lg z-50 hidden group-hover:block">
+                                        <button onclick="exportDocument('html')" class="block w-full text-left px-4 py-2 text-xs hover:bg-light-bg dark:hover:bg-minerva-hover rounded-t">📄 HTML</button>
+                                        <button onclick="exportDocument('pdf')" class="block w-full text-left px-4 py-2 text-xs hover:bg-light-bg dark:hover:bg-minerva-hover">📕 PDF</button>
+                                        <button onclick="exportDocument('docx')" class="block w-full text-left px-4 py-2 text-xs hover:bg-light-bg dark:hover:bg-minerva-hover rounded-b">📘 DOCX</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- WYSIWYG Toolbar -->
+                    <div id="editor-toolbar" class="bg-light-card dark:bg-minerva-card border border-light-border dark:border-minerva-border rounded-t-lg p-2 flex gap-2 flex-wrap" style="display: none;">
+                        <!-- Formatting Styles -->
+                        <select id="formatStyle" onchange="applyFormatStyle(this.value)" class="bg-light-bg dark:bg-minerva-black border border-light-border dark:border-minerva-border rounded px-2 py-1 text-xs font-bold text-minerva-green">
+                            <option value="">Formatvorlage...</option>
+                            <option value="section-title">Abschnitt (z.B. 1.)</option>
+                            <option value="subsection-title">1.1 Überschrift</option>
+                            <option value="subsubsection">1.1.1 Überschrift</option>
+                            <option value="sub-heading">Sub-Überschrift (Fett)</option>
+                            <option value="sub-heading-u">Sub-Überschrift (Unterstrichen)</option>
+                            <option value="normal-text">Normaler Text</option>
+                            <option value="table-text">Text Tabellen</option>
+                            <option value="table-header">Text Tabellen Überschrift</option>
+                        </select>
+                        <div class="w-px h-6 bg-light-border dark:bg-minerva-border mx-1"></div>
+                        <!-- Font Selection -->
+                        <select id="fontFamily" onchange="document.execCommand('fontName', false, this.value)" class="bg-light-bg dark:bg-minerva-black border border-light-border dark:border-minerva-border rounded px-2 py-1 text-xs">
+                            <option value="Arial">Arial</option>
+                            <option value="Helvetica">Helvetica</option>
+                            <option value="Times New Roman">Times</option>
+                            <option value="Courier New">Courier</option>
+                            <option value="Verdana">Verdana</option>
+                        </select>
+                        <!-- Font Size -->
+                        <select id="fontSize" onchange="document.execCommand('fontSize', false, this.value)" class="bg-light-bg dark:bg-minerva-black border border-light-border dark:border-minerva-border rounded px-2 py-1 text-xs">
+                            <option value="1">8pt</option>
+                            <option value="2">10pt</option>
+                            <option value="3">12pt</option>
+                            <option value="4">14pt</option>
+                            <option value="5">18pt</option>
+                            <option value="6">24pt</option>
+                            <option value="7">36pt</option>
+                        </select>
+                        <div class="w-px h-6 bg-light-border dark:bg-minerva-border mx-1"></div>
+                        <!-- Basic Formatting -->
+                        <button onclick="document.execCommand('bold')" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="Fett (Strg+B)"><b>B</b></button>
+                        <button onclick="document.execCommand('italic')" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="Kursiv (Strg+I)"><i>I</i></button>
+                        <button onclick="document.execCommand('underline')" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="Unterstrichen (Strg+U)"><u>U</u></button>
+                        <button onclick="document.execCommand('strikeThrough')" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="Durchgestrichen"><s>S</s></button>
+                        <div class="w-px h-6 bg-light-border dark:bg-minerva-border mx-1"></div>
+                        <!-- Text Color -->
+                        <input type="color" id="textColor" onchange="document.execCommand('foreColor', false, this.value)" class="w-8 h-8 rounded cursor-pointer" title="Textfarbe">
+                        <!-- Background Color -->
+                        <input type="color" id="bgColor" onchange="document.execCommand('backColor', false, this.value)" class="w-8 h-8 rounded cursor-pointer" title="Hintergrundfarbe">
+                        <div class="w-px h-6 bg-light-border dark:bg-minerva-border mx-1"></div>
+                        <!-- Text Alignment -->
+                        <button onclick="document.execCommand('justifyLeft')" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="Linksbündig">⬅</button>
+                        <button onclick="document.execCommand('justifyCenter')" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="Zentriert">⬅➡</button>
+                        <button onclick="document.execCommand('justifyRight')" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="Rechtsbündig">➡</button>
+                        <button onclick="document.execCommand('justifyFull')" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="Blocksatz">⬅➡</button>
+                        <div class="w-px h-6 bg-light-border dark:bg-minerva-border mx-1"></div>
+                        <!-- Lists -->
+                        <button onclick="document.execCommand('insertUnorderedList')" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="Aufzählung">•</button>
+                        <button onclick="document.execCommand('insertOrderedList')" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="Nummerierung">1.</button>
+                        <div class="w-px h-6 bg-light-border dark:bg-minerva-border mx-1"></div>
+                        <!-- Table & Link -->
+                        <button onclick="insertTable()" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="Tabelle einfügen">📊</button>
+                        <button onclick="insertRow()" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="Zeile hinzufügen">➕Z</button>
+                        <button onclick="insertColumn()" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="Spalte hinzufügen">➕S</button>
+                        <button onclick="deleteRow()" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="Zeile löschen">➖Z</button>
+                        <button onclick="deleteColumn()" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="Spalte löschen">➖S</button>
+                        <button onclick="deleteTable()" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="Tabelle löschen">🗑️T</button>
+                        <button onclick="mergeTableCells()" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="Zellen verbinden">🔗Z</button>
+                        <button onclick="splitTableCell()" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="Zelle teilen">✂️Z</button>
+                        <button onclick="setColumnWidth()" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="Spaltenbreite anpassen">📏S</button>
+                        <button onclick="applySDSTableStyle()" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="SDS-Tabellendesign anwenden">📋</button>
+                        <div class="w-px h-6 bg-light-border dark:bg-minerva-border mx-1"></div>
+                        <input type="color" id="tableBgColor" onchange="changeTableCellBgColor(this.value)" class="w-8 h-8 rounded cursor-pointer" title="Zellenhintergrund">
+                        <input type="color" id="tableBorderColor" onchange="changeTableCellBorderColor(this.value)" class="w-8 h-8 rounded cursor-pointer" title="Rahmenfarbe">
+                        <div class="w-px h-6 bg-light-border dark:bg-minerva-border mx-1"></div>
+                        <button onclick="document.execCommand('insertHorizontalRule')" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="Linie">―</button>
+                        <button onclick="var url=prompt('URL:'); if(url) document.execCommand('createLink', false, url)" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="Link einfügen">🔗</button>
+                        <button onclick="promptAndInsertImage()" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="Bild einfügen/auswählen">🖼️</button>
+                        <div class="w-px h-6 bg-light-border dark:bg-minerva-border mx-1"></div>
+                        <!-- Undo/Redo -->
+                        <button onclick="document.execCommand('undo')" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="Rückgängig">↩</button>
+                        <button onclick="document.execCommand('redo')" class="p-2 rounded hover:bg-light-bg dark:hover:bg-minerva-hover" title="Wiederholen">↪</button>
+                    </div>
+                     <!-- Preview Grid -->
+                    <div class="flex" id="previewContainer" style="height: calc(100vh - 380px); min-height: 500px; overflow: auto;">
+                        <!-- Original Iframe (Editable) -->
+                        <div id="original-container" class="bg-white rounded-lg shadow-2xl relative group" style="overflow: auto;">
+                            <iframe class="preview-iframe" id="originalPreview" style="height: 100%;"></iframe>
+                            <div id="originalEditor" class="preview-iframe text-black bg-white" style="display:none; height: 100%; width: 100%; box-sizing: border-box;"></div>
+                        </div>
+                        <!-- Translated View (Editable) -->
+                        <div id="translated-container" class="bg-white rounded-lg shadow-2xl relative group transition-all duration-300" style="overflow: auto;">
+                            <div id="richTextEditor" class="preview-iframe text-black bg-white" style="display:none; height: 100%; width: 100%; box-sizing: border-box;"></div>
+                            <iframe class="preview-iframe" id="translatedPreview" style="height: 100%;"></iframe>
+                        </div>
+                    </div>
+                     <!-- Relocated "Nicht übersetzte Phrasen" -->
+                    <section id="downloadNotFoundSection" style="display: none;" class="bg-light-card dark:bg-minerva-card border border-light-border dark:border-minerva-border rounded-lg p-6 w-full mt-5">
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="section-header text-light-text-secondary dark:text-minerva-gray">Nicht übersetzte Phrasen</h2>
+                            <div id="notFoundBadge" class="text-[9px] font-bold bg-red-500/20 text-red-500 px-2 py-0.5 rounded border border-red-500/20">0 UNRESOLVED</div>
+                        </div>
+                        <div class="bg-light-bg dark:bg-minerva-black rounded border border-light-border dark:border-minerva-border overflow-hidden">
+                            <div class="max-h-[120px] overflow-y-auto custom-scrollbar">
+                                <div id="notFoundList"></div>
+                            </div>
+                        </div>
+                         <div class="flex items-center gap-3 mt-4">
+                            <button onclick="downloadHTML()" class="px-4 py-2 text-[10px] font-bold border border-light-border dark:border-minerva-border rounded bg-light-bg dark:bg-minerva-hover text-light-text dark:text-white hover:border-minerva-gray transition-colors uppercase tracking-tight">Save HTML</button>
+                            <button id="pdfDownloadBtn" onclick="downloadPDF()" class="px-4 py-2 text-[10px] font-bold border border-light-border dark:border-minerva-border rounded bg-light-bg dark:bg-minerva-hover text-light-text dark:text-white hover:border-minerva-gray transition-colors uppercase tracking-tight">Export PDF</button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <!-- Database Tab -->
+        <div id="database-tab" class="tab-content" style="display: none;">
+            <div class="space-y-6">
+                                <div class="bg-light-card dark:bg-minerva-card border border-light-border dark:border-minerva-border rounded-lg p-6">
+                    <h2 class="section-header text-light-text-secondary dark:text-minerva-gray mb-2">Bulk-Import</h2>
+                    <p class="text-xs text-light-text-secondary dark:text-minerva-gray mb-4">Format: <code>EN: English text</code> dann <code>DE: Deutsch</code>, <code>FR: Francais</code> usw. Mehrere Phrasen mit <code>---</code> trennen.</p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="font-semibold text-light-text dark:text-white mb-2">TXT-Datei Upload</h3>
+                            <select id="bulkSourceLang" class="w-full mb-2 bg-light-bg dark:bg-minerva-black border border-light-border dark:border-minerva-border rounded text-sm p-1">
+                                <option value="auto">Automatisch erkennen</option>
+                                <option value="en" selected>Englisch (EN)</option>
+                                <option value="de">Deutsch (DE)</option>
+                            </select>
+                            <input type="file" id="bulkFileInput" accept=".txt" class="w-full text-sm mb-2 text-light-text dark:text-white">
+                            <button onclick="uploadBulkFile()" class="btn-primary w-full py-2 rounded text-sm">Hochladen &amp; Importieren</button>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-light-text dark:text-white mb-2">Quick-Edit (Zwischenablage)</h3>
+                            <select id="quickSourceLang" class="w-full mb-2 bg-light-bg dark:bg-minerva-black border border-light-border dark:border-minerva-border rounded text-sm p-1">
+                                <option value="auto">Automatisch erkennen</option>
+                                <option value="en" selected>Englisch (EN)</option>
+                                <option value="de">Deutsch (DE)</option>
+                            </select>
+                            <textarea id="quickEditText" rows="6" placeholder="EN: The product is stable.&#10;DE: Das Produkt ist stabil." class="w-full text-sm bg-light-bg dark:bg-minerva-black border border-light-border dark:border-minerva-border rounded p-2 font-mono"></textarea>
+                            <button onclick="applyQuickEdit()" class="btn-primary w-full py-2 rounded text-sm mt-2">Anwenden</button>
+                        </div>
+                    </div>
+                    <div id="bulkStatus" class="mt-3"></div>
+                </div>
+<div class="bg-light-card dark:bg-minerva-card border border-light-border dark:border-minerva-border rounded-lg p-6">
+                    <h2 class="section-header text-light-text-secondary dark:text-minerva-gray mb-4">Phrasen suchen &amp; filtern</h2>
+                    <div class="flex gap-4 items-center flex-wrap">
+                        <!-- Suchfeld -->
+                        <input type="text" id="searchInput" placeholder="Suchbegriff (alle Sprachen)..." class="flex-grow min-w-[200px] bg-light-bg dark:bg-minerva-black border-light-border dark:border-minerva-border rounded focus:ring-minerva-green focus:border-minerva-green">
+                        <!-- Sprachauswahl -->
+                        <select id="searchLanguage" class="bg-light-bg dark:bg-minerva-black border-light-border dark:border-minerva-border rounded focus:ring-minerva-green focus:border-minerva-green">
+                             {% for code, name in languages.items() %}
+                                <option value="{{ code }}">{{ name }}</option>
+                            {% endfor %}
+                        </select>
+                        <!-- Sortierung nach ID -->
+                        <select id="sortBy" class="bg-light-bg dark:bg-minerva-black border-light-border dark:border-minerva-border rounded focus:ring-minerva-green focus:border-minerva-green" onchange="searchPhrases()">
+                            <option value="id_desc">ID (Neueste zuerst)</option>
+                            <option value="id_asc">ID (Älteste zuerst)</option>
+                            <option value="en_asc">EN (A-Z)</option>
+                            <option value="en_desc">EN (Z-A)</option>
+                        </select>
+                        <!-- Filter nach englischem Text -->
+                        <input type="text" id="filterEnInput" placeholder="Filter EN-Text..." class="min-w-[180px] bg-light-bg dark:bg-minerva-black border-light-border dark:border-minerva-border rounded focus:ring-minerva-green focus:border-minerva-green" oninput="searchPhrases()">
+                        <button onclick="searchPhrases()" class="btn-primary px-6 py-2 rounded">Suchen</button>
+                        <button onclick="showAddModal()" class="bg-green-500 text-white px-6 py-2 rounded">Neue Phrase</button>
+                    </div>
+                </div>
+                 <div class="bg-light-card dark:bg-minerva-card border border-light-border dark:border-minerva-border rounded-lg p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="section-header text-light-text-secondary dark:text-minerva-gray">Ergebnisse</h2>
+                        <!-- Bulk Actions & Export -->
+                        <div class="flex gap-2 items-center flex-wrap">
+                            <div id="bulkActions" class="flex gap-2 items-center" style="display: none;">
+                                <span id="selectedCount" class="text-sm text-minerva-green font-semibold">0 ausgewählt</span>
+                                <button onclick="bulkDeleteSelected()" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm font-semibold transition-colors">
+                                    🗑️ Löschen
+                                </button>
+                            </div>
+                            <!-- Export Buttons -->
+                            <div class="flex gap-2 items-center ml-4">
+                                <span class="text-xs text-light-text-secondary dark:text-minerva-gray">Export:</span>
+                                <button onclick="exportPhrases('html')" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded text-xs font-semibold transition-colors" title="Als HTML exportieren">
+                                    📄 HTML
+                                </button>
+                                <button onclick="exportPhrases('pdf')" class="bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded text-xs font-semibold transition-colors" title="Als PDF exportieren">
+                                    📕 PDF
+                                </button>
+                                <button onclick="exportPhrases('docx')" class="bg-blue-700 hover:bg-blue-800 text-white px-3 py-2 rounded text-xs font-semibold transition-colors" title="Als Word exportieren">
+                                    📘 DOCX
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="overflow-x-auto">
+                        <table class="phrase-table w-full">
+                            <thead>
+                                <tr class="border-b border-light-border dark:border-minerva-border">
+                                    <th class="text-light-text-secondary dark:text-minerva-gray w-10">
+                                        <input type="checkbox" id="selectAllCheckbox" onchange="toggleSelectAll()" class="w-4 h-4 rounded border-gray-300 text-minerva-green focus:ring-minerva-green">
+                                    </th>
+                                    <th class="text-light-text-secondary dark:text-minerva-gray">ID</th>
+                                    <th class="text-light-text-secondary dark:text-minerva-gray">English (Original)</th>
+                                    <th id="resultLangHeader" class="text-light-text-secondary dark:text-minerva-gray">Deutsch</th>
+                                    <th class="text-light-text-secondary dark:text-minerva-gray">Aktionen</th>
+                                </tr>
+                            </thead>
+                            <tbody id="phrasesTable" class="divide-y divide-light-border dark:divide-minerva-border">
+                                <!-- results here -->
+                            </tbody>
+                        </table>
+                        <div id="pagination-container" class="flex justify-center items-center mt-4"></div>
+                     </div>
+                 </div>
+            </div>
+        </div>
+        <!-- GHS Tab (Content is inside the GHS Modal) -->
+        <div id="ghs-tab" class="tab-content" style="display: none;">
+             <div class="bg-light-card dark:bg-minerva-card border border-light-border dark:border-minerva-border rounded-lg p-6">
+                <h2 class="text-2xl font-bold text-light-text dark:text-white">GHS Pictogram Management</h2>
+                <p class="text-light-text-secondary dark:text-minerva-gray mb-4">Verwalten Sie die Piktogramme über den Button in der Seitenleiste der "Übersetzen"-Ansicht.</p>
+                <button onclick="openGHSModal()" class="btn-primary px-6 py-2 rounded">GHS-Piktogramme verwalten</button>
+             </div>
+        </div>
+        <!-- Stats Tab -->
+        <div id="stats-tab" class="tab-content" style="display: none;">
+             <div class="bg-light-card dark:bg-minerva-card border border-light-border dark:border-minerva-border rounded-lg p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-light-text dark:text-white">Datenbank-Statistiken</h2>
+                    <button onclick="loadStats()" class="btn-primary px-4 py-2 rounded text-sm">Aktualisieren</button>
+                </div>
+                <div id="dbStats" class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+                    <!-- Stats loaded by JS -->
+                </div>
+                 <h2 class="text-2xl font-bold text-light-text dark:text-white mb-6">Phrasen pro Sprache</h2>
+                 <div id="langStats" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Lang stats loaded by JS -->
+                 </div>
+            </div>
+        </div>
+
+        <!-- TEMPLATE TAB -->
+        <div id="template-tab" class="tab-content" style="display: none;">
+            <div class="bg-light-card dark:bg-minerva-card border border-light-border dark:border-minerva-border rounded-lg p-4 flex flex-col" style="max-height: calc(100vh - 120px); overflow: hidden;">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-light-text dark:text-white">Template Editor</h2>
+                    <div class="flex gap-2">
+                        <button id="editorModeToggle" onclick="toggleEditorMode()" class="bg-purple-500 hover:bg-purple-600 text-white px-3 py-1.5 rounded text-sm transition-colors" title="Zwischen Code und WYSIWYG wechseln">🔄 WYSIWYG</button>
+                        <input type="file" id="templateImportFile" style="display:none" onchange="importTemplateFile(this)" accept=".html,.htm">
+                        <button onclick="document.getElementById('templateImportFile').click()" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1.5 rounded text-sm transition-colors" title="HTML-Vorlage hochladen">📥 Importieren</button>
+                        <button onclick="exportTemplate()" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded text-sm transition-colors" title="Als HTML-Datei herunterladen">📤 Exportieren</button>
+                        <button onclick="resetTemplate()" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1.5 rounded text-sm transition-colors" title="Auf Werkszustand zurücksetzen">🔄 Zurücksetzen</button>
+                        <button onclick="saveTemplate()" class="btn-primary px-6 py-1.5 rounded text-sm font-bold transition-colors shadow-lg">Speichern</button>
+                    </div>
+                </div>
+                <!-- Warning -->
+                <div class="bg-yellow-500/10 border border-yellow-500/20 text-yellow-600 dark:text-yellow-400 p-3 rounded text-sm mb-4">
+                    <strong>Achtung:</strong> Hier bearbeiten Sie direkt die HTML-Layoutvorlage (<code>layout-placeholders-fixed-v2.html</code>). Da dieses Dokument als Basis für den PDF-Export und die App-Vorschau dient, empfehlen wir vor größeren Anpassungen zunächst einen Export zur Sicherheit. 
+                </div>
+                <!-- Editor Mode Tabs -->
+                <div class="flex gap-2 mb-4 border-b border-light-border dark:border-minerva-border">
+                    <button id="codeEditorTab" onclick="switchEditorMode('code')" class="px-4 py-2 text-sm font-semibold border-b-2 border-minerva-green text-minerva-green">Code Editor</button>
+                    <button id="wysiwygEditorTab" onclick="switchEditorMode('wysiwyg')" class="px-4 py-2 text-sm font-semibold border-b-2 border-transparent text-light-text-secondary dark:text-minerva-gray hover:text-minerva-green">Visuell (WYSIWYG)</button>
+                </div>
+                
+                <!-- Editor Container - Fixed Height -->
+                <div style="height: 35vh; min-height: 250px;">
+                    <!-- Code Editor -->
+                    <textarea id="templateCodeEditor" class="w-full h-full bg-light-bg dark:bg-[#15171e] p-4 font-mono text-xs md:text-sm border border-light-border dark:border-minerva-border rounded text-light-text dark:text-gray-300" spellcheck="false" style="white-space: pre; overflow-wrap: normal; overflow-x: auto; box-sizing: border-box; resize: none;" oninput="syncCodeToPreview()"></textarea>
+                    
+                    <!-- WYSIWYG Editor (hidden by default) -->
+                    <div id="wysiwygEditorContainer" class="flex flex-col h-full" style="display: none;">
+                        <div id="wysiwygEditor" class="flex-1 w-full bg-white border border-light-border dark:border-minerva-border rounded p-4 overflow-y-auto" contenteditable="true" oninput="syncWysiwygToCode()"></div>
+                    </div>
+                </div>
+                
+                <!-- Live Preview -->
+                <div class="mt-4 border-t border-light-border dark:border-minerva-border pt-4">
+                    <div class="flex justify-between items-center mb-2">
+                        <h3 class="text-sm font-semibold text-light-text-secondary dark:text-minerva-gray">Live Vorschau</h3>
+                        <div class="flex gap-2">
+                            <button onclick="togglePreviewSize()" class="px-2 py-1 text-xs bg-gray-200 dark:bg-gray-700 rounded hover:bg-gray-300" title="Vorschaugröße ändern">⤢</button>
+                        </div>
+                    </div>
+                    <iframe id="templatePreview" class="w-full border border-light-border dark:border-minerva-border rounded" style="height: 250px; background: white; overflow: auto;"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAPPING TAB -->
+        <div id="mapping-tab" class="tab-content" style="display: none;">
+            <div class="bg-light-card dark:bg-minerva-card border border-light-border dark:border-minerva-border rounded-lg p-6 flex flex-col h-[calc(100vh-180px)]">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-light-text dark:text-white">Template Mapping</h2>
+                    <div class="flex gap-2">
+                        <button onclick="refreshMappings()" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1.5 rounded text-sm transition-colors">🔄 Aktualisieren</button>
+                        <button onclick="saveMappings()" class="btn-primary px-6 py-1.5 rounded text-sm font-bold transition-colors shadow-lg">Speichern</button>
+                    </div>
+                </div>
+                <p class="text-sm text-light-text-secondary dark:text-minerva-gray mb-4">Zeigt die Zuordnung zwischen XML/JSON-Feldern und Template-Platzhaltern. Hier können Sie Mappings überprüfen und anpassen.</p>
+                
+                <!-- Mapping Filter -->
+                <div class="flex gap-4 mb-4">
+                    <select id="mappingSectionFilter" onchange="filterMappings()" class="bg-light-bg dark:bg-minerva-black border border-light-border dark:border-minerva-border rounded px-3 py-2 text-sm">
+                        <option value="all">Alle Abschnitte</option>
+                        <option value="section_1">Abschnitt 1: Identifikation</option>
+                        <option value="section_2">Abschnitt 2: Gefahrenhinweise</option>
+                        <option value="section_3">Abschnitt 3: Zusammensetzung</option>
+                        <option value="section_4">Abschnitt 4: Erste-Hilfe-Maßnahmen</option>
+                        <option value="section_5">Abschnitt 5: Maßnahmen zur Brandbekämpfung</option>
+                        <option value="section_6">Abschnitt 6: Maßnahmen bei unbeabsichtigter Freisetzung</option>
+                        <option value="section_7">Abschnitt 7: Handhabung und Lagerung</option>
+                        <option value="section_8">Abschnitt 8: Exposition/Personenschutz</option>
+                        <option value="section_9">Abschnitt 9: Physikalische Eigenschaften</option>
+                        <option value="section_10">Abschnitt 10: Stabilität und Reaktivität</option>
+                        <option value="section_11">Abschnitt 11: Toxikologische Angaben</option>
+                        <option value="section_12">Abschnitt 12: Umweltbezogene Angaben</option>
+                        <option value="section_13">Abschnitt 13: Hinweise zur Entsorgung</option>
+                        <option value="section_14">Abschnitt 14: Transportangaben</option>
+                        <option value="section_15">Abschnitt 15: Rechtsvorschriften</option>
+                        <option value="section_16">Abschnitt 16: Sonstige Angaben</option>
+                    </select>
+                    <input type="text" id="mappingSearch" oninput="filterMappings()" placeholder="Suchen..." class="flex-1 bg-light-bg dark:bg-minerva-black border border-light-border dark:border-minerva-border rounded px-3 py-2 text-sm">
+                </div>
+                
+                <!-- Mapping Table -->
+                <div class="flex-1 overflow-auto">
+                    <table class="w-full text-sm border-collapse">
+                        <thead class="bg-light-bg dark:bg-minerva-black sticky top-0">
+                            <tr>
+                                <th class="text-left p-3 border-b border-light-border dark:border-minerva-border font-semibold text-light-text dark:text-white">Template Variable</th>
+                                <th class="text-left p-3 border-b border-light-border dark:border-minerva-border font-semibold text-light-text dark:text-white">Quellfeld (XML/JSON)</th>
+                                <th class="text-left p-3 border-b border-light-border dark:border-minerva-border font-semibold text-light-text dark:text-white">Beispielwert</th>
+                                <th class="text-left p-3 border-b border-light-border dark:border-minerva-border font-semibold text-light-text dark:text-white">Status</th>
+                                <th class="text-left p-3 border-b border-light-border dark:border-minerva-border font-semibold text-light-text dark:text-white">Aktionen</th>
+                            </tr>
+                        </thead>
+                        <tbody id="mappingTableBody">
+                            <!-- Mappings loaded by JS -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Add New Mapping -->
+                <div class="mt-4 pt-4 border-t border-light-border dark:border-minerva-border">
+                    <h3 class="text-sm font-semibold text-light-text dark:text-white mb-3">Neues Mapping hinzufügen</h3>
+                    <div class="flex gap-4 items-end">
+                        <div class="flex-1">
+                            <label class="block text-xs text-light-text-secondary dark:text-minerva-gray mb-1">Template Variable</label>
+                            <input type="text" id="newMappingTemplateVar" placeholder="z.B. section_1.product_name" class="w-full bg-light-bg dark:bg-minerva-black border border-light-border dark:border-minerva-border rounded px-3 py-2 text-sm">
+                        </div>
+                        <div class="flex-1">
+                            <label class="block text-xs text-light-text-secondary dark:text-minerva-gray mb-1">Quellfeld</label>
+                            <input type="text" id="newMappingSourceField" placeholder="z.B. Product/Name" class="w-full bg-light-bg dark:bg-minerva-black border border-light-border dark:border-minerva-border rounded px-3 py-2 text-sm">
+                        </div>
+                        <button onclick="addNewMapping()" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded text-sm transition-colors">+ Hinzufügen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    
+    <!-- Fixed Bottom Status & Footer -->
+    <div class="fixed bottom-0 left-0 right-0 z-[60]">
+        <!-- Translation Status Bar -->
+        <section id="progressSection" style="display: none;" class="bg-light-card dark:bg-minerva-card border-t border-light-border dark:border-minerva-border px-8 py-4 glass-effect">
+             <div class="max-w-[1800px] mx-auto flex flex-col lg:flex-row items-center gap-8">
+                <div class="flex items-center gap-4 md:border-r border-light-border dark:border-minerva-border md:pr-8">
+                    <h2 class="section-header text-light-text-secondary dark:text-minerva-gray whitespace-nowrap">Status</h2>
+                    <div id="statsCard" class="flex items-center gap-2">
+                        <div class="flex items-center gap-2 px-3 py-1 bg-light-bg dark:bg-minerva-black rounded border border-light-border dark:border-minerva-border">
+                            <span id="totalTexts" class="text-xs font-bold text-light-text dark:text-white">0</span>
+                            <span class="text-[8px] text-light-text-secondary dark:text-minerva-gray font-bold">TOTAL</span>
+                        </div>
+                        <div class="flex items-center gap-2 px-3 py-1 bg-green-500/10 rounded border border-green-500/20">
+                            <span id="translatedCount" class="text-xs font-bold text-minerva-green">0</span>
+                            <span class="text-[8px] text-minerva-green/70 font-bold">MATCH</span>
+                        </div>
+                        <div class="flex items-center gap-2 px-3 py-1 bg-red-500/10 rounded border border-red-500/20">
+                            <span id="notFoundCount" class="text-xs font-bold text-red-500">0</span>
+                            <span class="text-[8px] text-red-500/70 font-bold">MISSING</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-1 w-full flex items-center gap-4 min-w-[200px]">
+                    <span class="text-[10px] font-bold text-light-text-secondary dark:text-minerva-gray uppercase">Abdeckung</span>
+                    <div class="flex-1 bg-light-bg dark:bg-minerva-black h-4 rounded-full overflow-hidden border border-light-border dark:border-minerva-border relative">
+                        <div id="coverageBar" class="bg-minerva-green h-full transition-all duration-500" style="width: 0%"></div>
+                         <span id="coverageText" class="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-white">0%</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer Information -->
+        <footer class="bg-light-bg dark:bg-minerva-black border-t border-light-border dark:border-minerva-border py-2 px-8 flex justify-between items-center text-[10px] uppercase tracking-widest font-bold">
+            <span class="text-light-text-secondary dark:text-minerva-gray">SDS-Translate Pro v4.0</span>
+            <div class="flex gap-8 text-light-text-secondary dark:text-minerva-gray">
+                 <span>Status: <span id="progressText" class="text-minerva-green">Idle</span></span>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- MODALS -->
+    <!-- GHS Modal -->
+    <div id="ghsModal" class="modal">
+        <div class="modal-content bg-light-card dark:bg-minerva-card text-light-text dark:text-white rounded-lg p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+             <h2 class="text-xl font-bold mb-4">GHS Piktogramme wählen</h2>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="font-semibold mb-2">Verfügbar</h3>
+                    <div id="ghsAvailableList" class="ghs-pictogram-grid bg-light-bg dark:bg-minerva-black p-2 rounded max-h-96 overflow-y-auto custom-scrollbar"></div>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-2">Ausgewählt (<span id="ghsSelectedCount">0</span>/3)</h3>
+                    <div id="ghsSelectedList" class="ghs-selected-container min-h-[120px] bg-light-bg dark:bg-minerva-black p-2 rounded"></div>
+                </div>
+             </div>
+             <button onclick="closeGHSModal()" class="mt-6 px-4 py-2 bg-minerva-green text-white rounded">Fertig</button>
+        </div>
+    </div>
+    
+    <!-- ADD/EDIT PHRASE MODAL -->
+    <div id="phraseModal" class="modal">
+        <div class="modal-content bg-light-card dark:bg-minerva-card text-light-text dark:text-white rounded-lg p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <h2 id="modalTitle" class="text-xl font-bold mb-4">Neue Phrase</h2>
+            <form id="phraseForm" class="space-y-4">
+                 <input type="hidden" id="phraseId">
+                <div>
+                    <label class="font-bold">English (Original)*</label>
+                    <textarea id="enText" required placeholder="Englische Phrase..." class="w-full mt-1 bg-light-bg dark:bg-minerva-black border-light-border dark:border-minerva-border rounded focus:ring-minerva-green focus:border-minerva-green"></textarea>
+                </div>
+                <div class="language-grid custom-scrollbar">
+                    {% for code, name in languages.items() if code != 'en' %}
+                    <div>
+                        <label>{{name}}</label>
+                         <textarea id="{{code}}Text" placeholder="{{name}} Übersetzung..." class="w-full mt-1 bg-light-bg dark:bg-minerva-black border-light-border dark:border-minerva-border rounded focus:ring-minerva-green focus:border-minerva-green"></textarea>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="flex justify-end gap-4 mt-6">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2 rounded">Abbrechen</button>
+                    <button type="submit" class="btn-primary px-6 py-2 rounded">Speichern</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+    <script>
+    // Automatische Import-Session-Integration
+    document.addEventListener('DOMContentLoaded', function() {
+        checkForImportSession();
+    });
+
+    async function checkForImportSession() {
+        try {
+            const response = await fetch('/api/check-import-session');
+            const data = await response.json();
+            
+            if (data.success && data.session_data) {
+                // Datei automatisch laden
+                loadImportedFile(data.session_data);
+                
+                // Session-Datei löschen
+                await fetch('/api/clear-import-session', { method: 'POST' });
+            }
+        } catch (error) {
+            console.log('No import session found or error occurred');
+        }
+    }
+
+    function loadImportedFile(sessionData) {
+        // Dateiinhalt laden und in die UI einfügen
+        fetch(`/uploads/${sessionData.original_filename}`)
+            .then(response => response.text())
+            .then(content => {
+                // Originaldokument laden
+                document.getElementById('originalPreview').srcdoc = content;
+                
+                // Session-Daten setzen (über API)
+                return fetch('/api/set-import-session', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(sessionData)
+                });
+            })
+            .then(() => {
+                // Erfolgsmeldung anzeigen
+                showNotification('Importierte Datei wurde automatisch geladen', 'success');
+            })
+            .catch(error => {
+                console.error('Fehler beim Laden der importierten Datei:', error);
+                showNotification('Fehler beim Laden der importierten Datei', 'error');
+            });
+    }
+
+    function showNotification(message, type) {
+        // Einfache Benachrichtigung anzeigen
+        const notification = document.createElement('div');
+        notification.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 ${
+            type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
+        }`;
+        notification.textContent = message;
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.remove();
+        }, 5000);
+    }
+    </script>
+    <script>
+        async function uploadBulkFile() {
+            const fileInput = document.getElementById('bulkFileInput');
+            const sourceLang = document.getElementById('bulkSourceLang').value;
+            const statusDiv = document.getElementById('bulkStatus');
+            if (!fileInput.files || !fileInput.files[0]) {
+                statusDiv.innerHTML = '<div class="text-red-500 text-xs p-2 bg-red-500/10 rounded">Bitte TXT-Datei auswählen</div>';
+                return;
+            }
+            statusDiv.innerHTML = '<div class="text-blue-400 text-xs p-2 bg-blue-500/10 rounded">Wird hochgeladen...</div>';
+            const fd = new FormData();
+            fd.append('file', fileInput.files[0]);
+            fd.append('source_lang', sourceLang);
+            try {
+                const r = await fetch('/api/phrases/bulk/upload', { method: 'POST', body: fd });
+                const d = await r.json();
+                if (d.success) {
+                    statusDiv.innerHTML = `<div class="text-green-500 text-xs p-2 bg-green-500/10 rounded">✓ ${d.created} erstellt, ${d.updated} aktualisiert (${d.source_language.toUpperCase()})</div>`;
+                    fileInput.value = '';
+                } else {
+                    statusDiv.innerHTML = `<div class="text-red-500 text-xs p-2 bg-red-500/10 rounded">${d.error}</div>`;
+                }
+            } catch(e) {
+                statusDiv.innerHTML = `<div class="text-red-500 text-xs p-2 bg-red-500/10 rounded">Fehler: ${e.message}</div>`;
+            }
+        }
+        async function applyQuickEdit() {
+            const text = document.getElementById('quickEditText').value.trim();
+            const sourceLang = document.getElementById('quickSourceLang').value;
+            const statusDiv = document.getElementById('bulkStatus');
+            if (!text) {
+                statusDiv.innerHTML = '<div class="text-red-500 text-xs p-2 bg-red-500/10 rounded">Bitte Text eingeben</div>';
+                return;
+            }
+            statusDiv.innerHTML = '<div class="text-blue-400 text-xs p-2 bg-blue-500/10 rounded">Wird verarbeitet...</div>';
+            try {
+                const r = await fetch('/api/phrases/bulk/update', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ text, source_lang: sourceLang })
+                });
+                const d = await r.json();
+                if (d.success) {
+                    statusDiv.innerHTML = `<div class="text-green-500 text-xs p-2 bg-green-500/10 rounded">✓ ${d.created} erstellt, ${d.updated} aktualisiert (${d.source_language.toUpperCase()})</div>`;
+                    document.getElementById('quickEditText').value = '';
+                } else {
+                    statusDiv.innerHTML = `<div class="text-red-500 text-xs p-2 bg-red-500/10 rounded">${d.error}</div>`;
+                }
+            } catch(e) {
+                statusDiv.innerHTML = `<div class="text-red-500 text-xs p-2 bg-red-500/10 rounded">Fehler: ${e.message}</div>`;
+            }
+        }
+    </script>
+</body>
+</html>

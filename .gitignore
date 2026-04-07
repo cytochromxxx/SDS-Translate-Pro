@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv
+venv/
+uploads/
+*.db
+*.sqlite
+*.log
+*.pdf
+*.docx
+*.zip
+.ruff_cache/
+instance/
