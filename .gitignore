@@ -6,7 +6,8 @@ __pycache__/
 .venv
 venv/
 uploads/
-*.db
+sds_dictionary.db
+sds_dictionary_final.db
 *.sqlite
 *.log
 *.pdf
