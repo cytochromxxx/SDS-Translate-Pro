@@ -34,6 +34,25 @@ def get_all_text_from_nodes(element: Optional[etree._Element], path: str) -> str
         nodes = element.xpath(agnostic_path)
         if not nodes:
             return ""
+
+        pieces = []
+        for node in nodes:
+            text = ''.join(node.itertext()).strip()
+            if text:
+                pieces.append(text)
+
+        res = ", ".join(pieces)
+        res = res.replace(" ,", ",")
+        res = res.replace(",,", ",")
+        return ' '.join(res.split())
+    except Exception as e:
+        logger.warning(f"XPath {path} failed with error: {e}")
+        return ""
+    try:
+        agnostic_path = './/' + '/'.join([f"*[local-name()='{part}']" for part in path.split('/')])
+        nodes = element.xpath(agnostic_path)
+        if not nodes:
+            return ""
         text = ' '.join(''.join(node.itertext()).strip() for node in nodes).strip()
         return ' '.join(text.split())
     except Exception as e:
@@ -265,6 +284,27 @@ class NewSDScomParser:
                     else:
                         label = f'ATE ({route.lower()})' if route else effect
                     component_data['ate_values'].append({'label': label, 'value': formatted, 'unit': unit})
+
+                    # Create toxicological_info matching test.html formatting
+                    species = get_text(test_result, 'Species')
+                    species_str = f" ({species})" if species else ""
+                    dose = get_text(test_result, 'EffectDose')
+                    method = get_text(test_result, 'Method')
+                    method_str = f" {method}" if method else ""
+
+                    exp_time = get_text(test_result, 'ExposureTime')
+                    exp_time_str = f" {exp_time}" if exp_time else ""
+
+                    dose_label = dose if dose else ("LC50" if route.lower() == 'inhalation' else "LD50")
+                    tox_str = f"{dose_label} {route.lower()}: {formatted} {unit}{exp_time_str}{species_str}{method_str}"
+                    if route.lower() == 'inhalation':
+                        effect_tested = effect.lower() if effect else ''
+                        if 'vapour' in effect_tested or 'vapor' in effect_tested:
+                            tox_str = f"LC50 Acute inhalation toxicity (vapour): {formatted} {unit}{exp_time_str}{species_str}{method_str}"
+                        elif 'dust' in effect_tested or 'mist' in effect_tested:
+                            tox_str = f"LC50 Acute inhalation toxicity (dust/mist): {formatted} {unit}{exp_time_str}{species_str}{method_str}"
+
+                    component_data['toxicological_info'].append(tox_str)
             components.append(component_data)
         return {'mixture_components': components}
         
@@ -403,6 +443,15 @@ class NewSDScomParser:
             sym_map = {'gt': '>', 'lt': '<', 'ge': '>=', 'le': '<=', 'eq': '=', 'ca': 'ca.'}
             symbol = sym_map.get(symbol.lower(), symbol)
             value = get_text(val_node, 'LowerValue') or get_text(val_node, 'UpperValue') or get_text(val_node, 'ExactValue')
+            try:
+                if value:
+                    v_float = float(value)
+                    if v_float.is_integer():
+                        value = f"{int(v_float):,}"
+                    else:
+                        value = f"{v_float:,g}"
+            except ValueError:
+                pass
             unit = get_text(val_node, 'Unit')
             parts = [p for p in [symbol, value, unit] if p]
             return " ".join(parts)
@@ -431,6 +480,8 @@ class NewSDScomParser:
     def _parse_section_13(self, section: etree._Element) -> Dict:
         waste_treatment_nodes = section.xpath('.//*[local-name()="WasteTreatment"]//*[local-name()="FullText"]/text()')
         waste_treatment = " ".join(filter(None, [t.strip() for t in waste_treatment_nodes]))
+
+        eu_requirements = get_all_text_from_nodes(section, 'EuRequirements/EuWasteRegulations/FullText')
 
         ewl_product = self._xpath_single(section, 'EuRequirements/EuropeanWasteList/EWLProduct')
         ewl_packing = self._xpath_single(section, 'EuRequirements/EuropeanWasteList/EWLPacking')
@@ -461,8 +512,8 @@ class NewSDScomParser:
 
     def _parse_section_14(self, section: etree._Element) -> Dict:
         def _get_shipping_name(transport_node: Optional[etree._Element], name_path: str, substance_paths: List[str]):
-            if transport_node is None: return "ALCOHOLS, N.O.S."  # TODO: hardcoded - replace with XML/PDF extraction
-            name = get_text(transport_node, name_path) or "ALCOHOLS, N.O.S."  # TODO: hardcoded - replace with XML/PDF extraction
+            if transport_node is None: return ""
+            name = get_text(transport_node, name_path) or ""
             substances = []
             for path in substance_paths:
                 found_substances = get_all_texts(transport_node, path)
@@ -474,19 +525,19 @@ class NewSDScomParser:
         adr_rid_node = self._xpath_single(section, 'TransportHazardClassification/AdrRid')
         adr_rid_other_node = self._xpath_single(section, 'OtherTransportInformation/AdrRidOtherInformation')
         # TODO: hardcoded - fallback values ('3', '274 | 601', '5 L', 'E1', '30', 'D/E') should come from XML/PDF extraction
-        land_data = {'un_number': get_text(section, 'UnNo/UnNoAdrRid'),'shipping_name': _get_shipping_name(self._xpath_single(section, 'ProperShippingName/AdrRid'), 'ProperShippingNameNationalAdrRid/FullText', ['DangerReleasingSubstanceNationalAdrRid/FullText']),'transport_class': get_text(adr_rid_node, 'ClassAdrRid') or '3','packing_group': get_text(section, 'PackingGroup/PackingGroupAdrRid'),'environmental_hazards': get_text(section, 'EnvironmentalHazards/EnvironmHazardAccordAdrRid/FullText'),'special_provisions': get_text(adr_rid_other_node, 'AdrRidSpecialProvisions') or '274 | 601','limited_quantity': get_text(adr_rid_other_node, 'AdrRidLimitedQty') or '5 L','excepted_quantities': get_text(adr_rid_other_node, 'AdrRidExceptedQty') or 'E1','hazard_id': get_text(adr_rid_other_node, 'AdrHazardIdentificationNo') or '30','classification_code': get_text(adr_rid_node, 'ClassCodeAdrRid') or '3','tunnel_code': get_text(adr_rid_other_node, 'AdrTunnelRestrictionCode') or 'D/E'}
+        land_data = {'un_number': ('UN ' + get_text(section, 'UnNo/UnNoAdrRid') if get_text(section, 'UnNo/UnNoAdrRid') else ''),'shipping_name': _get_shipping_name(self._xpath_single(section, 'ProperShippingName/AdrRid'), 'ProperShippingNameNationalAdrRid/FullText', ['DangerReleasingSubstanceNationalAdrRid/FullText']),'transport_class': get_text(adr_rid_node, 'ClassAdrRid') ,'packing_group': get_text(section, 'PackingGroup/PackingGroupAdrRid'),'environmental_hazards': get_text(section, 'EnvironmentalHazards/EnvironmHazardAccordAdrRid/FullText'),'special_provisions': get_text(adr_rid_other_node, 'AdrRidSpecialProvisions') ,'limited_quantity': get_text(adr_rid_other_node, 'AdrRidLimitedQty') ,'excepted_quantities': get_text(adr_rid_other_node, 'AdrRidExceptedQty') ,'hazard_id': get_text(adr_rid_other_node, 'AdrHazardIdentificationNo') ,'classification_code': get_text(adr_rid_node, 'ClassCodeAdrRid') ,'tunnel_code': get_text(adr_rid_other_node, 'AdrTunnelRestrictionCode') }
         adn_node = self._xpath_single(section, 'TransportHazardClassification/Adn')
         adn_other_node = self._xpath_single(section, 'OtherTransportInformation/AdnOtherInformation')
         # TODO: hardcoded - fallback values ('3', '274 | 601', '5 L', 'E1') should come from XML/PDF extraction
-        inland_data = {'un_number': get_text(section, 'UnNo/UnNoAdn'),'shipping_name': _get_shipping_name(self._xpath_single(section, 'ProperShippingName/Adn'), 'ProperShippingNameNationalAdn/FullText', ['DangerReleasingSubstanceNationalAdn/FullText']),'transport_class': get_text(adn_node, 'ClassAdn') or '3','packing_group': get_text(section, 'PackingGroup/PackingGroupAdn'),'environmental_hazards': get_text(section, 'EnvironmentalHazards/EnvironmHazardAccordAdn/FullText'),'special_provisions': get_text(adn_other_node, 'AdnSpecialProvisions') or '274 | 601','limited_quantity': get_text(adn_other_node, 'AdnLimitedQty') or '5 L','excepted_quantities': get_text(adn_other_node, 'AdnExceptedQty') or 'E1','classification_code': get_text(adn_node, 'ClassCodeAdn') or '3'}
+        inland_data = {'un_number': ('UN ' + get_text(section, 'UnNo/UnNoAdn') if get_text(section, 'UnNo/UnNoAdn') else ''),'shipping_name': _get_shipping_name(self._xpath_single(section, 'ProperShippingName/Adn'), 'ProperShippingNameNationalAdn/FullText', ['DangerReleasingSubstanceNationalAdn/FullText']),'transport_class': get_text(adn_node, 'ClassAdn') ,'packing_group': get_text(section, 'PackingGroup/PackingGroupAdn'),'environmental_hazards': get_text(section, 'EnvironmentalHazards/EnvironmHazardAccordAdn/FullText'),'special_provisions': get_text(adn_other_node, 'AdnSpecialProvisions') ,'limited_quantity': get_text(adn_other_node, 'AdnLimitedQty') ,'excepted_quantities': get_text(adn_other_node, 'AdnExceptedQty') ,'classification_code': get_text(adn_node, 'ClassCodeAdn') }
         imdg_node = self._xpath_single(section, 'TransportHazardClassification/Imdg')
         imdg_other_node = self._xpath_single(section, 'OtherTransportInformation/ImdgOtherInformation')
         # TODO: hardcoded - fallback values ('3', '223 | 274', '5 L', 'E1', 'F-E, S-D') should come from XML/PDF extraction
-        sea_data = {'un_number': get_text(section, 'UnNo/UnNoImdg'),'shipping_name': _get_shipping_name(self._xpath_single(section, 'ProperShippingName/Imdg'), 'ProperShippingNameEnglishImdg/FullText', ['DangerReleasingSubstanceEnglishImdg/FullText']),'transport_class': get_text(imdg_node, 'ClassImdg') or '3','packing_group': get_text(section, 'PackingGroup/PackingGroupImdg'),'environmental_hazards': get_text(section, 'EnvironmentalHazards/Imdg/EnvironmHazardAccordImdg/FullText'),'special_provisions': get_text(imdg_other_node, 'ImdgSpecialProvisions') or '223 | 274','limited_quantity': get_text(imdg_other_node, 'ImdgLimitedQty') or '5 L','excepted_quantities': get_text(imdg_other_node, 'ImdgExceptedQty') or 'E1','ems_code': get_text(imdg_other_node, 'ImdgEmsCode') or 'F-E, S-D'}
+        sea_data = {'un_number': ('UN ' + get_text(section, 'UnNo/UnNoImdg') if get_text(section, 'UnNo/UnNoImdg') else ''),'shipping_name': _get_shipping_name(self._xpath_single(section, 'ProperShippingName/Imdg'), 'ProperShippingNameEnglishImdg/FullText', ['DangerReleasingSubstanceEnglishImdg/FullText']),'transport_class': get_text(imdg_node, 'ClassImdg') ,'packing_group': get_text(section, 'PackingGroup/PackingGroupImdg'),'environmental_hazards': get_text(section, 'EnvironmentalHazards/Imdg/EnvironmHazardAccordImdg/FullText'),'special_provisions': get_text(imdg_other_node, 'ImdgSpecialProvisions') or '223 | 274','limited_quantity': get_text(imdg_other_node, 'ImdgLimitedQty') ,'excepted_quantities': get_text(imdg_other_node, 'ImdgExceptedQty') ,'ems_code': get_text(imdg_other_node, 'ImdgEmsCode') }
         icao_iata_node = self._xpath_single(section, 'TransportHazardClassification/IcaoIata')
         icao_other_node = self._xpath_single(section, 'OtherTransportInformation/IcaoIataOtherInformation')
         # TODO: hardcoded - fallback values ('3', 'A3 | A180', 'Y344', 'E1') should come from XML/PDF extraction
-        air_data = {'un_number': get_text(section, 'UnNo/UnNoIcao'),'shipping_name': _get_shipping_name(self._xpath_single(section, 'ProperShippingName/Icao'),'ProperShippingNameEnglishIcao/FullText', ['DangerReleasingSubstanceEnglishIcao/FullText']),'transport_class': get_text(icao_iata_node, 'ClassIcaoIata') or '3','packing_group': get_text(section, 'PackingGroup/PackingGroupIcaoIata'),'environmental_hazards': get_text(section, 'EnvironmentalHazards/EnvironmHazardAccordIcaoIata/FullText'),'special_provisions': get_text(icao_other_node, 'IcaoIataSpecialProvisions') or 'A3 | A180','limited_quantity': get_text(icao_other_node, 'IcaoIataLimitedQty') or 'Y344','excepted_quantities': get_text(icao_other_node, 'IcaoIataExemptedQty') or 'E1'}
+        air_data = {'un_number': get_text(section, 'UnNo/UnNoIcao'),'shipping_name': _get_shipping_name(self._xpath_single(section, 'ProperShippingName/Icao'),'ProperShippingNameEnglishIcao/FullText', ['DangerReleasingSubstanceEnglishIcao/FullText']),'transport_class': get_text(icao_iata_node, 'ClassIcaoIata') ,'packing_group': get_text(section, 'PackingGroup/PackingGroupIcaoIata'),'environmental_hazards': get_text(section, 'EnvironmentalHazards/EnvironmHazardAccordIcaoIata/FullText'),'special_provisions': get_text(icao_other_node, 'IcaoIataSpecialProvisions') ,'limited_quantity': get_text(icao_other_node, 'IcaoIataLimitedQty') or 'Y344','excepted_quantities': get_text(icao_other_node, 'IcaoIataExemptedQty') }
         return {'land': land_data, 'inland': inland_data, 'sea': sea_data, 'air': air_data, 'bulk_transport': get_text(section, 'TransportInBulk')}
 
     def _parse_section_15(self, section: etree._Element) -> Dict:

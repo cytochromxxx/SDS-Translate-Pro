@@ -101,6 +101,22 @@ class SDSPDFGapFiller:
     def __exit__(self, *args):
         self.close()
 
+    def _get_section_text(self, start_marker: str, end_marker: str) -> str:
+        text = self._full_text()
+        start_idx = text.find(start_marker)
+        if start_idx == -1: return ""
+        end_idx = text.find(end_marker, start_idx)
+        if end_idx == -1: return text[start_idx:]
+        return text[start_idx:end_idx]
+
+    def _get_section_text(self, start_marker: str, end_marker: str) -> str:
+        text = self._full_text()
+        start_idx = text.find(start_marker)
+        if start_idx == -1: return ""
+        end_idx = text.find(end_marker, start_idx)
+        if end_idx == -1: return text[start_idx:]
+        return text[start_idx:end_idx]
+
     def _get_section_2_text(self) -> str:
         """Extracts the full text of Section 2 from the PDF."""
         # Section 2 is usually on pages 1-3.
@@ -336,6 +352,36 @@ class SDSPDFGapFiller:
         except Exception as e:
             logger.error(f"Error encoding symbol {filename}: {e}")
             return ""
+
+    def extract_ppe_icons_list(self) -> List[str]:
+        icons = []
+        text = self._get_section_text("8.2", "9.")
+        if not text: return icons
+
+        # We look for keywords to map to the images in 'symbole'
+        if "M004_Augenschutz-benutzen.jpg" in text or "Eye/face protection" in text or "Eye glasses" in text:
+            icons.append("M004_Augenschutz-benutzen.jpg")
+        if "Skin protection" in text or "protective gloves" in text:
+            icons.append("M009_Handschutz_benutzen.jpg")
+        if "Respiratory protection" in text or "respirative protection" in text:
+            pass # Usually no personal respirative protection necessary
+        # The user wants "wie in der original-pdf alle vorkommenden piktogramme zur sicherheitskleidung"
+        return icons
+
+    def extract_ppe_icons_list(self) -> List[str]:
+        icons = []
+        text = self._get_section_text("8.2", "9.")
+        if not text: return icons
+
+        # We look for keywords to map to the images in 'symbole'
+        if "M004_Augenschutz-benutzen.jpg" in text or "Eye/face protection" in text or "Eye glasses" in text:
+            icons.append("M004_Augenschutz-benutzen.jpg")
+        if "Skin protection" in text or "protective gloves" in text:
+            icons.append("M009_Handschutz_benutzen.jpg")
+        if "Respiratory protection" in text or "respirative protection" in text:
+            pass # Usually no personal respirative protection necessary
+        # The user wants "wie in der original-pdf alle vorkommenden piktogramme zur sicherheitskleidung"
+        return icons
 
     def extract_section_8_ppe(self) -> Dict[str, str]:
         """Extracts PPE icons from section 8. 
@@ -877,25 +923,18 @@ class SDSPDFGapFiller:
     # ------------------------------------------------------------------
 
     def extract_section_15_wgk(self) -> str:
-        """
-        Extract WGK (Wassergefährdungsklasse) from Section 15 (page 9, 0-indexed 8).
-
-        Returns a string like '1 - slightly hazardous to water'.
-        """
-        try:
-            text = self._page_text(8)
-            m = re.search(
-                r'WGK\s*:\s*\n?\s*(.+?)(?:\n|$)',
-                text, re.IGNORECASE
-            )
-            if m:
-                return m.group(1).strip()
-            # Fallback: look for WGK followed by value on same line
-            m2 = re.search(r'WGK\s*:\s*(.+)', text, re.IGNORECASE)
-            if m2:
-                return m2.group(1).strip()
-        except Exception as e:
-            logger.warning(f"Could not extract Section 15 WGK: {e}")
+        text = self._get_section_text("15.1", "15.2")
+        if text:
+            for line in text.split('
+'):
+                line = line.strip()
+                if line.startswith("1 -") or line.startswith("2 -") or line.startswith("3 -"):
+                    return line
+            if "Water hazard class" in text or "WGK:" in text:
+                for line in text.split('
+'):
+                    if 'WGK:' in line:
+                        return line.replace('WGK:', '').strip()
         return ""
 
     def extract_section_15_eu_legislation(self) -> str:
@@ -935,25 +974,117 @@ class SDSPDFGapFiller:
         return ""
 
     def extract_section_15_national(self) -> Dict[str, Any]:
-        """Extract national regulations like Störfallverordnung, etc."""
-        results: Dict[str, Any] = {}
-        try:
-            text = "\n".join([self._page_text(i) for i in range(8, 11)])
-            restr_match = re.search(r'(Restrictions of occupation|Beschäftigungsbeschränkungen)\s*\n\s*([^\n]+)', text, re.IGNORECASE)
-            if restr_match:
-                results['restrictions'] = restr_match.group(2).strip()
-            storf_match = re.search(r'Störfallverordnung[^\n]*\n([\s\S]*?)(?=Betriebssicherheitsverordnung|Water hazard class|15\.2|\Z)', text, re.IGNORECASE)
-            if storf_match:
-                val = " ".join(storf_match.group(1).split()).replace('• ', '<br>• ')
-                results['stoerfallverordnung'] = val
-            betr_match = re.search(r'Betriebssicherheitsverordnung\s*\(BetrSichV\)\s*\n\s*([^\n]+)', text, re.IGNORECASE)
-            if betr_match:
-                results['betriebssicherheitsverordnung'] = betr_match.group(1).strip()
-            other_match = re.search(r'Other regulations, restrictions and prohibition regulations\s*\n\s*([^\n]+)', text, re.IGNORECASE)
-            if other_match:
-                results['additional_info'] = [other_match.group(1).strip()]
-        except Exception as e:
-            logger.warning(f"Could not extract Section 15 national legislation: {e}")
+        result = {}
+        text = self._get_section_text("15.1.2", "15.2")
+        if not text:
+            return result
+
+        lines = text.split('
+')
+        restrictions = []
+        in_restrictions = False
+
+        stoerfall = []
+        in_stoerfall = False
+
+        betriebssicherheit = []
+        in_betriebs = False
+
+        additional = []
+
+        for i, line in enumerate(lines):
+            line = line.strip()
+            if not line: continue
+
+            if "Restrictions of occupation" in line:
+                in_restrictions = True
+                continue
+            if "Störfallverordnung" in line:
+                in_restrictions = False
+                in_stoerfall = True
+                continue
+            if "Betriebssicherheitsverordnung" in line:
+                in_stoerfall = False
+                in_betriebs = True
+                continue
+            if "Water hazard class" in line or "WGK" in line or line.startswith("1 -") or line.startswith("2 -") or line.startswith("3 -"):
+                in_betriebs = False
+                continue
+            if "Berufsgenossenschaftliche" in line or "Other regulations" in line or "Hazardous Substances Ordinance" in line:
+                in_betriebs = False
+                additional.append(line)
+                continue
+
+            if in_restrictions:
+                restrictions.append(line)
+            elif in_stoerfall:
+                stoerfall.append(line)
+            elif in_betriebs:
+                betriebssicherheit.append(line)
+
+        if restrictions:
+            result['restrictions'] = " ".join(restrictions)
+        if stoerfall:
+            result['stoerfallverordnung'] = " ".join(stoerfall)
+        if betriebssicherheit:
+            result['betriebssicherheitsverordnung'] = " ".join(betriebssicherheit)
+        if additional:
+            result['additional_info'] = additional
+
+        return result
+
+        lines = text.split('\n')
+        # Very simple extraction for specific keys
+        restrictions = []
+        in_restrictions = False
+
+        stoerfall = []
+        in_stoerfall = False
+
+        betriebssicherheit = []
+        in_betriebs = False
+
+        additional = []
+
+        for i, line in enumerate(lines):
+            line = line.strip()
+            if not line: continue
+
+            if "Restrictions of occupation" in line:
+                in_restrictions = True
+                continue
+            if "Störfallverordnung" in line:
+                in_restrictions = False
+                in_stoerfall = True
+                continue
+            if "Betriebssicherheitsverordnung" in line:
+                in_stoerfall = False
+                in_betriebs = True
+                continue
+            if "Water hazard class" in line or "WGK" in line or line.startswith("1 -") or line.startswith("2 -") or line.startswith("3 -"):
+                in_betriebs = False
+                continue
+            if "Berufsgenossenschaftliche" in line or "Other regulations" in line or "Hazardous Substances Ordinance" in line:
+                in_betriebs = False
+                additional.append(line)
+                continue
+
+            if in_restrictions:
+                restrictions.append(line)
+            elif in_stoerfall:
+                stoerfall.append(line)
+            elif in_betriebs:
+                betriebssicherheit.append(line)
+
+        if restrictions:
+            result['restrictions'] = " ".join(restrictions)
+        if stoerfall:
+            result['stoerfallverordnung'] = " ".join(stoerfall)
+        if betriebssicherheit:
+            result['betriebssicherheitsverordnung'] = " ".join(betriebssicherheit)
+        if additional:
+            result['additional_info'] = additional
+
         return results
 
     def extract_section_13_waste_codes(self) -> Dict[str, str]:
@@ -1070,20 +1201,35 @@ class SDSPDFGapFiller:
         # --- Section 8: Occupational Exposure Limits ---
         try:
             sec8 = data.get("section_8", {})
+            sec8["ppe_icons"] = self.extract_ppe_icons_list()
             
             # Always try to extract from PDF to get clean formatting
             pdf_oel_limits = self.extract_section_8_oel()
             if pdf_oel_limits:
                 mapped_oel = []
                 for o in pdf_oel_limits:
+                    # If EC is available we also want to output it like in test.html
+                    # test.html has: ethanol<br>CAS No.: 64-17-5<br>EC No.: 200-578-6
+                    substance = o['substance']
+                    if o.get('ec'):
+                        substance_display = f"{substance}<br>CAS No.: {o['cas']}<br>EC No.: {o['ec']}"
+                        # We pass it formatted back so it shows up
+                    else:
+                        substance_display = substance
+
+                    formatted_values = []
+                    if o['long_term']: formatted_values.append(f"① {o['long_term']}")
+                    if o['short_term']: formatted_values.append(f"② {o['short_term']}")
+                    if o['remarks']: formatted_values.append(f"⑤ {o['remarks']}")
+
                     mapped_oel.append({
                         'limit_type': o['limit_type'],
                         'substance': o['substance'],
-                        'CAS_number': o['cas'],
-                        'ec': o['ec'],
+                        'CAS_number': f"{o['cas']}<br>EC No.: {o['ec']}" if o.get('ec') else o['cas'],
                         'time_weight_average': o['long_term'],
                         'short_term_limit': o['short_term'],
-                        'regulatory_reference': o['remarks']
+                        'regulatory_reference': o['remarks'],
+                        'formatted_values': "<br>".join(formatted_values)
                     })
                 sec8["occupational_exposure_limits"] = mapped_oel
                 data["section_8"] = sec8
