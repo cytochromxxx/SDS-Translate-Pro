@@ -294,6 +294,9 @@ tr { page-break-inside: avoid; }
         </td>
         <td>
           <div class="b">{{ component.name }}</div>
+          {% if component.workplace_limit %}
+          <div style="margin-top:2px;">{{ component.workplace_limit }}</div>
+          {% endif %}
           {% for class in component.classification %}
           <div>{{ class }}</div>
           {% endfor %}
