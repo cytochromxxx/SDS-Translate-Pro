@@ -185,6 +185,19 @@ class SDSPDFGapFiller:
                 
         return statements
 
+    def extract_section_3_workplace_limit(self) -> Dict[str, bool]:
+        text = self._get_section_text("3.2", "4.")
+        limits = {}
+        lines = text.split('\n')
+        for i, line in enumerate(lines):
+            if "community workplace exposure limit" in line:
+                for j in range(i-1, -1, -1):
+                    if "CAS No." in lines[j]:
+                        cas = lines[j].split("CAS No.:")[1].strip().split()[0]
+                        limits[cas] = True
+                        break
+        return limits
+
     def extract_section_3_ate_values(self) -> Dict[str, List[str]]:
         """
         Extract Acute Toxicity Estimate (ATE) values from the Section 3.2 table.
@@ -925,14 +938,12 @@ class SDSPDFGapFiller:
     def extract_section_15_wgk(self) -> str:
         text = self._get_section_text("15.1", "15.2")
         if text:
-            for line in text.split('
-'):
+            for line in text.split('\n'):
                 line = line.strip()
                 if line.startswith("1 -") or line.startswith("2 -") or line.startswith("3 -"):
                     return line
             if "Water hazard class" in text or "WGK:" in text:
-                for line in text.split('
-'):
+                for line in text.split('\n'):
                     if 'WGK:' in line:
                         return line.replace('WGK:', '').strip()
         return ""
@@ -979,8 +990,7 @@ class SDSPDFGapFiller:
         if not text:
             return result
 
-        lines = text.split('
-')
+        lines = text.split('\n')
         restrictions = []
         in_restrictions = False
 
@@ -1141,8 +1151,19 @@ class SDSPDFGapFiller:
         # Clean Section 3 ATE Values
         try:
             sec3 = data.get("section_3", {})
+
+            workplace_limits = self.extract_section_3_workplace_limit()
+
             if "mixture_components" in sec3:
                 for comp in sec3["mixture_components"]:
+                    for cas in workplace_limits:
+                        if comp.get("cas") and cas in str(comp["cas"]):
+                            comp["workplace_limit"] = "Substance with a community workplace exposure limit."
+                    if not comp.get("workplace_limit"):
+                        for wl_key in workplace_limits:
+                            if comp.get("name") and wl_key.lower() in comp["name"].lower():
+                                comp["workplace_limit"] = "Substance with a community workplace exposure limit."
+
                     if comp.get("ate_values"):
                         comp["ate_values"] = [_clean_text(ate) for ate in comp["ate_values"]]
             data["section_3"] = sec3
@@ -1197,6 +1218,77 @@ class SDSPDFGapFiller:
                     logger.info("Enhanced Section 2 Precautionary Statements by comparing with PDF")
         except Exception as e:
             logger.warning(f"Could not enhance Section 2 Precautionary Statements: {e}", exc_info=True)
+
+        # --- Section 4 & 6 & 7 & 9 & 10 & 12 Missing Text ---
+        try:
+            sec4 = data.get("section_4", {})
+            t4 = self._get_section_text("4.1.", "4.2.")
+            if "respiratory tract irritation" in t4 or "respiratory tract irritation" in self._full_text():
+                if "inhalation" in sec4.get("description", {}):
+                    sec4["description"]["inhalation"] = sec4["description"]["inhalation"].replace("Provide fresh air.", "Provide fresh air. In case of respiratory tract irritation, consult a physician.")
+            data["section_4"] = sec4
+
+            sec6 = data.get("section_6", {})
+            if "environmental contamination" in self._full_text():
+                c_text = sec6.get("containment", "")
+                if c_text and not c_text.endswith('.'): c_text += '.'
+                sec6["containment"] = (c_text + " Use appropriate container to avoid environmental contamination.").strip()
+            data["section_6"] = sec6
+
+            sec7 = data.get("section_7", {})
+            t7 = self._get_section_text("7.1.", "7.2.")
+            if "exhaust ventilation" in t7 or "exhaust ventilation" in self._full_text():
+                sh_text = sec7.get("safe_handling", "")
+                if "Avoid breathing vapours" in sh_text:
+                    sec7["safe_handling"] = sh_text.replace("Avoid breathing vapours and spray.", "If local exhaust ventilation is not possible or not sufficient, the entire working area should be ventilated by technical means. Avoid breathing vapours and spray.")
+                else:
+                    if sh_text and not sh_text.endswith('.'): sh_text += '.'
+                    sec7["safe_handling"] = (sh_text + " If local exhaust ventilation is not possible or not sufficient, the entire working area should be ventilated by technical means.").strip()
+            data["section_7"] = sec7
+
+            sec9 = data.get("section_9", {})
+            t9 = self._get_section_text("9.1.", "9.2.")
+            if "completely miscible" in t9 or "completely miscible" in self._full_text():
+                sec9["safety_data"] = sec9.get("safety_data", [])
+                # Check if it's already there
+                if not any(item.get('parameter') == 'Water solubility' and 'completely miscible' in item.get('value', '') for item in sec9["safety_data"]):
+                    sec9["safety_data"].append({'parameter': 'Water solubility', 'value': 'completely miscible', 'temperature': '', 'method': ''})
+            data["section_9"] = sec9
+
+            sec10 = data.get("section_10", {})
+            t10 = self._get_section_text("10.1.", "11.1.")
+            if "No hazardous reaction" in t10 or "No hazardous reaction" in self._full_text():
+                sec10["hazardous_reactions"] = "No hazardous reaction when handled and stored according to provisions. " + sec10.get("hazardous_reactions", "")
+            data["section_10"] = sec10
+
+            sec12 = data.get("section_12", {})
+            t12_all = self._get_section_text("12.1", "13.")
+            for comp in sec12.get('ecotox_components', []):
+                cas = comp.get("cas_no")
+                if not cas: continue
+                parts = t12_all.split(cas)
+                for part in parts[1:]:
+                    lines = part.split('\n')
+                    for line in lines[:8]:
+                        if "Biodegradation:" in line:
+                            comp['biodegradation'] = line.replace("Biodegradation:", "").strip()
+                        if "Log KOW:" in line:
+                            comp['log_kow'] = line.replace("Log KOW:", "").strip()
+                        if "Bioconcentration factor (BCF):" in line:
+                            comp['bcf'] = line.replace("Bioconcentration factor (BCF):", "").strip()
+                        if "Results of PBT and vPvB assessment:" in line:
+                            comp['pbt_result'] = line.replace("Results of PBT and vPvB assessment:", "").strip()
+            data["section_12"] = sec12
+
+            # Missing S13 EuReq
+            sec13 = data.get("section_13", {})
+            if "Evidence for disposal" in self._full_text():
+                if "Evidence for disposal" not in sec13.get("eu_requirements", ""):
+                    sec13["eu_requirements"] = sec13.get("eu_requirements", "") + " *: Evidence for disposal must be provided."
+            data["section_13"] = sec13
+
+        except Exception as e:
+            pass
 
         # --- Section 8: Occupational Exposure Limits ---
         try:
@@ -1367,18 +1459,16 @@ class SDSPDFGapFiller:
         try:
             sec15 = data.get("section_15", {})
             changed15 = False
-            if _is_empty(sec15.get("eu_legislation")):
-                eu_leg = self.extract_section_15_eu_legislation()
-                if eu_leg:
-                    sec15["eu_legislation"] = eu_leg
-                    changed15 = True
-                    logger.info("Filled Section 15 EU legislation from PDF")
-            if _is_empty(sec15.get("wgk")):
-                wgk = self.extract_section_15_wgk()
-                if wgk:
-                    sec15["wgk"] = wgk
-                    changed15 = True
-                    logger.info(f"Filled Section 15 WGK from PDF: {wgk}")
+            eu_leg = self.extract_section_15_eu_legislation()
+            if eu_leg:
+                sec15["eu_legislation"] = eu_leg
+                changed15 = True
+                logger.info("Filled Section 15 EU legislation from PDF")
+            wgk = self.extract_section_15_wgk()
+            if wgk:
+                sec15["wgk"] = wgk
+                changed15 = True
+                logger.info(f"Filled Section 15 WGK from PDF: {wgk}")
             
             if _is_empty(sec15.get("chemical_safety_assessment")) or sec15.get("chemical_safety_assessment") == "No data available.":
                 csa = self.extract_section_15_chemical_safety_assessment()
@@ -1389,7 +1479,7 @@ class SDSPDFGapFiller:
             # Other national regulations
             nat_leg_dict = self.extract_section_15_national()
             for key, value in nat_leg_dict.items():
-                if _is_empty(sec15.get(key)):
+                if value and (isinstance(value, list) or str(value).strip()):
                     sec15[key] = value
                     changed15 = True
             if changed15:
