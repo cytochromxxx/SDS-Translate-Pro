@@ -925,14 +925,12 @@ class SDSPDFGapFiller:
     def extract_section_15_wgk(self) -> str:
         text = self._get_section_text("15.1", "15.2")
         if text:
-            for line in text.split('
-'):
+            for line in text.split('\n'):
                 line = line.strip()
                 if line.startswith("1 -") or line.startswith("2 -") or line.startswith("3 -"):
                     return line
             if "Water hazard class" in text or "WGK:" in text:
-                for line in text.split('
-'):
+                for line in text.split('\n'):
                     if 'WGK:' in line:
                         return line.replace('WGK:', '').strip()
         return ""
@@ -979,8 +977,7 @@ class SDSPDFGapFiller:
         if not text:
             return result
 
-        lines = text.split('
-')
+        lines = text.split('\n')
         restrictions = []
         in_restrictions = False
 

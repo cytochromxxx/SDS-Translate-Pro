@@ -506,7 +506,10 @@ class NewSDScomParser:
 
         return {
             'waste_treatment': waste_treatment,
+            'eu_requirements': eu_requirements,
             'ewl_data': ewl_data,
+            'waste_code_product': ewl_data[0]['code'] if ewl_data else None,
+            'waste_code_product_desc': ewl_data[0]['description'] if ewl_data else None,
             'regulation_text': regulation_text
         }
 

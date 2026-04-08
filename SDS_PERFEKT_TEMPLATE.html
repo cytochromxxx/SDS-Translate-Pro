@@ -191,7 +191,7 @@ tr { page-break-inside: avoid; }
     <div class="ghs-row">
       {% for pictogram in section_2.labelling.pictograms %}
       <div class="ghs-item">
-        <img src="ghs/{{ pictogram }}.png" alt="{{ pictogram }}" onerror="this.style.display='none'">
+        <img src="ghs/{{ pictogram|lower }}.png" alt="{{ pictogram }}"  onerror="this.style.display='none'">
         <div><strong>{{ pictogram }}</strong></div>
         <div style="font-style:italic;">
         {% if pictogram == 'GHS01' %}Exploding bomb
@@ -300,7 +300,7 @@ tr { page-break-inside: avoid; }
           {% if component.pictograms %}
           <div style="margin-top:2px;">
             {% for pic in component.pictograms %}
-            <span class="ghs-sm"><img src="ghs/{{ pic|lower }}.png" onerror="this.style.display='none'"></span>
+            <span class="ghs-sm"><img src="ghs/{{ pic|lower }}.png" ></span>
             {% endfor %}
             {% if component.signal_word %}&nbsp;<strong>{{ component.signal_word }}</strong>{% endif %}
           </div>
@@ -451,7 +451,7 @@ tr { page-break-inside: avoid; }
         {% if section_8.ppe_icons %}
         <div class="ppe-icons-row">
             {% for icon in section_8.ppe_icons %}
-            <img src="symbole/{{ icon }}" alt="{{ icon }}" onerror="this.style.display='none'">
+            <img src="ghs/{{ icon }}" alt="{{ icon }}"  onerror="this.style.display='none'">
             {% endfor %}
         </div>
         {% endif %}
@@ -618,19 +618,19 @@ tr { page-break-inside: avoid; }
       <tr><td colspan="4" style="font-weight:bold;background:#f0f0f0;">14.3. Transport hazard class(es)</td></tr>
       <tr>
         <td class="td-cell">
-          {% if section_14.land.transport_class %}<img class="td-img" src="symbole/transport/class{{ section_14.land.transport_class }}.png" onerror="this.style.display='none'"><br>{% endif %}
+          {% if section_14.land.transport_class %}<img class="td-img" src="transport/class{{ section_14.land.transport_class }}.png"  onerror="this.style.display='none'"><br>{% endif %}
           <div class="b">{{ section_14.land.transport_class }}</div>
         </td>
         <td class="td-cell">
-          {% if section_14.inland.transport_class %}<img class="td-img" src="symbole/transport/class{{ section_14.inland.transport_class }}.png" onerror="this.style.display='none'"><br>{% endif %}
+          {% if section_14.inland.transport_class %}<img class="td-img" src="transport/class{{ section_14.inland.transport_class }}.png"  onerror="this.style.display='none'"><br>{% endif %}
           <div class="b">{{ section_14.inland.transport_class }}</div>
         </td>
         <td class="td-cell">
-          {% if section_14.sea.transport_class %}<img class="td-img" src="symbole/transport/class{{ section_14.sea.transport_class }}.png" onerror="this.style.display='none'"><br>{% endif %}
+          {% if section_14.sea.transport_class %}<img class="td-img" src="transport/class{{ section_14.sea.transport_class }}.png"  onerror="this.style.display='none'"><br>{% endif %}
           <div class="b">{{ section_14.sea.transport_class }}</div>
         </td>
         <td class="td-cell">
-          {% if section_14.air.transport_class %}<img class="td-img" src="symbole/transport/class{{ section_14.air.transport_class }}.png" onerror="this.style.display='none'"><br>{% endif %}
+          {% if section_14.air.transport_class %}<img class="td-img" src="transport/class{{ section_14.air.transport_class }}.png"  onerror="this.style.display='none'"><br>{% endif %}
           <div class="b">{{ section_14.air.transport_class }}</div>
         </td>
       </tr>
@@ -639,19 +639,19 @@ tr { page-break-inside: avoid; }
       <tr><td colspan="4" style="font-weight:bold;background:#f0f0f0;">14.5. Environmental hazards</td></tr>
       <tr style="text-align:center;">
         <td>
-          {% if 'yes' in section_14.land.environmental_hazards|lower or 'ja' in section_14.land.environmental_hazards|lower %}<img class="td-img" src="symbole/transport/env_hazard.png" onerror="this.style.display='none'"><br>{% endif %}
+          {% if 'yes' in section_14.land.environmental_hazards|lower or 'ja' in section_14.land.environmental_hazards|lower %}<img class="td-img" src="ghs/env_hazard.png"  onerror="this.style.display='none'"><br>{% endif %}
           {{ section_14.land.environmental_hazards }}
         </td>
         <td>
-          {% if 'yes' in section_14.inland.environmental_hazards|lower or 'ja' in section_14.inland.environmental_hazards|lower %}<img class="td-img" src="symbole/transport/env_hazard.png" onerror="this.style.display='none'"><br>{% endif %}
+          {% if 'yes' in section_14.inland.environmental_hazards|lower or 'ja' in section_14.inland.environmental_hazards|lower %}<img class="td-img" src="ghs/env_hazard.png"  onerror="this.style.display='none'"><br>{% endif %}
           {{ section_14.inland.environmental_hazards }}
         </td>
         <td>
-          {% if 'yes' in section_14.sea.environmental_hazards|lower or 'ja' in section_14.sea.environmental_hazards|lower or 'pollutant' in section_14.sea.environmental_hazards|lower %}<img class="td-img" src="symbole/transport/env_hazard.png" onerror="this.style.display='none'"><br>{% endif %}
+          {% if 'yes' in section_14.sea.environmental_hazards|lower or 'ja' in section_14.sea.environmental_hazards|lower or 'pollutant' in section_14.sea.environmental_hazards|lower %}<img class="td-img" src="ghs/env_hazard.png"  onerror="this.style.display='none'"><br>{% endif %}
           {{ section_14.sea.environmental_hazards }}
         </td>
         <td>
-          {% if 'yes' in section_14.air.environmental_hazards|lower or 'ja' in section_14.air.environmental_hazards|lower %}<img class="td-img" src="symbole/transport/env_hazard.png" onerror="this.style.display='none'"><br>{% endif %}
+          {% if 'yes' in section_14.air.environmental_hazards|lower or 'ja' in section_14.air.environmental_hazards|lower %}<img class="td-img" src="ghs/env_hazard.png"  onerror="this.style.display='none'"><br>{% endif %}
           {{ section_14.air.environmental_hazards }}
         </td>
       </tr>
