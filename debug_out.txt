@@ -1,0 +1,45 @@
+=== SECTION 8 ===
+[0] SectionHeader   | SECTION 8: Exposure controls/personal protection
+[1] SectionHeader   | * 8.1. Control parameters
+[2] SectionHeader   | 8.1.1. Occupational exposure limit values
+[3] Table           | Limit value type (country of origin)  Substance name  ① Long-term occupational exposure limit value ② Short-term occupational exposure limit value ③ Instantaneous value ④ Monitoring and observation pr
+[4] SectionHeader   | 8.1.2. Biological limit values
+[5] Text            | No data available
+[6] SectionHeader   | 8.1.3. DNEL-/PNEC-values
+[7] Table           | Substance name  DNEL value  ① DNEL type ② Exposure route          orthophosphoric acid CAS No.: 7664-38-2 EC No.: 231-633-2  1 mg/m³  ① DNEL worker ② Long-term – inhalation, local effects      orthoph
+[8] SectionHeader   | 8.2. Exposure controls
+[9] SectionHeader   | 8.2.1. Appropriate engineering controls
+[10] Text            | If local exhaust ventilation is not possible or not sufficient, the entire working area should be ventilated by technical means.
+[11] SectionHeader   | 8.2.2. Personal protection equipment
+[12] Picture         | Icons for eye/face protection, skin protection, and respiratory protection.
+[13] SectionHeader   | Eye/face protection:
+[14] Text            | Eye glasses with side protection (EN 166).
+[15] SectionHeader   | Skin protection:
+[16] Text            | Tested protective gloves must be worn (EN ISO 374). Take recovery periods for skin regeneration. Breakthrough times and swelling properties of the material must be taken into consideration. Suitable m
+[17] PageFooter      | en / DE
+[18] PageFooter      | GeSi.de
+[19] PageHeader      | Safety Data Sheet according to Regulation (EC) No. 1907/2006 (REACH)
+[20] PageHeader      | Page 5/9
+[21] PageHeader      | LabClean™
+[22] PageHeader      | 
+[23] Text            | Revision date: 23 Jan 2025 Version: 3 Print date: 23 Jan 2025
+[24] Text            | (polychloroprene, chloroprene rubber), FKM (fluoro rubber). Thickness of the glove material: &gt; 0,35 mm. Breakthrough time: &gt;480 min. In the case of wanting to use the gloves again, clean them be
+[25] SectionHeader   | Respiratory protection:
+[26] Text            | Usually no personal respiratory protection necessary.
+[27] SectionHeader   | Other protection measures:
+[28] Text            | Wash hands before breaks and after work.
+[29] SectionHeader   | 8.2.3. Environmental exposure controls
+[30] Text            | No data available
+
+=== SECTION 9 ===
+[0] SectionHeader   | SECTION 9: Physical and chemical properties
+[1] SectionHeader   | 9.1. Information on basic physical and chemical properties
+[2] SectionHeader   | Appearance
+[3] Text            | Physical state: Liquid
+[4] Text            | Colour: light yellow
+[5] Text            | Odour: not determined
+[6] Text            | flammability: No
+[7] SectionHeader   | Safety relevant basis data
+[8] Table           | Parameter  Value  at °C  ① Method ② Remark          pH  0.5  20 °C  ① DGF H-III 1      Melting point  -20 °C          Freezing point   No data available           Initial boiling point and boiling ran
+[9] SectionHeader   | 9.2. Other information
+[10] Text            | No data available

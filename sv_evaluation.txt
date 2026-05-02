@@ -1,0 +1,82 @@
+=== Statistik der schwedischen (SV) Übersetzungen ===
+Gesamtanzahl ausgefüllter SV-Phrasen: 7921
+Zu kurz / Leer: 91
+1:1 Kopie von DE oder EN (nicht übersetzt): 1275
+Potenziell echte Übersetzungen: 6555
+
+=== Stichprobe zur Qualitätsprüfung (15 zufällige, längere Phrasen) ===
+
+1. [Code: 03.16.02.03.1001]
+   DE: even under fire conditions
+   EN: Materials that are normally stable
+   SV: Material som normalt är stabila
+
+2. [Code: 01.02.03.03.7000]
+   DE: Dieser Stoff wurde gemäß Verordnung (EU) 2017/2100 als endokrin wirksam eingestuft.
+   EN: This substance identified as having endocrine disrupting properties according to Regulation (EU) 2017/2100.
+   SV: Detta ämne identifieras ha hormonstörande egenskaper enligt förordning (EU) 2017/2100.
+
+3. [Code: 01.02.01.01.00.02.02.33000]
+   DE: Kann vermutlich das Kind im Mutterleib schädigen.
+   EN: Suspected of damaging the unborn child.
+   SV: Misstänks för att skada det ofödda barnet.
+
+4. [Code: 7376]
+   DE: Sehr giftig für Wasserorganismen.
+   EN: Very toxic to aquatic life.
+   SV: Mycket giftigt för vattenlevande organismer.
+
+5. [Code: 01.09.02.01.01.03.04.1004.1004]
+   DE: UN Prüfung 3 (d): Kleine Brandprüfung
+   EN: UN Test 3 (d): Small-scale burning test
+   SV: UN-test 3 (d): Småskaligt brännprov
+
+6. [Code: 01.08.02.02.03.03.01.1008]
+   DE: Druckluft-Schlauchgerät (DIN EN 139)
+   EN: Compressed air tube device
+   SV: Tryckluftsröranordning
+
+7. [Code: 01.08.01.01.11.1015]
+   DE: M: Kjemikalier som skal betraktes som arvestoffskadelige
+   EN: M: Chemicals considered to be genotoxic
+   SV: M: Kemikalier som anses vara genotoxiska
+
+8. [Code: 01.05.02.01.1003]
+   DE: Wasser mit Tensidzusatz
+   EN: Water with tenside additive
+   SV: Vatten med tensidadditiv
+
+9. [Code: 7353]
+   DE: Kann Brand verstärken; Oxidationsmittel.
+   EN: May intensify fire; oxidiser.
+   SV: Kan intensifiera brand. Oxiderande.
+
+10. [Code: 01.02.02.02.06.02.02.02.3000]
+   DE: Zum Schutz von Wasserorganismen eine unbehandelte Pufferzone von 5 m zum â€‹Oberflächengewässer einhalten.
+   EN: To protect aquatic organisms/non-target plants/non-target arthropods/insects respect an unsprayed buffer zone of (distance to be specified) to non-agricultural land/surface water bodies.
+   SV: För att skydda vattenlevande organismer/icke-målväxter/icke-målartropoder/insekter respektera en oprayad buffertzon på (avståndet specificeras) till icke-jordbruksmark/ytvattenförekomster.
+
+11. [Code: 08.01.]
+   DE: ÜBERBLICK ÜBER DIE RISIKOMANAGEMENTMASSNAHMEN
+   EN: SUMMARY OF RISK MANAGEMENT MEASURES
+   SV: SAMMANFATTNING AV RISKHANTERINGSÅTGÄRDER
+
+12. [Code: 7372]
+   DE: Kann bei Einatmen Allergie, asthmaartige Symptome oder Atembeschwerden verursachen.
+   EN: May cause allergy or asthma symptoms or breathing difficulties if inhaled.
+   SV: Kan orsaka allergi- eller astmasymtom eller andningssvårigheter vid inandning.
+
+13. [Code: None]
+   DE: (Alge, Wachstumshemmtest)
+   EN: (Alga, Growth Inhibition Test)
+   SV: (Alg, tillväxthämningstest)
+
+14. [Code: 01.15.01.01.02.07.02.1036]
+   DE: Benzidin und/oder seine Salze
+   EN: Benzidine and/or its salts
+   SV: Bensidin och/eller dess salter
+
+15. [Code: 01.02.02.02.01.1006]
+   DE: nichtionische Tenside
+   EN: non-ionic surfactants
+   SV: nonjoniska ytaktiva ämnen

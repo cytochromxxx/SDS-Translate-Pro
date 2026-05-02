@@ -1,0 +1,178 @@
+<!-- SDS Bibliothek Modal -->
+<div id="sdsLibraryModal" class="modal">
+    <div class="modal-content bg-light-card dark:bg-minerva-card text-light-text dark:text-white rounded-lg p-6 max-w-5xl w-full max-h-[90vh] flex flex-col">
+
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-xl font-bold flex items-center gap-2">
+                <svg class="w-5 h-5 text-minerva-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                </svg>
+                SDS Bibliothek
+                <span id="libCount" class="text-xs font-normal text-minerva-gray bg-minerva-black px-2 py-0.5 rounded-full"></span>
+            </h2>
+            <button onclick="closeLibraryModal()" class="text-3xl font-light hover:text-red-500 transition-colors leading-none">&times;</button>
+        </div>
+
+        <!-- Search -->
+        <div class="flex gap-2 mb-4">
+            <input type="text" id="sdsLibrarySearch"
+                class="flex-grow bg-light-bg dark:bg-minerva-black border border-light-border dark:border-minerva-border rounded px-3 py-2 text-sm focus:ring-1 focus:ring-minerva-green focus:border-minerva-green outline-none"
+                placeholder="Produktname, Artikelnummer suchen...">
+            <button onclick="loadLibraryFiles()" class="bg-light-bg dark:bg-minerva-hover border border-light-border dark:border-minerva-border px-4 py-2 rounded text-sm hover:border-minerva-green hover:text-minerva-green transition-colors">
+                🔄
+            </button>
+        </div>
+
+        <!-- Loading -->
+        <div id="sdsLibraryLoading" class="text-center py-12 hidden">
+            <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-minerva-green mb-3"></div>
+            <p class="text-sm text-minerva-gray">Lade Bibliothek...</p>
+        </div>
+
+        <!-- Table -->
+        <div id="sdsLibraryTableContainer" class="flex-1 overflow-y-auto custom-scrollbar border border-light-border dark:border-minerva-border rounded-lg hidden">
+            <table class="w-full text-sm">
+                <thead class="sticky top-0 bg-light-bg dark:bg-[#111] z-10">
+                    <tr class="border-b border-light-border dark:border-minerva-border">
+                        <th class="p-3 text-left font-semibold text-minerva-gray text-[11px] uppercase tracking-wider">Produkt</th>
+                        <th class="p-3 text-left font-semibold text-minerva-gray text-[11px] uppercase tracking-wider w-28">Artikel-Nr.</th>
+                        <th class="p-3 text-left font-semibold text-minerva-gray text-[11px] uppercase tracking-wider w-16">Version</th>
+                        <th class="p-3 text-left font-semibold text-minerva-gray text-[11px] uppercase tracking-wider w-16">Sprache</th>
+                        <th class="p-3 text-right font-semibold text-minerva-gray text-[11px] uppercase tracking-wider w-24">Aktion</th>
+                    </tr>
+                </thead>
+                <tbody id="sdsLibraryList" class="divide-y divide-light-border dark:divide-minerva-border">
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Empty state -->
+        <div id="sdsLibraryEmpty" class="hidden flex-1 flex items-center justify-center py-12 text-minerva-gray text-sm">
+            Keine SDS-Dateien in der Bibliothek gefunden.
+        </div>
+
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('sdsLibrarySearch').addEventListener('input', function () {
+        const q = this.value.toLowerCase();
+        document.querySelectorAll('#sdsLibraryList tr').forEach(row => {
+            row.style.display = row.dataset.search.includes(q) ? '' : 'none';
+        });
+    });
+});
+
+function openLibraryModal() {
+    document.getElementById('sdsLibraryModal').classList.add('active');
+    loadLibraryFiles();
+}
+
+function closeLibraryModal() {
+    document.getElementById('sdsLibraryModal').classList.remove('active');
+}
+
+function loadLibraryFiles() {
+    const listEl    = document.getElementById('sdsLibraryList');
+    const loadingEl = document.getElementById('sdsLibraryLoading');
+    const tableEl   = document.getElementById('sdsLibraryTableContainer');
+    const emptyEl   = document.getElementById('sdsLibraryEmpty');
+    const countEl   = document.getElementById('libCount');
+
+    listEl.innerHTML = '';
+    loadingEl.classList.remove('hidden');
+    tableEl.classList.add('hidden');
+    emptyEl.classList.add('hidden');
+
+    fetch('/api/library/list')
+        .then(r => r.json())
+        .then(data => {
+            loadingEl.classList.add('hidden');
+            currentLibraryFiles = data.files || [];
+            countEl.textContent = currentLibraryFiles.length + ' SDS';
+
+            if (currentLibraryFiles.length === 0) {
+                emptyEl.classList.remove('hidden');
+                return;
+            }
+
+            tableEl.classList.remove('hidden');
+            currentLibraryFiles.forEach((file, index) => {
+                const product = file.product || file.filename.replace(/^[^_]+_/, '').replace(/\.json$/, '').replace(/_/g, ' ');
+                const article = file.article || '—';
+                const version = file.version || '—';
+                const lang    = file.language ? `${file.language}` : '—';
+
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-light-bg dark:hover:bg-minerva-hover transition-colors cursor-default';
+                tr.dataset.search = `${product} ${article} ${version} ${lang}`.toLowerCase();
+
+                tr.innerHTML = `
+                    <td class="p-3">
+                        <span class="font-medium text-light-text dark:text-white">${escapeLibHtml(product)}</span>
+                    </td>
+                    <td class="p-3 font-mono text-xs text-minerva-gray">${escapeLibHtml(article)}</td>
+                    <td class="p-3 text-xs text-minerva-gray">${escapeLibHtml(version)}</td>
+                    <td class="p-3">
+                        ${lang !== '—' ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-minerva-green/10 text-minerva-green border border-minerva-green/20">${escapeLibHtml(lang)}</span>` : '<span class="text-minerva-gray text-xs">—</span>'}
+                    </td>
+                    <td class="p-3 text-right">
+                        <button
+                            style="background:#76B82A;color:#fff;padding:5px 14px;border-radius:4px;font-size:11px;font-weight:700;border:none;cursor:pointer;"
+                            onmouseover="this.style.background='#87C93B'"
+                            onmouseout="this.style.background='#76B82A'"
+                            onclick="importFromLibraryByIndex(${index})">
+                            Laden
+                        </button>
+                    </td>
+                `;
+                listEl.appendChild(tr);
+            });
+        })
+        .catch(() => {
+            loadingEl.classList.add('hidden');
+            emptyEl.textContent = 'Fehler beim Laden der Bibliothek.';
+            emptyEl.classList.remove('hidden');
+        });
+}
+
+function importFromLibraryByIndex(index) {
+    const file = currentLibraryFiles[index];
+    if (!file) return;
+
+    closeLibraryModal();
+
+    const statusEl = document.getElementById('uploadStatus');
+    if (statusEl) statusEl.innerHTML = '<div style="color:#76B82A;font-size:12px;padding:6px;background:rgba(118,184,42,.1);border-radius:4px;">⏳ Lade SDS aus Bibliothek...</div>';
+
+    fetch('/api/library/load', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ filepath: file.id })
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.error) {
+            if (statusEl) statusEl.innerHTML = `<div style="color:#ef4444;font-size:12px;padding:6px;background:rgba(239,68,68,.1);border-radius:4px;">❌ ${data.error}</div>`;
+        } else {
+            const product = file.product || file.filename;
+            if (statusEl) statusEl.innerHTML = `<div style="color:#76B82A;font-size:12px;padding:6px;background:rgba(118,184,42,.1);border-radius:4px;">✅ <strong>${product}</strong> geladen.</div>`;
+            document.getElementById('originalPreview').srcdoc = data.preview;
+            document.getElementById('previewContainer').style.display = 'flex';
+            document.getElementById('translateBtn').disabled = false;
+            document.getElementById('translatedPreview').srcdoc = '';
+        }
+    })
+    .catch(() => {
+        if (statusEl) statusEl.innerHTML = '<div style="color:#ef4444;font-size:12px;padding:6px;background:rgba(239,68,68,.1);border-radius:4px;">❌ Netzwerkfehler beim Laden.</div>';
+    });
+}
+
+function escapeLibHtml(text) {
+    const d = document.createElement('div');
+    d.textContent = String(text);
+    return d.innerHTML;
+}
+</script>

@@ -1,38 +1,143 @@
 import sqlite3
 import os
 import threading
+import csv
+import uuid
 
 _db_lock = threading.Lock()
-_current_db_path = "phrases_library.db"
+CSV_TRANSLATION_SOURCE = "sds_phrases_PERFEKT.csv"
+CSV_TRANSLATION_DB_PATH = "sds_phrases_PERFEKT.db"
+_current_db_path = CSV_TRANSLATION_DB_PATH
+
+
+def _create_db_from_translation_csv(csv_path, db_path):
+    """
+    Build the runtime phrase SQLite DB from the CSV translation source.
+    The generated schema keeps compatibility with existing app queries.
+    """
+    with open(csv_path, "r", encoding="utf-8-sig", newline="") as f:
+        reader = csv.DictReader(f, delimiter=";")
+        fieldnames = [name.strip() for name in (reader.fieldnames or []) if name and name.strip()]
+
+        if "en_original" not in fieldnames:
+            raise ValueError("CSV must contain 'en_original' column")
+
+        # Use CSV columns as phrase text columns and keep metadata columns used by legacy tools.
+        phrase_columns = fieldnames
+
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        try:
+            cursor.execute("DROP TABLE IF EXISTS phrases")
+            cursor.execute("DROP TABLE IF EXISTS ghs_pictograms")
+            cursor.execute("DROP TABLE IF EXISTS sds_pictograms")
+
+            dynamic_cols_sql = ",\n    ".join([f"{col} TEXT" for col in phrase_columns])
+            cursor.execute(
+                f"""
+CREATE TABLE phrases (
+    id TEXT PRIMARY KEY,
+    code TEXT,
+    type TEXT,
+    source TEXT,
+    status TEXT,
+    {dynamic_cols_sql}
+)
+"""
+            )
+
+            # Tables used by GHS manager are expected in the active DB.
+            cursor.execute(
+                """
+CREATE TABLE ghs_pictograms (
+    code TEXT PRIMARY KEY,
+    name TEXT NOT NULL,
+    description TEXT,
+    hazard_class TEXT,
+    svg_path TEXT,
+    png_path TEXT,
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    source_url TEXT
+)
+"""
+            )
+            cursor.execute(
+                """
+CREATE TABLE sds_pictograms (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    sds_id TEXT NOT NULL,
+    ghs_code TEXT NOT NULL,
+    position INTEGER DEFAULT 0,
+    added_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (ghs_code) REFERENCES ghs_pictograms(code),
+    UNIQUE(sds_id, ghs_code)
+)
+"""
+            )
+
+            rows = []
+            for row in reader:
+                rows.append(
+                    [
+                        str(uuid.uuid4()),
+                        None,  # code
+                        "General",
+                        "sds_phrases_PERFEKT.csv",
+                        "active",
+                    ]
+                    + [row.get(col, "") for col in phrase_columns]
+                )
+
+            value_placeholders = ",".join(["?"] * (5 + len(phrase_columns)))
+            column_sql = "id,code,type,source,status," + ",".join(phrase_columns)
+            cursor.executemany(
+                f"INSERT INTO phrases ({column_sql}) VALUES ({value_placeholders})",
+                rows,
+            )
+
+            # Core indices
+            cursor.execute("CREATE INDEX IF NOT EXISTS idx_phrases_id ON phrases(id)")
+            cursor.execute("CREATE INDEX IF NOT EXISTS idx_phrases_en_original ON phrases(en_original)")
+
+            # Create column indices for fast lookup in translation flow.
+            for col in phrase_columns:
+                cursor.execute(f"CREATE INDEX IF NOT EXISTS idx_phrases_{col} ON phrases({col})")
+
+            conn.commit()
+        finally:
+            conn.close()
+
+
+def ensure_translation_database_ready():
+    """
+    Ensure runtime DB exists and is synchronized with the current CSV source.
+    Regenerates DB when CSV is newer than DB or DB is missing.
+    """
+    csv_path = CSV_TRANSLATION_SOURCE
+    db_path = CSV_TRANSLATION_DB_PATH
+
+    if not os.path.exists(csv_path):
+        # Keep old behavior possible when CSV is not present.
+        return
+
+    rebuild_needed = not os.path.exists(db_path)
+    if not rebuild_needed:
+        rebuild_needed = os.path.getmtime(csv_path) > os.path.getmtime(db_path)
+
+    if rebuild_needed:
+        _create_db_from_translation_csv(csv_path, db_path)
 
 DATABASE_OPTIONS = {
-    'legacy': {
-        'path': 'phrases_library.db',
-        'name': 'Legacy Database (Default)',
-        'description': 'Bisherige Standard-Datenbank mit allen Phrasen'
-    },
-    'euphrac_excel': {
-        'path': 'euphrac_excel_phrases.db',
-        'name': 'EUH Excel Phrases',
-        'description': 'EUH-Präfix-Phrasen aus Excel-Importen'
-    },
-    'sds_only': {
-        'path': 'phrases_from_sds_only.db',
-        'name': 'SDS-Only Phrases',
-        'description': 'Rein aus bestehenden SDS-Dokumenten extrahiert'
-    },
-    'verified': {
-        'path': 'phrases_library_verified.db',
-        'name': 'Verified Phrases',
-        'description': 'Menschlich verifizierte und freigegebene Phrasen'
-    },
-    'extracted': {
-        'path': 'sds_phrases_extracted.db',
-        'name': 'Extracted Raw Phrases',
-        'description': 'Automatisch extrahierte Rohphrasen aus SDS-Parsing'
+    'sds_phrases_perfekt': {
+        'path': CSV_TRANSLATION_DB_PATH,
+        'name': 'SDS PERFEKT CSV Database',
+        'description': 'Automatisch erzeugt aus sds_phrases_PERFEKT.csv (table phrases)'
     }
 }
-DEFAULT_DB_PATH = "phrases_library.db"
+DEFAULT_DB_PATH = CSV_TRANSLATION_DB_PATH
+
+# Prepare default translation DB on module import so app startup uses latest CSV translations.
+ensure_translation_database_ready()
 
 
 def get_db_path():

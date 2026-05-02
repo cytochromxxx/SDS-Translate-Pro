@@ -108,6 +108,10 @@ def parse_section_1(text):
     if emergency_match:
         result['emergency_telephone_name'] = emergency_match.group(1).strip()
         
+    lcs_match = re.search(r'Life cycle stage \[LCS\]\s*\n?([^\n]+)', text, re.IGNORECASE)
+    if lcs_match:
+        result['lcs'] = lcs_match.group(1).strip()
+        
     return result
 
 def parse_section_2(text):
@@ -177,6 +181,19 @@ def parse_section_8(text):
         
     return {'occupational_exposure_limits': limits}
 
+def parse_section_3(text):
+    """Parst Sektion 3 auf Workplace Exposure Limit Hinweise bei bestimmten CAS-Nummern"""
+    limits = []
+    lines = text.split('\n')
+    for i, line in enumerate(lines):
+        if "community workplace exposure limit" in line:
+            for j in range(i-1, -1, -1):
+                cas_match = re.search(r'CAS No\.:\s*([0-9\-]+)', lines[j])
+                if cas_match:
+                    limits.append(cas_match.group(1).strip())
+                    break
+    return limits
+
 def parse_section_15(text):
     """Parst Abschnitt 15 - Regulatory information"""
     result = {
@@ -185,17 +202,30 @@ def parse_section_15(text):
     }
     
     # Suche nach EU legislation
-    eu_match = re.search(r'(?i)EU.?legislation[:\s]*(.*?)(?=national|Regulation|$)', text, re.DOTALL)
+    eu_match = re.search(r'15\.1\.1\.?[^\n]*?EU legislation\s*\n(.*?)(?=15\.1\.2|15\.2|\Z)', text, re.DOTALL | re.IGNORECASE)
     if eu_match:
-        result['eu_legislation'] = eu_match.group(1).strip()
+        val = eu_match.group(1).strip()
+        val = val.replace('\n', ' ')
+        val = re.sub(r'\s*•\s*', '<br>• ', val)
+        if val.startswith('<br>'):
+            val = val[4:]
+        result['eu_legislation'] = val
     
-    # Suche nach national legislation
-    national_matches = re.findall(r'(?i)(TRGS|Wasser Gefährdungs Klasse|Regulation)\s*[:\s]*([^\n]+)', text)
-    for match in national_matches:
-        result['national_legislation'].append({
-            'label': match[0].strip(),
-            'value': match[1].strip()
-        })
+    rest_match = re.search(r'Restrictions of occupation\s*\n(.*?)(?=Störfallverordnung|Betriebssicherheitsverordnung|Water hazard class|15\.2|$)', text, re.IGNORECASE | re.DOTALL)
+    if rest_match:
+        result['restrictions'] = rest_match.group(1).strip()
+        
+    stoer_match = re.search(r'Störfallverordnung.*?\n(.*?)(?=Betriebssicherheitsverordnung|Water hazard class|15\.2|$)', text, re.IGNORECASE | re.DOTALL)
+    if stoer_match:
+        result['stoerfallverordnung'] = stoer_match.group(1).strip()
+        
+    betr_match = re.search(r'Betriebssicherheitsverordnung.*?\n(.*?)(?=Water hazard class|15\.2|$)', text, re.IGNORECASE | re.DOTALL)
+    if betr_match:
+        result['betriebssicherheitsverordnung'] = betr_match.group(1).strip()
+        
+    wgk_match = re.search(r'WGK:\s*\n?(.*?)(?=Berufsgenossenschaftliche|Other regulations|15\.2|$)', text, re.IGNORECASE | re.DOTALL)
+    if wgk_match:
+        result['wgk'] = wgk_match.group(1).strip()
     
     return result
 
@@ -284,12 +314,13 @@ def parse_section_12(text):
     if persist_match:
         persist_text = persist_match.group(1)
         result['persistence_text'] = persist_text.strip()
-        # Find all component blocks and their biodegradation data
-        for match in re.finditer(r'(propan-1-ol|ethanol|dipropylene glycol monomethyl ether)\s+CAS No\.:\s*[^\n]+.*?Biodegradation:\s*([^\n]+)', persist_text, re.IGNORECASE | re.DOTALL):
+        # Find all component blocks and their biodegradation data dynamically
+        for match in re.finditer(r'([^\n]+?)\s+CAS No\.:\s*([0-9\-]+)(?:(?!CAS No\.).)*?Biodegradation:\s*([^\n]+)', persist_text, re.IGNORECASE | re.DOTALL):
             comp_name = match.group(1).strip()
-            bio_data = match.group(2).strip()
-            if comp_name and bio_data:
-                result['persistence_and_degradability'][comp_name] = {'biodegradation': bio_data}
+            cas_no = match.group(2).strip()
+            bio_data = match.group(3).strip()
+            if cas_no and bio_data:
+                result['persistence_and_degradability'][cas_no] = {'name': comp_name, 'biodegradation': bio_data}
     
     # 12.3 Bioaccumulative potential - look for Log KOW: and BCF lines
     bio_match = re.search(r'12\.3\.?[^\d]*?Bioaccumulative potential[:\s]*([\s\S]*?)(?=12\.4|$)', text, re.IGNORECASE)
@@ -297,21 +328,23 @@ def parse_section_12(text):
         bio_text = bio_match.group(1)
         result['bioaccumulation_text'] = bio_text.strip()
         # Check for Log KOW
-        for match in re.finditer(r'(propan-1-ol|ethanol|dipropylene glycol monomethyl ether)\s+CAS No\.:\s*[^\n]+.*?Log K[OW]:\s*([^\n]+)', bio_text, re.IGNORECASE | re.DOTALL):
+        for match in re.finditer(r'([^\n]+?)\s+CAS No\.:\s*([0-9\-]+)(?:(?!CAS No\.).)*?Log\s+[KkPp][Oo]?[Ww]?:\s*([^\n]+)', bio_text, re.IGNORECASE | re.DOTALL):
             comp_name = match.group(1).strip()
-            log_kow = match.group(2).strip()
-            if comp_name and log_kow:
-                if comp_name not in result['bioaccumulative_potential']:
-                    result['bioaccumulative_potential'][comp_name] = {}
-                result['bioaccumulative_potential'][comp_name]['log_kow'] = log_kow
+            cas_no = match.group(2).strip()
+            log_kow = match.group(3).strip()
+            if cas_no and log_kow:
+                if cas_no not in result['bioaccumulative_potential']:
+                    result['bioaccumulative_potential'][cas_no] = {'name': comp_name}
+                result['bioaccumulative_potential'][cas_no]['log_kow'] = log_kow
         # Check for BCF
-        for match in re.finditer(r'(propan-1-ol|ethanol|dipropylene glycol monomethyl ether)\s+CAS No\.:\s*[^\n]+.*?Bioconcentration factor.*?:\s*([^\n]+)', bio_text, re.IGNORECASE | re.DOTALL):
+        for match in re.finditer(r'([^\n]+?)\s+CAS No\.:\s*([0-9\-]+)(?:(?!CAS No\.).)*?Bioconcentration factor.*?:\s*([^\n]+)', bio_text, re.IGNORECASE | re.DOTALL):
             comp_name = match.group(1).strip()
-            bcf = match.group(2).strip()
-            if comp_name and bcf:
-                if comp_name not in result['bioaccumulative_potential']:
-                    result['bioaccumulative_potential'][comp_name] = {}
-                result['bioaccumulative_potential'][comp_name]['bcf'] = bcf
+            cas_no = match.group(2).strip()
+            bcf = match.group(3).strip()
+            if cas_no and bcf:
+                if cas_no not in result['bioaccumulative_potential']:
+                    result['bioaccumulative_potential'][cas_no] = {'name': comp_name}
+                result['bioaccumulative_potential'][cas_no]['bcf'] = bcf
     
     # 12.4 Mobility in soil
     mob_match = re.search(r'12\.4\.?[^\d]*?Mobility in soil[:\s]*([\s\S]*?)(?=12\.5|$)', text, re.IGNORECASE)
@@ -323,9 +356,12 @@ def parse_section_12(text):
     if pbt_match:
         pbt_text = pbt_match.group(1)
         result['pbt_text'] = pbt_text.strip()
-        for comp in ['propan-1-ol', 'ethanol', 'dipropylene glycol monomethyl ether']:
-            if comp.lower() in pbt_text.lower():
-                result['pbt_vpvb_assessment'][comp] = {'assessment': 'This substance is not considered to be persistent, bioaccumulative and toxic (PBT).'}
+        for match in re.finditer(r'([^\n]+?)\s+CAS No\.:\s*([0-9\-]+)(?:(?!CAS No\.).)*?assessment:\s*([^\n]+)', pbt_text, re.IGNORECASE | re.DOTALL):
+            comp_name = match.group(1).strip()
+            cas_no = match.group(2).strip()
+            pbt_res = match.group(3).strip()
+            if cas_no and pbt_res:
+                result['pbt_vpvb_assessment'][cas_no] = {'name': comp_name, 'assessment': pbt_res}
     
     # 12.6 Endocrine disrupting properties
     endo_match = re.search(r'12\.6\.?[^\d]*?Endocrine disrupting properties[:\s]*([\s\S]*?)(?=12\.7|$)', text, re.IGNORECASE)

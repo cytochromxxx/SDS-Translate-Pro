@@ -1,0 +1,25 @@
+{
+  "status": "complete",
+  "output_format": null,
+  "chunks": null,
+  "json": null,
+  "markdown": null,
+  "html": null,
+  "extraction_schema_json": null,
+  "extraction_score_average": null,
+  "segmentation_results": null,
+  "images": null,
+  "metadata": null,
+  "success": false,
+  "error": "Job 45727559-73b6-4ab1-b0f2-e0078bfaa9e1 not found.",
+  "parse_quality_score": 4.555555555555555,
+  "page_count": null,
+  "total_cost": 3,
+  "cost_breakdown": {
+    "final_cost_cents": 3.0
+  },
+  "runtime": null,
+  "checkpoint_id": null,
+  "versions": null,
+  "evaluation": null
+}

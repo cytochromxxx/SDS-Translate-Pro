@@ -1,6 +1,5 @@
 *diff*.py
 *fix*.py
-*parse*.py
 test.html
 test.xml
 test.pdf
@@ -8,4 +7,15 @@ diff*.txt
 output.html
 log.txt
 *.pyc
-__pycache__
+__pycache__/
+.ruff_cache/
+uploads/
+*.db
+*.pdf
+SDS_Mycoplasma_Off_PERFEKT.html
+SDS_PERFEKT_TEMPLATE.html
+translated_document*.pdf
+venv/
+.env
+node_modules/
+QUELLEN/

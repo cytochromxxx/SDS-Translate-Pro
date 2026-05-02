@@ -7,18 +7,19 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 8.5pt;
-  color: #000;
-  background: #fff;
-  line-height: 1.35;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 8.5pt;
+    color: #000;
+    background: #fff;
+    line-height: 1.35;
+    position: relative;
 }
 @page {
     size: A4;
-    margin-top: 28mm;
+    margin-top: 25mm;
     margin-bottom: 20mm;
-    margin-left: 12mm;
-    margin-right: 12mm;
+    margin-left: 15mm;
+    margin-right: 15mm;
     @top-center { content: element(header); width: 100%; }
     @bottom-center { content: element(footer); width: 100%; }
 }
@@ -27,7 +28,7 @@ body {
 .page-number-counter::after { content: counter(page) " / " counter(pages); }
 @media screen {
   body { background-color: #525659; padding: 10mm; display: flex; flex-direction: column; align-items: center; }
-  .sds-document { width: 210mm; background-color: #ffffff; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 10mm 15mm; margin-bottom: 20px; box-sizing: border-box; }
+  .sds-document { width: 210mm; background-color: #ffffff; border: 1px solid #000; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 10mm 15mm; margin-bottom: 20px; box-sizing: border-box; position: relative; }
   .running-header { position: static; border-bottom: 1px solid #ccc; padding-bottom: 10px; margin-bottom: 15px; }
   .running-footer { position: static; border-top: 1px solid #ccc; padding-top: 10px; margin-top: 20px; }
 }
@@ -39,12 +40,12 @@ body {
 .rev { font-size:7pt; margin-bottom:2px; }
 .locale { text-align:right; font-size:6.5pt; margin-bottom:4px; line-height:1.3; }
 /* ── Logo ── */
-.logo-img { height:28px; width:auto; }
+.logo-img { height:24px; width:auto; margin-top: -2px; }
 /* ── Main title ── */
-.main-title { border:2px solid #000; padding:4px 8px; margin-bottom:8px; margin-top:4px;
+.main-title { border:2px solid #000; padding:4px 8px; margin-bottom:-1px; margin-top:4px;
                font-size:9.5pt; font-weight:bold; text-align:center; }
 /* ── Sections ── */
-.section { border:1px solid #000; margin-bottom:5px; page-break-inside: auto; }
+.section { border:1px solid #000; margin-bottom:-1px; page-break-inside: auto; }
 .sec-head { border-bottom:2px solid #000; padding:3px 6px; font-size:8.5pt;
              font-weight:bold; text-decoration:underline; }
 .sec-body { padding:4px 6px; }
@@ -120,8 +121,8 @@ tr { page-break-inside: avoid; }
       <div class="doc">Safety Data Sheet according to Regulation (EC) No. 1907/2006 (REACH)</div>
       <div class="prod">{{ meta.product_name }}</div>
     </div>
-    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px;">
-      <div style="font-size:7pt;">Page <span class="page-number-counter">1</span></div>
+    <div style="text-align:right;">
+      <div style="font-size:7pt; margin-bottom:4px;">Page <span class="page-number-counter">1</span></div>
       <img class="logo-img" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNjIuNTM3cHgiIGhlaWdodD0iNjguMzhweCIgdmlld0JveD0iMCAwIDI2Mi41MzcgNjguMzgiPjxnIGZpbGw9IiM0NDRmNTAiPgo8cG9seWdvbiBwb2ludHM9IjEyLjgzLDUzLjM1MSAxMi44MywxNC41NDEgMjIuNTg2LDUzLjM1MSA0My40NTEsNTMuMzUxIDUzLjIzNCwxNC41NDEgNTMuMjM0LDUzLjM1MSA2Ni4wNjgsNTMuMzUxIDY2LjA2OCwtMC4wMTcgNDUuMzUyLC0wLjAxNyAzMy4wODIsNDYuNjQyIDIwLjY3LC0wLjAxNyAwLC0wLjAxNyAwLDUzLjM1MSIvPgo8cGF0aCBkPSJNMTYzLjg2MywzOC4xMjhoLTMuNDE4VjI1LjczYzAtMS41OTItMC4yMjktMi43MjMtMC42ODYtMy4zOTdjLTAuNDYxLTAuNjc1LTEuMjI1LTEuMDEyLTIuMjk3LTEuMDEyIGMtMS42NTIsMC0zLjI3LDEuMDIyLTQuODU5LDMuMDc0djEzLjczM2gtMy4zOThWMjUuNzNjMC0xLjU5Mi0wLjIzLTIuNzIzLTAuNjg4LTMuMzk3cy0xLjIyOS0xLjAxMi0yLjMxMS0xLjAxMiBjLTEuNjUyLDAtMy4yNywxLjAyMi00Ljg0OCwzLjA3NHYxMy43MzNoLTMuNDE2VjE4Ljk1NWgzLjQxNnYyLjQzOGMxLjYxNS0xLjkxNywzLjQwNi0yLjg3Myw1LjM2OS0yLjg3MyBjMi44MDcsMCw0LjU5NiwxLjE1Niw1LjM2NywzLjQ3YzEuMjc1LTEuNTA4LDIuMzYzLTIuNDYxLDMuMjUyLTIuODY1YzAuODkzLTAuNDAzLDEuNzY4LTAuNjA0LDIuNjIzLTAuNjA0IGMzLjkyNiwwLDUuODkzLDIuMzU1LDUuODkzLDcuMDY0VjM4LjEyOEwxNjMuODYzLDM4LjEyOHoiLz4KPHBhdGggZD0iTTE3MS44MiwxNS4zMjFoLTMuNDE2di0zLjY4N2gzLjQxNlYxNS4zMjFMMTcxLjgyLDE1LjMyMXogTTE3MS44MiwzOC4xMjhoLTMuNDE2VjE4Ljk1NWgzLjQxNlYzOC4xMjggTDE3MS44MiwzOC4xMjh6Ii8+CjxwYXRoIGQ9Ik0xNzkuODg5LDIxLjM5NGMxLjY5OS0xLjkxNywzLjYxMS0yLjg3Myw1LjcyOS0yLjg3M2M0LjMyNCwwLDYuNDg4LDIuMzU1LDYuNDg4LDcuMDY0djEyLjU0M2gtMy40MTQgVjI1LjczYzAtMS41NjYtMC4yODEtMi42OTItMC44NC0zLjM4MWMtMC41NjEtMC42ODYtMS40ODItMS4wMjgtMi43NTgtMS4wMjhjLTEuNzM0LDAtMy40NjcsMS4wMjItNS4yMDUsMy4wNzR2MTMuNzMzaC0zLjQxNCBWMTguOTU1aDMuNDE0VjIxLjM5NEwxNzkuODg5LDIxLjM5NEwxNzkuODg5LDIxLjM5NHoiLz4KPHBhdGggZD0iTTIwNC44MzgsMzguNThjLTIuODE4LDAtNS4wODQtMC44ODUtNi43OTUtMi42NDhjLTEuNzExLTEuNzY2LTIuNTY2LTQuMjIzLTIuNTY2LTcuMzgxIGMwLTMuMTMyLDAuODI4LTUuNTg3LDIuNDgyLTcuMzYyYzEuNjU4LTEuNzc3LDMuODI0LTIuNjY3LDYuNS0yLjY2N2MyLjczMiwwLDQuOTE4LDAuODcyLDYuNTQ5LDIuNjIgYzEuNjMxLDEuNzQ3LDIuNDQ5LDQuMjE5LDIuNDQ5LDcuNDA5djAuODEySDE5OS4wMmMwLjE0NSwyLjIxOCwwLjc1NCwzLjg2MiwxLjgzNiw0LjkzNmMxLjA3NiwxLjA3MiwyLjQwMiwxLjYwNywzLjk4MiwxLjYwNyBjMS4xOTEsMCwyLjI2OC0wLjMwMywzLjIyNy0wLjkxMmMwLjk1NS0wLjYwNiwxLjQ2MS0xLjQ3NCwxLjUwNC0yLjU5NGgzLjUyNWMtMC4yNjIsMS45NzYtMS4xNTYsMy41LTIuNjgyLDQuNTc0IEMyMDguODg5LDM4LjA0MSwyMDcuMDI3LDM4LjU4LDIwNC44MzgsMzguNThMMjA0LjgzOCwzOC41OEwyMDQuODM4LDM4LjU4eiBNMjA5Ljg2MSwyNi42ODhjLTAuMjc3LTEuODQ1LTAuODk2LTMuMjIyLTEuODYzLTQuMTM4IGMtMC45NjMtMC45MTQtMi4xNDMtMS4zNzQtMy41MzktMS4zNzRjLTEuMzYzLDAtMi41MzEsMC40NTctMy41MDgsMS4zNjVzLTEuNTk2LDIuMjk0LTEuODU5LDQuMTQ2SDIwOS44NjFMMjA5Ljg2MSwyNi42ODggTDIwOS44NjEsMjYuNjg4eiIvPgo8cGF0aCBkPSJNMjI2Ljg1NywyMi4wNjNjLTAuNDgyLTAuMTQ1LTEuMTc2LTAuMjE3LTIuMDc2LTAuMjE3Yy0xLjczOCwwLTMuMjIzLDAuOTExLTQuNDY3LDIuNzI4djEzLjU1NWgtMy40MTYgVjE4Ljk1NWgzLjQxNnYyLjY3NmMxLjQzNi0yLjA3MywzLjEtMy4xMSw0Ljk4OC0zLjExYzAuNDgyLDAsMC45OTgsMC4wNDgsMS41NTUsMC4xNDZWMjIuMDYzTDIyNi44NTcsMjIuMDYzTDIyNi44NTcsMjIuMDYzeiIvPgo8cG9seWdvbiBwb2ludHM9IjI0NS42NzQsMTguOTU1IDIzOC40MjgsMzguMTI4IDIzNS4zOTEsMzguMTI4IDIyOC4xNDYsMTguOTU1IDIzMS44MzIsMTguOTU1IDIzNi45MTIsMzMuOTU0ICAyNDEuOTg2LDE4Ljk1NSAyNDUuNjc0LDE4Ljk1NSIvPgo8cGF0aCBkPSJNMjU5LjEzOSwzNi4xNThjLTEuNzMyLDEuNjEzLTMuOTcxLDIuNDIyLTYuNzAxLDIuNDIyYy0xLjkwNCwwLTMuNDczLTAuNTE2LTQuNzAzLTEuNTQ3IGMtMS4yMjctMS4wMjktMS44NC0yLjM1Ny0xLjg0LTMuOTgyYzAtNC40ODMsMy44NjEtNi43MjUsMTEuNTgyLTYuNzI1aDEuNjYyYzAtMS4zNzEtMC4wNzItMi4zNjgtMC4yMTctMi45OSBjLTAuMTQzLTAuNjE4LTAuNTQ5LTEuMTM0LTEuMjExLTEuNTQ2Yy0wLjY2Mi0wLjQwNy0xLjcxNS0wLjYxMy0zLjE2LTAuNjEzYy0zLjAzOSwwLTQuNjA0LDEuMDg0LTQuNjk5LDMuMjUyaC0zLjM5NiBjMC4yNS0zLjkzOCwzLjAxMi01LjkwOCw4LjI3NS01LjkwOGMyLjQ1OSwwLDQuMzc1LDAuNDg4LDUuNzQ2LDEuNDYzYzEuMzcxLDAuOTc2LDIuMDYxLDIuODkzLDIuMDYxLDUuNzQ3djEyLjM5OGgtMy4zOThWMzYuMTU4IEwyNTkuMTM5LDM2LjE1OEwyNTkuMTM5LDM2LjE1OHogTTI1OS4xMzksMzMuMDg0di00LjI0N2gtMi4zMjhjLTQuOTQxLDAtNy40MSwxLjM0NC03LjQxLDQuMDMzYzAsMC45NzUsMC4zNjEsMS43MjQsMS4wODQsMi4yNDggYzAuNzI1LDAuNTI0LDEuNjk5LDAuNzg2LDIuOTI2LDAuNzg2YzEuMTIxLDAsMi4yMDctMC4yNSwzLjI1Ni0wLjc1N0MyNTcuNzExLDM0LjYzOSwyNTguNTM3LDMzLjk1NCwyNTkuMTM5LDMzLjA4NCBMMjU5LjEzOSwzMy4wODRMMjU5LjEzOSwzMy4wODR6Ii8+CjwvZz48ZyBmaWxsPSIjNjViMzJlIj4KPHBhdGggZD0iTTI2MS4xMDQsNDkuNzQ0Yy0wLjk1NS0wLjk1OS0yLjEwNC0xLjQzOS0zLjQ0My0xLjQzOXMtMi40ODgsMC40OC0zLjQ0NSwxLjQzOSBjLTAuOTU1LDAuOTU1LTEuNDM2LDIuMTA0LTEuNDM2LDMuNDM4YzAsMS4zNDIsMC40OCwyLjQ4OCwxLjQzNiwzLjQ0NWMwLjk1NywwLjk1NSwyLjEwNSwxLjQzNiwzLjQ0NSwxLjQzNiBzMi40ODgtMC40OCwzLjQ0My0xLjQzNmMwLjk1Ny0wLjk1NywxLjQzNC0yLjEwNCwxLjQzNC0zLjQ0NUMyNjIuNTM3LDUxLjg0NywyNjIuMDYxLDUwLjY5OSwyNjEuMTA0LDQ5Ljc0NEwyNjEuMTA0LDQ5Ljc0NHogIE0yNjAuNjEzLDU2LjEzOGMtMC44MjIsMC44Mi0xLjgwNSwxLjIzMi0yLjk1MywxLjIzMmMtMS4xNiwwLTIuMTQ2LTAuNDEtMi45NjMtMS4yMjljLTAuODE2LTAuODItMS4yMjctMS44MDctMS4yMjctMi45NjEgYzAtMS4xNDgsMC40MS0yLjEzMSwxLjIzNC0yLjk1M2MwLjgyLTAuODIyLDEuODA3LTEuMjMyLDIuOTU1LTEuMjMyYzEuMTU0LDAsMi4xMzcsMC40MSwyLjk1NywxLjIyOSBjMC44MTgsMC44MiwxLjIyOSwxLjgwNSwxLjIyOSwyLjk1N1MyNjEuNDM2LDU1LjMxNiwyNjAuNjEzLDU2LjEzOEwyNjAuNjEzLDU2LjEzOHogTTI1OC43ODUsNTMuNDEgYzAuMzc5LTAuMTEzLDAuNjUtMC4zMTMsMC44MjgtMC41ODhjMC4xNzYtMC4yNzcsMC4yNjYtMC41NjQsMC4yNjYtMC44NjdjMC0wLjQwMi0wLjE2Mi0wLjc3My0wLjQ4Mi0xLjEwNSBjLTAuMzI0LTAuMzM0LTAuODA3LTAuNDk4LTEuNDUzLTAuNDk4aC0yLjR2NS42N2gwLjgzOHYtMi40MTZoMS41NjFsMS4wOTIsMi40MTZoMC45MjZMMjU4Ljc4NSw1My40MUwyNTguNzg1LDUzLjQxeiAgTTI1Ni4zODEsNTEuMDU2aDEuNTYzYzAuMzAxLDAsMC41NTMsMC4wNzQsMC43NSwwLjIyM2MwLjE5NywwLjE1LDAuMjk5LDAuMzczLDAuMjk5LDAuNjYyYzAsMC4yODEtMC4wOTYsMC41Mi0wLjI4MSwwLjcxMSBjLTAuMTg4LDAuMTkzLTAuNDc1LDAuMjkxLTAuODU1LDAuMjkxaC0xLjQ3NVY1MS4wNTZMMjU2LjM4MSw1MS4wNTZ6Ii8+CjxwYXRoIGQ9Ik0xNDEuMzU5LDUxLjA1MmMxLjUyLTEuODIyLDMuMzQ2LTIuNzMsNS40NzctMi43M2MyLjUwNiwwLDQuNDQ5LDAuODg5LDUuODIsMi42NjYgYzEuMzczLDEuNzc5LDIuMDYzLDQuMTc4LDIuMDYzLDcuMjAxYzAsMy4xNDUtMC43Nyw1LjYyOS0yLjMwNSw3LjQ1NWMtMS41MzksMS44MjYtMy40NzUsMi43MzYtNS44MTQsMi43MzYgYy0yLjA3LDAtMy44MTgtMC42NDUtNS4yNC0xLjkzNHYxLjQ4MmgtMy40MTZ2LTI2LjQ5aDMuNDE2VjUxLjA1MkwxNDEuMzU5LDUxLjA1MkwxNDEuMzU5LDUxLjA1MnogTTE0MS4zNTksNjMuMzc2IGMxLjQ2MSwxLjU1NSwzLjEzNywyLjMyOCw1LjAyNywyLjMyOGMxLjQ2NywwLDIuNjM3LTAuNjI3LDMuNTA2LTEuODg3YzAuODY1LTEuMjYsMS4zMDEtMy4xMzUsMS4zMDEtNS42MjkgYzAtMi4zNjMtMC40MS00LjE1NC0xLjIzLTUuMzc3Yy0wLjgxOC0xLjIyNS0xLjk2NS0xLjgzNC0zLjQzNC0xLjgzNGMtMS44OTEsMC0zLjYxMywxLjA5OC01LjE3LDMuMjkxVjYzLjM3NkwxNDEuMzU5LDYzLjM3NiBMMTQxLjM1OSw2My4zNzZ6Ii8+CjxwYXRoIGQ9Ik0xNjEuNTcyLDQ1LjEyNWgtMy40MTJ2LTMuNjg2aDMuNDEyVjQ1LjEyNUwxNjEuNTcyLDQ1LjEyNXogTTE2MS41NzIsNjcuOTI5aC0zLjQxMlY0OC43NTdoMy40MTJWNjcuOTI5IEwxNjEuNTcyLDY3LjkyOXoiLz4KPHBhdGggZD0iTTE3NCw0OC4zMjJjMi43MzIsMCw0LjkxOCwwLjg3NSw2LjU1MSwyLjYxOWMxLjYzMSwxLjc1LDIuNDQ3LDQuMjE5LDIuNDQ3LDcuNDEgYzAsMy4xODItMC44MTYsNS42NDgtMi40NDcsNy4zOThjLTEuNjMzLDEuNzU2LTMuODE4LDIuNjMxLTYuNTUxLDIuNjMxYy0yLjcyMywwLTQuOTAyLTAuODc1LTYuNTMzLTIuNjMxIGMtMS42MzMtMS43NS0yLjQ0OS00LjIxNy0yLjQ0OS03LjM5OGMwLTMuMTkxLDAuODE2LTUuNjYsMi40NDktNy40MUMxNjkuMDk4LDQ5LjE5NywxNzEuMjc3LDQ4LjMyMiwxNzQsNDguMzIyTDE3NCw0OC4zMjIgTDE3NCw0OC4zMjJ6IE0xNzQsNjUuNzA1YzEuNjIzLDAsMi45NDMtMC42MTUsMy45NTctMS44NWMxLjAxMi0xLjIzOCwxLjUxOC0zLjA3LDEuNTE4LTUuNTA0YzAtMi40NDMtMC41MDYtNC4yODMtMS41MTgtNS41MjEgYy0xLjAxNC0xLjIzNC0yLjMzNC0xLjg1Mi0zLjk1Ny0xLjg1MmMtMS42MjksMC0yLjk0NSwwLjYxNy0zLjk1NywxLjg1MmMtMS4wMTIsMS4yMzgtMS41MiwzLjA3OC0xLjUyLDUuNTIxIGMwLDIuNDM0LDAuNTA4LDQuMjY2LDEuNTIsNS41MDRDMTcxLjA1NSw2NS4wODksMTcyLjM3MSw2NS43MDUsMTc0LDY1LjcwNUwxNzQsNjUuNzA1TDE3NCw2NS43MDV6Ii8+Cjxwb2x5Z29uIHBvaW50cz0iMTg5Ljg1NSw2Ny45MjkgMTg2LjQzOSw2Ny45MjkgMTg2LjQzOSw0MS40MzkgMTg5Ljg1NSw0MS40MzkgMTg5Ljg1NSw2Ny45MjkiLz4KPHBhdGggZD0iTTIwNi42NTQsNjUuOTU4Yy0xLjczNCwxLjYxNy0zLjk3MSwyLjQyMi02LjcwMywyLjQyMmMtMS45MDQsMC0zLjQ3MS0wLjUxNi00LjcwMy0xLjU0NyBjLTEuMjI3LTEuMDI3LTEuODM4LTIuMzU3LTEuODM4LTMuOTgyYzAtNC40OCwzLjg2My02LjcyMSwxMS41OC02LjcyMWgxLjY2NGMwLTEuMzc1LTAuMDcyLTIuMzcxLTAuMjE1LTIuOTk0IGMtMC4xNDgtMC42MTctMC41NTEtMS4xMzMtMS4yMTUtMS41NDNzLTEuNzEzLTAuNjE1LTMuMTYyLTAuNjE1Yy0zLjAzMywwLTQuNjAyLDEuMDg2LTQuNjk3LDMuMjU0aC0zLjM5NiBjMC4yNTItMy45MzksMy4wMTItNS45MSw4LjI3Ny01LjkxYzIuNDU5LDAsNC4zNzEsMC40ODgsNS43NDIsMS40NjVjMS4zNzUsMC45NzMsMi4wNjMsMi44OTEsMi4wNjMsNS43NDh2MTIuMzk1aC0zLjM5NlY2NS45NTggTDIwNi42NTQsNjUuOTU4TDIwNi42NTQsNjUuOTU4eiBNMjA2LjY1NCw2Mi44ODRWNTguNjRoLTIuMzMyYy00Ljk0MSwwLTcuNDA2LDEuMzQ0LTcuNDA2LDQuMDMxYzAsMC45NzUsMC4zNjEsMS43MjUsMS4wODIsMi4yNDggYzAuNzI1LDAuNTI3LDEuNjk3LDAuNzg1LDIuOTI2LDAuNzg1YzEuMTIxLDAsMi4yMDctMC4yNSwzLjI1Ni0wLjc1OEMyMDUuMjI1LDY0LjQ0MywyMDYuMDUzLDYzLjc1NywyMDYuNjU0LDYyLjg4NCBMMjA2LjY1NCw2Mi44ODRMMjA2LjY1NCw2Mi44ODR6Ii8+CjxwYXRoIGQ9Ik0yMTguMTM5LDUxLjA1MmMxLjUxOC0xLjgyMiwzLjM0Ni0yLjczLDUuNDc5LTIuNzNjMi41MDIsMCw0LjQ0MSwwLjg4OSw1LjgxNiwyLjY2NiBjMS4zNzMsMS43NzksMi4wNTksNC4xNzgsMi4wNTksNy4yMDFjMCwzLjE0NS0wLjc2Niw1LjYyOS0yLjMwNSw3LjQ1NWMtMS41MzMsMS44MjYtMy40NzMsMi43MzYtNS44MTEsMi43MzYgYy0yLjA3LDAtMy44MTQtMC42NDUtNS4yMzgtMS45MzR2MS40ODJoLTMuNDE2di0yNi40OWgzLjQxNlY1MS4wNTJMMjE4LjEzOSw1MS4wNTJMMjE4LjEzOSw1MS4wNTJ6IE0yMTguMTM5LDYzLjM3NiBjMS40NTcsMS41NTUsMy4xMzMsMi4zMjgsNS4wMjMsMi4zMjhjMS40NjksMCwyLjY0MS0wLjYyNywzLjUwNC0xLjg4N2MwLjg2OS0xLjI2LDEuMzA1LTMuMTM1LDEuMzA1LTUuNjI5IGMwLTIuMzYzLTAuNDEtNC4xNTQtMS4yMy01LjM3N2MtMC44MTgtMS4yMjUtMS45NjUtMS44MzQtMy40MzItMS44MzRjLTEuODkzLDAtMy42MTUsMS4wOTgtNS4xNywzLjI5MVY2My4zNzZMMjE4LjEzOSw2My4zNzYgTDIxOC4xMzksNjMuMzc2eiIvPgo8cGF0aCBkPSJNMjQxLjc4Nyw2OC4zOGMtNS4yNDQsMC03Ljk4Mi0yLjA1OS04LjIyNS02LjE4MmgzLjQxNmMwLjAyMywyLjM0LDEuNjE1LDMuNTA2LDQuNzcsMy41MDYgYzEuNDEsMCwyLjQ4NC0wLjI4OSwzLjIyNy0wLjg3NWMwLjc0Mi0wLjU4NCwxLjExMS0xLjMxNCwxLjExMS0yLjE5NWMwLTAuODY3LTAuMzU5LTEuNDgtMS4wODYtMS44MzQgYy0wLjcyMy0wLjM1NC0yLjIxMy0wLjgxNi00LjQ3MS0xLjM4NWMtMi4yNi0wLjU2Ni0zLjkxLTEuMTk1LTQuOTUzLTEuODk1Yy0xLjA0MS0wLjY5OS0xLjU2MS0xLjkzLTEuNTYxLTMuNjg4IGMwLTEuNTkyLDAuNjQ4LTIuOTA2LDEuOTQzLTMuOTQ5YzEuMjkzLTEuMDQxLDMuMDIzLTEuNTYzLDUuMTkxLTEuNTYzYzUuMDI1LDAsNy41OTQsMS43ODksNy43MDEsNS4zNjdoLTMuMzk1IGMtMC4xMjMtMS44MDctMS40OC0yLjcxMS00LjA2OC0yLjcxMWMtMS4xNDYsMC0yLjA5NiwwLjIxNy0yLjg0NiwwLjY1MmMtMC43NTYsMC40MzQtMS4xMzEsMS4wNjQtMS4xMzEsMS44OTUgYzAsMC43NSwwLjI4OSwxLjI4NywwLjg2OSwxLjYxOWMwLjU3NiwwLjMzMiwyLjAyNSwwLjc3Nyw0LjM0NCwxLjMzNGMyLjMyMiwwLjU2Myw0LjA0MSwxLjIxOSw1LjE2OCwxLjk2MyBjMS4xMjcsMC43NDgsMS42OTMsMi4wMzcsMS42OTMsMy44NjdjMCwxLjc0OC0wLjY5NywzLjE5Ny0yLjA5NCw0LjM0OEMyNDYuMDA0LDY3LjgwNiwyNDQuMTM1LDY4LjM4LDI0MS43ODcsNjguMzhMMjQxLjc4Nyw2OC4zOCBMMjQxLjc4Nyw2OC4zOHoiLz4KPHBhdGggZD0iTTExOS4xMjMsMzguMDk3Yy0xLjkzNi0yLjQwOC00LjU4OC00LjE2MS03LjkxLTUuMjNjMi40OC0wLjk5NSw0LjU0NS0yLjUyNSw2LjE2Mi00LjU2NyBjMi4yNjQtMi44NjIsMy40MS02LjI3NiwzLjQxLTEwLjEzOWMwLTQuMDc3LTEuMTIzLTcuNjg2LTMuMzQtMTAuNzIxYy0yLjIyMy0zLjAzNy00Ljg5OC01LjA2OC03Ljk2OS02LjAzMyBDMTA2LjUxLDAuNDcxLDEwMi43MzgsMCw5OC4yODMsMEg3Ni40NjVMNzEuOSwwLjAxN3Y1My4zMzRoMTIuNjh2LTE0LjFoMTQuNjcyYzIuOTQ3LDAsNS4zMywwLjgyMiw3LjA4OCwyLjQ0OSBjMS43NjIsMS42MjcsMi42MTksMy42NjIsMi42MTksNi4yMjVjMCwyLjY4OS0wLjgzOCw0Ljc2LTIuNTY0LDYuMzI0Yy0xLjcyNywxLjU2MS00LjE0NiwyLjM1Mi03LjE4NCwyLjM1Mkg4NC41OFY2OC4zOGgxNi44NzUgYzcuMjA5LDAsMTIuNjU2LTEuODU1LDE2LjE4Mi01LjUxOGMzLjUxNC0zLjY1LDUuMjk1LTguMjE5LDUuMjk1LTEzLjU3MkMxMjIuOTMyLDQ1LjAwNywxMjEuNjUyLDQxLjI0LDExOS4xMjMsMzguMDk3eiBNMTA0Ljc5NSwyNS41NDZjLTEuNTg0LDEuNjI1LTMuNjk3LDIuNDEzLTYuNDY1LDIuNDEzSDg0LjU4VjExLjI5MmgxMy41MDhjMi40NjEsMCw0LjYzMSwwLjY3Miw2LjQ1MSwyLjAwMSBjMS43NTgsMS4yODIsMi42MTEsMy4yNTgsMi42MTEsNi4wMzlDMTA3LjE1LDIxLjg4MiwxMDYuMzgxLDIzLjkxNiwxMDQuNzk1LDI1LjU0NnoiLz4KPC9nPjwvc3ZnPgo=" alt="Logo">
     </div>
   </div>
@@ -148,10 +149,15 @@ tr { page-break-inside: avoid; }
     <div class="ind">{{ section_1.relevant_uses.product_type }}</div>
     
     <div style="margin-top:3px;"><span class="b">Relevant identified uses:</span></div>
-    <table class="kv-list" style="width:100%; margin-left:14px; border:none;">
-      <tr><td class="b" style="width:200px; border:none;">Life cycle stage [LCS]</td><td style="border:none;">{{ section_1.relevant_uses.lcs }}</td></tr>
-      <tr><td class="b" style="border:none;">Sector of uses [SU]</td><td style="border:none;">{{ section_1.relevant_uses.su }}: {{ section_1.relevant_uses.su_fulltext }}</td></tr>
-      <tr><td class="b" style="border:none;">Product Categories [PC]</td><td style="border:none;">{{ section_1.relevant_uses.pc1 }}<br>{% if section_1.relevant_uses.pc2 %}{{ section_1.relevant_uses.pc2 }}{% endif %}</td></tr>
+    <table style="width:auto;margin-left:14px;" class="kv-list">
+      <tr><td colspan="2" class="b">Life cycle stage [LCS]</td></tr>
+      {% if section_1.relevant_uses.lcs %}
+      <tr><td style="min-width:44px;">{{ section_1.relevant_uses.lcs.split(':')[0] }}:</td><td>{{ section_1.relevant_uses.lcs.split(':')[1] if ':' in section_1.relevant_uses.lcs else section_1.relevant_uses.lcs }}</td></tr>
+      {% endif %}
+      <tr><td colspan="2" class="b">Sector of uses [SU]</td></tr>
+      <tr><td>{{ section_1.relevant_uses.su }}:</td><td>{{ section_1.relevant_uses.su_fulltext }}</td></tr>
+      <tr><td colspan="2" class="b">Product Categories [PC]</td></tr>
+      <tr><td>{{ section_1.relevant_uses.pc1 }}:</td><td>{{ section_1.relevant_uses.pc1_fulltext }}<br>{% if section_1.relevant_uses.pc2 %}{{ section_1.relevant_uses.pc2 }}{% endif %}</td></tr>
     </table>
 
     <div class="sh chg">1.3. Details of the supplier of the safety data sheet</div>
@@ -219,19 +225,19 @@ tr { page-break-inside: avoid; }
     <div class="ind">{{ section_2.labelling.hazard_components }}</div>
     {% endif %}
 
-    <table style="margin-top:5px;">
-      <tr><th colspan="2" style="text-align:left;">Hazard statements</th></tr>
+    <table style="margin-top:3px;">
+      <tr><th colspan="2">Hazard statements</th></tr>
       {% for statement in section_2.labelling.hazard_statements %}
-      <tr><td style="width:120px;">H{{ statement.code|string|replace('H', '')|pad(3, '0', true) }}</td><td>{{ statement.text }}</td></tr>
+      <tr><td style="width:60px;">H{{ statement.code|string|replace('H', '')|pad(3, '0', true) }}</td><td>{{ statement.text }}</td></tr>
       {% endfor %}
     </table>
 
     {% if section_2.labelling.precautionary_statements.prevention %}
-    <table style="margin-top:5px;">
-        <tr><th colspan="2" style="text-align:left;">Precautionary statements - Prevention</th></tr>
+    <table style="margin-top:3px;">
+        <tr><th colspan="2">Precautionary statements Prevention</th></tr>
         {% for item in section_2.labelling.precautionary_statements.prevention %}
         <tr>
-            <td style="width:120px;">{{ item.code }}</td>
+            <td style="width:130px;">{{ item.code }}</td>
             <td>{{ item.text }}</td>
         </tr>
         {% endfor %}
@@ -239,11 +245,11 @@ tr { page-break-inside: avoid; }
     {% endif %}
 
     {% if section_2.labelling.precautionary_statements.response %}
-    <table style="margin-top:5px;">
-        <tr><th colspan="2" style="text-align:left;">Precautionary statements - Response</th></tr>
+    <table style="margin-top:3px;">
+        <tr><th colspan="2">Precautionary statements Response</th></tr>
         {% for item in section_2.labelling.precautionary_statements.response %}
         <tr>
-            <td style="width:120px;">{{ item.code }}</td>
+            <td style="width:130px;">{{ item.code }}</td>
             <td>{{ item.text }}</td>
         </tr>
         {% endfor %}
@@ -251,17 +257,17 @@ tr { page-break-inside: avoid; }
     {% endif %}
 
     {% if section_2.labelling.precautionary_statements.storage or section_2.labelling.precautionary_statements.disposal %}
-    <table style="margin-top:5px;">
-        <tr><th colspan="2" style="text-align:left;">Precautionary statements - Storage & Disposal</th></tr>
+    <table style="margin-top:3px;">
+        <tr><th colspan="2">Precautionary statements Storage & Disposal</th></tr>
         {% for item in section_2.labelling.precautionary_statements.storage %}
         <tr>
-            <td style="width:120px;">{{ item.code }}</td>
+            <td style="width:130px;">{{ item.code }}</td>
             <td>{{ item.text }}</td>
         </tr>
         {% endfor %}
         {% for item in section_2.labelling.precautionary_statements.disposal %}
         <tr>
-            <td style="width:120px;">{{ item.code }}</td>
+            <td style="width:130px;">{{ item.code }}</td>
             <td>{{ item.text }}</td>
         </tr>
         {% endfor %}
@@ -311,7 +317,7 @@ tr { page-break-inside: avoid; }
           {% if component.ate_values %}
           <div class="note" style="margin-top:2px;"><strong>Acute Toxicity Estimate</strong><br>
             {% for ate in component.ate_values %}
-              {% if ate is mapping %}{{ ate.label }} {{ ate.value }} {{ ate.unit }}{% else %}{{ ate }}{% endif %}<br>
+            {% if ate is mapping %}{{ ate.label|safe }} {{ ate.value|safe }} {{ ate.unit|safe }}{% else %}{{ ate|safe }}{% endif %}<br>
             {% endfor %}
           </div>
           {% endif %}
@@ -327,18 +333,18 @@ tr { page-break-inside: avoid; }
 <div class="section">
   <div class="sec-head">SECTION 4: First aid measures</div>
   <div class="sec-body">
-    <div class="sh">4.1. Description of first aid measures</div>
-    <div class="ssh">General information:</div>
+    <div class="sh chg">4.1. Description of first aid measures</div>
+    <div class="b">General information:</div>
     <div class="ind">{{ section_4.description.general | default('No data available.', true) }}</div>
-    <div class="ssh">Following inhalation:</div>
+    <div class="b">Following inhalation:</div>
     <div class="ind">{{ section_4.description.inhalation | default('No data available.', true) }}</div>
-    <div class="ssh">In case of skin contact:</div>
+    <div class="b" style="margin-top:3px;">In case of skin contact:</div>
     <div class="ind">{{ section_4.description.skin | default('No data available.', true) }}</div>
-    <div class="ssh">After eye contact:</div>
+    <div class="b" style="margin-top:3px;">After eye contact:</div>
     <div class="ind">{{ section_4.description.eye | default('No data available.', true) }}</div>
-    <div class="ssh">Following ingestion:</div>
+    <div class="b" style="margin-top:3px;">Following ingestion:</div>
     <div class="ind">{{ section_4.description.ingestion | default('No data available.', true) }}</div>
-    <div class="ssh">Self-protection of the first aider:</div>
+    <div class="b" style="margin-top:3px;">Self-protection of the first aider:</div>
     <div class="ind">{{ section_4.description.self_protection | default('No data available.', true) }}</div>
     
     <div class="sh">4.2. Most important symptoms and effects, both acute and delayed</div>
@@ -393,20 +399,26 @@ tr { page-break-inside: avoid; }
 <div class="section">
   <div class="sec-head">SECTION 7: Handling and storage</div>
   <div class="sec-body">
-    <div class="sh">7.1. Precautions for safe handling</div>
-    <div class="ssh">Protective measures</div>
-    <div class="ind"><span class="b">Advices on safe handling:</span><br> {{ section_7.safe_handling }}</div>
-    <div class="ind" style="margin-top:2px;"><span class="b">Fire prevent measures:</span><br> {{ section_7.fire_prevention }}</div>
-    <div class="ssh">Advices on general occupational hygiene</div>
+    <div class="sh chg">7.1. Precautions for safe handling</div>
+    <div class="b">Protective measures</div>
+    <div class="b">Advices on safe handling:</div>
+    <div class="ind">{{ section_7.safe_handling }}</div>
+    <div class="b" style="margin-top:3px;">Fire prevent measures:</div>
+    <div class="ind">{{ section_7.fire_prevention }}</div>
+    <div class="b" style="margin-top:3px;">Advices on general occupational hygiene</div>
     <div class="ind">{{ section_7.occupational_hygiene }}</div>
     
     <div class="sh">7.2. Conditions for safe storage, including any incompatibilities</div>
-    <div class="ind"><span class="b">Technical measures and storage conditions:</span><br> {{ section_7.storage_conditions }}</div>
-    <div class="ind" style="margin-top:2px;"><span class="b">Requirements for storage rooms and vessels:</span><br> {{ section_7.storage_rooms }}</div>
-    <div class="ind" style="margin-top:2px;"><span class="b">Hints on storage assembly:</span><br> {{ section_7.storage_assembly }}</div>
-    <div class="ind" style="margin-top:2px;"><span class="b">Storage class (TRGS 510, Germany):</span> {{ section_7.storage_class or section_15.storage_class or '3 – Entzündbare Flüssigkeiten' }}</div>
+    <div class="b">Technical measures and storage conditions:</div>
+    <div class="ind">{{ section_7.storage_conditions }}</div>
+    <div class="b" style="margin-top:3px;">Requirements for storage rooms and vessels:</div>
+    <div class="ind">{{ section_7.storage_rooms }}</div>
+    <div class="b" style="margin-top:3px;">Hints on storage assembly:</div>
+    <div class="ind">{{ section_7.storage_assembly }}</div>
+    <div style="margin-top:2px;"><span class="b">Storage class (TRGS 510, Germany):</span> {{ section_7.storage_class or section_15.storage_class or '3 – Flammable liquids' }}</div>
     {% if section_7.further_storage_conditions %}
-    <div class="ind" style="margin-top:2px;"><span class="b">Further information on storage conditions:</span><br> {{ section_7.further_storage_conditions }}</div>
+    <div class="b" style="margin-top:3px;">Further information on storage conditions:</div>
+    <div class="ind">{{ section_7.further_storage_conditions }}</div>
     {% endif %}
     
     <div class="sh">7.3. Specific end use(s)</div>
@@ -428,7 +440,7 @@ tr { page-break-inside: avoid; }
       {% for limit in section_8.occupational_exposure_limits %}
       <tr>
         <td>{{ limit.limit_type }}</td>
-        <td>{{ limit.substance }}<br>CAS No.: {{ limit.CAS_number }}</td>
+        <td>{{ limit.substance|safe }}{% if limit.CAS_number %}<br>CAS No.: {{ limit.CAS_number|safe }}{% endif %}{% if limit.ec %}<br>EC No.: {{ limit.ec|safe }}{% endif %}</td>
         <td>
           {% if limit.formatted_values %}
             {{ limit.formatted_values|safe }}
@@ -442,36 +454,79 @@ tr { page-break-inside: avoid; }
       {% endfor %}
     </table>
     <div class="ssh">8.1.2. Biological limit values</div>
+    {% if section_8.biological_limit_values and section_8.biological_limit_values is iterable %}
+    <table style="font-size:7.5pt;">
+      <tr>
+        <th style="width:20%;">Limit value type<br>(country of origin)</th>
+        <th style="width:20%;">Substance name</th>
+        <th style="width:15%;">Limit value</th>
+        <th>① Parameter<br>② Test material<br>③ Time of sampling<br>④ Remark</th>
+      </tr>
+      {% for blv in section_8.biological_limit_values %}
+      <tr>
+        <td>{{ blv.limit_type | default('') }}</td>
+        <td>{{ blv.substance | default('') }}{% if blv.CAS_number %}<br>CAS No.: {{ blv.CAS_number }}{% endif %}{% if blv.EC_number %}<br>EC No.: {{ blv.EC_number }}{% endif %}</td>
+        <td>{{ blv.limit_value | default('') }}</td>
+        <td>
+          {% if blv.parameter %}① {{ blv.parameter }}<br>{% endif %}
+          {% if blv.test_material %}② {{ blv.test_material }}<br>{% endif %}
+          {% if blv.sampling_time %}③ {{ blv.sampling_time }}<br>{% endif %}
+          {% if blv.remark %}④ {{ blv.remark }}{% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
     <div class="ind">{{ section_8.biological_limit_values | default('No data available', true) }}</div>
+    {% endif %}
+    
     <div class="ssh">8.1.3. DNEL-/PNEC-values</div>
+    {% if section_8.dnel_pnec_values and section_8.dnel_pnec_values is iterable %}
+    <table style="font-size:7.5pt;">
+      <tr>
+        <th style="width:25%;">Substance name</th>
+        <th style="width:20%;">DNEL value / PNEC Value</th>
+        <th>① DNEL type / ① PNEC type<br>② Exposure route</th>
+      </tr>
+      {% for dnel in section_8.dnel_pnec_values %}
+      <tr>
+        <td>{{ dnel.substance | default('') }}{% if dnel.CAS_number %}<br>CAS No.: {{ dnel.CAS_number }}{% endif %}{% if dnel.EC_number %}<br>EC No.: {{ dnel.EC_number }}{% endif %}</td>
+        <td>{{ dnel.value | default('') }}</td>
+        <td>
+          {% if dnel.type %}① {{ dnel.type }}<br>{% endif %}
+          {% if dnel.exposure_route %}② {{ dnel.exposure_route }}{% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
     <div class="ind">{{ section_8.dnel_pnec_values | default('No data available', true) }}</div>
+    {% endif %}
     
     <div class="sh">8.2. Exposure controls</div>
     <div class="ssh">8.2.1. Appropriate engineering controls</div>
     <div class="ind">{{ section_8.engineering_controls | default('Provide adequate ventilation.', true) }}</div>
     <div class="ssh">8.2.2. Personal protection equipment</div>
-    <div class="ind">
-        {% if section_8.ppe_icons %}
-        <div class="ppe-icons-row">
-            {% for icon in section_8.ppe_icons %}
-            <img src="ghs/{{ icon }}" alt="{{ icon }}"  onerror="this.style.display='none'">
-            {% endfor %}
-        </div>
-        {% endif %}
-        <div class="b">Eye/face protection:</div>
-        <div class="ind">{{ section_8.eye_protection }}</div>
-        <div class="b" style="margin-top:3px;">Skin protection:</div>
-        <div class="ind">{{ section_8.skin_protection }}</div>
-        <div class="b" style="margin-top:3px;">Respiratory protection:</div>
-        <div class="ind">{{ section_8.respiratory_protection }}</div>
-        {% if section_8.other_protection %}
-        <div class="b" style="margin-top:3px;">Other protection measures:</div>
-        <div class="ind">{{ section_8.other_protection }}</div>
-        {% elif section_8.occupational_hygiene %}
-        <div class="b" style="margin-top:3px;">Other protection measures:</div>
-        <div class="ind">{{ section_8.occupational_hygiene }}</div>
-        {% endif %}
+    {% if section_8.ppe_icons %}
+    <div class="ppe">
+        {% for icon in section_8.ppe_icons %}
+        <img src="ghs/{{ icon }}" alt="{{ icon }}"  onerror="this.style.display='none'">
+        {% endfor %}
     </div>
+    {% endif %}
+    <div class="b">Eye/face protection:</div>
+    <div class="ind">{{ section_8.eye_protection }}</div>
+    <div class="b" style="margin-top:3px;">Skin protection:</div>
+    <div class="ind">{{ section_8.skin_protection }}</div>
+    <div class="b" style="margin-top:3px;">Respiratory protection:</div>
+    <div class="ind">{{ section_8.respiratory_protection }}</div>
+    {% if section_8.other_protection %}
+    <div class="b" style="margin-top:3px;">Other protection measures:</div>
+    <div class="ind">{{ section_8.other_protection }}</div>
+    {% elif section_8.occupational_hygiene %}
+    <div class="b" style="margin-top:3px;">Other protection measures:</div>
+    <div class="ind">{{ section_8.occupational_hygiene }}</div>
+    {% endif %}
     <div class="ssh">8.2.3. Environmental exposure controls</div>
     <div class="ind">{{ section_8.environmental_exposure }}</div>
   </div>
@@ -485,9 +540,9 @@ tr { page-break-inside: avoid; }
     <div class="ind">{{ section_9.appearance|safe }}</div>
     <div class="ssh">Safety relevant basis data</div>
     <table>
-      <tr><th>Parameter</th><th>Value</th><th>at °C</th><th>Method</th></tr>
+      <tr><th style="width:44%;">Parameter</th><th style="width:20%;">Value</th><th style="width:12%;">at °C</th><th>① Method<br>② Remark</th></tr>
       {% for item in section_9.safety_data %}
-      <tr><td>{{ item.parameter }}</td><td>{{ item.value }}</td><td>{{ item.temperature }}</td><td>{{ item.method }}</td></tr>
+      <tr><td>{{ item.parameter|safe }}</td><td>{{ item.value|safe }}</td><td>{{ item.temperature|safe }}</td><td>{{ item.method|safe }}</td></tr>
       {% endfor %}
     </table>
     
@@ -518,27 +573,27 @@ tr { page-break-inside: avoid; }
   <div class="sec-head">SECTION 11: Toxicological information</div>
   <div class="sec-body">
     <div class="sh">11.1. Information on hazard classes as defined in Regulation (EC) No 1272/2008</div>
-    <table style="font-size:7.5pt;margin-bottom:2px;width:100%;">
         {% for component in section_3.mixture_components %}
+    <table style="font-size:7.5pt;margin-bottom:2px;width:100%;">
         <tr><td class="trow-h" colspan="2">{{ component.name }} &nbsp; CAS No.: {{ component.cas }} &nbsp; EC No.: {{ component.ec }}</td></tr>
         {% for info in component.toxicological_info or component.ate_values %}
         <tr><td class="trow-d" colspan="2">
-            {% if info is mapping %}{{ info.label }}: {{ info.value }} {{ info.unit }}{% else %}{{ info }}{% endif %}
+            {% if info is mapping %}{{ info.label|safe }}: {{ info.value|safe }} {{ info.unit|safe }}{% else %}{{ info|safe }}{% endif %}
         </td></tr>
         {% endfor %}
-        {% endfor %}
     </table>
+        {% endfor %}
     <div style="margin-top:5px;">
-        <div><span class="b">Acute toxicity:</span><br><div class="ind">{{ section_11.acute_toxicity }}</div></div>
-        <div><span class="b">Skin corrosion/irritation:</span><br><div class="ind">{{ section_11.skin_corrosion }}</div></div>
-        <div><span class="b">Serious eye damage/irritation:</span><br><div class="ind">{{ section_11.eye_damage }}</div></div>
-        <div><span class="b">Respiratory or skin sensitisation:</span><br><div class="ind">{{ section_11.sensitisation }}</div></div>
-        <div><span class="b">Germ cell mutagenicity:</span><br><div class="ind">{{ section_11.mutagenicity }}</div></div>
-        <div><span class="b">Carcinogenicity:</span><br><div class="ind">{{ section_11.carcinogenicity }}</div></div>
-        <div><span class="b">Reproductive toxicity:</span><br><div class="ind">{{ section_11.reproductive_toxicity }}</div></div>
-        <div><span class="b">STOT-single exposure:</span><br><div class="ind">{{ section_11.stot_single }}</div></div>
-        <div><span class="b">STOT-repeated exposure:</span><br><div class="ind">{{ section_11.stot_repeated }}</div></div>
-        <div><span class="b">Aspiration hazard:</span><br><div class="ind">{{ section_11.aspiration_hazard }}</div></div>
+        <div class="b">Acute toxicity:</div><div class="ind">{{ section_11.acute_toxicity }}</div>
+        <div class="b" style="margin-top:2px;">Skin corrosion/irritation:</div><div class="ind">{{ section_11.skin_corrosion }}</div>
+        <div class="b" style="margin-top:2px;">Serious eye damage/irritation:</div><div class="ind">{{ section_11.eye_damage }}</div>
+        <div class="b" style="margin-top:2px;">Respiratory or skin sensitisation:</div><div class="ind">{{ section_11.sensitisation }}</div>
+        <div class="b" style="margin-top:2px;">Germ cell mutagenicity:</div><div class="ind">{{ section_11.mutagenicity }}</div>
+        <div class="b" style="margin-top:2px;">Carcinogenicity:</div><div class="ind">{{ section_11.carcinogenicity }}</div>
+        <div class="b" style="margin-top:2px;">Reproductive toxicity:</div><div class="ind">{{ section_11.reproductive_toxicity }}</div>
+        <div class="b" style="margin-top:2px;">STOT-single exposure:</div><div class="ind">{{ section_11.stot_single }}</div>
+        <div class="b" style="margin-top:2px;">STOT-repeated exposure:</div><div class="ind">{{ section_11.stot_repeated }}</div>
+        <div class="b" style="margin-top:2px;">Aspiration hazard:</div><div class="ind">{{ section_11.aspiration_hazard }}</div>
     </div>
     <div class="sh">11.2. Information on other hazards</div>
     <div class="ind">{{ section_11.other_hazards | default('No data available.', true) }}</div>
@@ -550,34 +605,64 @@ tr { page-break-inside: avoid; }
   <div class="sec-body">
     <div class="sh">12.1. Toxicity</div>
     {% for component in section_12.ecotox_components %}
+    {% if component.aquatic_toxicity_entries %}
     <table style="font-size:7.5pt;margin-bottom:2px;width:100%;">
-        <tr><td class="trow-h" colspan="2">{{ component.generic_name }} &nbsp; CAS No.: {{ component.cas_no }} &nbsp; EC No.: {{ component.ec_no }}</td></tr>
+        <tr><td class="trow-h" colspan="2">{{ component.generic_name }} &nbsp; CAS No.: {{ component.cas_no }}{% if component.ec_no %} &nbsp; EC No.: {{ component.ec_no }}{% endif %}</td></tr>
         {% for entry in component.aquatic_toxicity_entries %}
-        <tr><td class="trow-d" colspan="2">{{ entry.effect_dose }}: {{ entry.value }} {{ entry.unit }} {{ entry.exposure_time }} ({{ entry.species }}) {{ entry.method }}</td></tr>
+        <tr><td class="trow-d" colspan="2">{{ entry.effect_dose|safe }}: {{ entry.value|safe }} {{ entry.unit|safe }} {{ entry.exposure_time|safe }} ({{ entry.species|safe }}) {{ entry.method|safe }}</td></tr>
         {% endfor %}
-        {% if component.biodegradation %}
-        <tr><td class="trow-d" colspan="2">Biodegradation: {{ component.biodegradation }}</td></tr>
-        {% endif %}
-        {% if component.log_kow %}
-        <tr><td class="trow-d" colspan="2">Log K<sub>OW</sub>: {{ component.log_kow }}</td></tr>
-        {% endif %}
-        {% if component.bcf %}
-        <tr><td class="trow-d" colspan="2">Bioconcentration factor (BCF): {{ component.bcf }}</td></tr>
-        {% endif %}
-        {% if component.pbt_result %}
-        <tr><td class="trow-d" colspan="2">Results of PBT/vPvB: {{ component.pbt_result }}</td></tr>
-        {% endif %}
     </table>
+    {% endif %}
     {% endfor %}
     
     <div class="sh">12.2. Persistence and degradability</div>
+    {% set has_12_2 = false %}
+    {% for component in section_12.ecotox_components | default([]) %}
+      {% if component.biodegradation %}
+        {% set has_12_2 = true %}
+        <table style="font-size:7.5pt;margin-bottom:2px;width:100%;">
+          <tr><td class="trow-h">{{ component.generic_name }} &nbsp; CAS No.: {{ component.cas_no }}{% if component.ec_no %} &nbsp; EC No.: {{ component.ec_no }}{% endif %}</td></tr>
+          <tr><td class="trow-d">Biodegradation: {{ component.biodegradation|safe }}</td></tr>
+        </table>
+      {% endif %}
+    {% endfor %}
+    {% if not has_12_2 %}
     <div class="ind">{{ section_12.persistence or section_12.persistence_text or 'No data available.' }}</div>
+    {% endif %}
+    
     <div class="sh">12.3. Bioaccumulative potential</div>
+    {% set has_12_3 = false %}
+    {% for component in section_12.ecotox_components | default([]) %}
+      {% if component.log_kow or component.bcf %}
+        {% set has_12_3 = true %}
+        <table style="font-size:7.5pt;margin-bottom:2px;width:100%;">
+          <tr><td class="trow-h">{{ component.generic_name }} &nbsp; CAS No.: {{ component.cas_no }}{% if component.ec_no %} &nbsp; EC No.: {{ component.ec_no }}{% endif %}</td></tr>
+          {% if component.log_kow %}<tr><td class="trow-d">Log K<sub>OW</sub>: {{ component.log_kow|safe }}</td></tr>{% endif %}
+          {% if component.bcf %}<tr><td class="trow-d">Bioconcentration factor (BCF): {{ component.bcf|safe }}</td></tr>{% endif %}
+        </table>
+      {% endif %}
+    {% endfor %}
+    {% if not has_12_3 %}
     <div class="ind">{{ section_12.bioaccumulation or section_12.bioaccumulation_text or 'No data available.' }}</div>
+    {% endif %}
+
     <div class="sh">12.4. Mobility in soil</div>
     <div class="ind">{{ section_12.mobility_info | default('No data available.', true) }}</div>
+
     <div class="sh">12.5. Results of PBT and vPvB assessment</div>
+    {% set has_12_5 = false %}
+    {% for component in section_12.ecotox_components | default([]) %}
+      {% if component.pbt_result %}
+        {% set has_12_5 = true %}
+        <table style="font-size:7.5pt;margin-bottom:2px;width:100%;">
+          <tr><td class="trow-h">{{ component.generic_name }} &nbsp; CAS No.: {{ component.cas_no }}{% if component.ec_no %} &nbsp; EC No.: {{ component.ec_no }}{% endif %}</td></tr>
+          <tr><td class="trow-d"><span class="b">Results of PBT and vPvB assessment:</span> {{ component.pbt_result|safe }}</td></tr>
+        </table>
+      {% endif %}
+    {% endfor %}
+    {% if not has_12_5 %}
     <div class="ind">{{ section_12.pbt_result or section_12.pbt_text or 'No data available.' }}</div>
+    {% endif %}
     <div class="sh">12.6. Endocrine disrupting properties</div>
     <div class="ind">{{ section_12.endocrine_disrupting_info | default('No data available.', true) }}</div>
     <div class="sh">12.7. Other adverse effects</div>
@@ -589,18 +674,26 @@ tr { page-break-inside: avoid; }
   <div class="sec-head">SECTION 13: Disposal considerations</div>
   <div class="sec-body">
     <div class="sh">13.1. Waste treatment methods</div>
-    <div class="ind">{{ section_13.waste_treatment }}</div>
-    <div class="ind" style="margin-top:2px;">{{ section_13.eu_requirements }}</div>
-    {% if section_13.waste_code_product %}
-    <div style="margin-top:5px;" class="b">Waste code product:</div>
+    <div class="ind">{{ section_13.eu_requirements | replace(' *: Evidence for disposal must be provided.', '') | default('Dispose of waste according to applicable legislation.', true) }}</div>
+    <div class="ssh" style="margin-top:4px;">13.1.1. Product/Packaging disposal</div>
+    <div class="b" style="margin-top:3px;">Waste codes/waste designations according to EWC/AVV</div>
     {% if section_13.ewl_data %}
-      {% for waste in section_13.ewl_data %}
-      <div class="wcrow"><div class="wc">{{ waste.code }} {% if waste.hazardous == 'true' %}*{% endif %}</div><div class="wd">{{ waste.description }}</div></div>
-      {% endfor %}
-    {% else %}
+      <div class="b" style="margin-top:2px;">Waste code product</div>
+      <div class="wcrow"><div class="wc">{{ section_13.ewl_data[0].code }} {% if section_13.ewl_data[0].hazardous == 'true' %}*{% endif %}</div><div class="wd">{{ section_13.ewl_data[0].description }}</div></div>
+      <div class="note" style="margin-top:1px;">*: Evidence for disposal must be provided.</div>
+      <div class="b" style="margin-top:3px;">Waste code packaging</div>
+      {% if section_13.ewl_data|length > 1 %}
+      <div class="wcrow" style="margin-top:2px;"><div class="wc">{{ section_13.ewl_data[1].code }}</div><div class="wd">{{ section_13.ewl_data[1].description }}</div></div>
+      {% endif %}
+    {% elif section_13.waste_code_product %}
+      <div class="b" style="margin-top:2px;">Waste code product</div>
       <div class="wcrow"><div class="wc">{{ section_13.waste_code_product }}</div><div class="wd">{{ section_13.waste_code_product_desc }}</div></div>
     {% endif %}
-    {% endif %}
+    <div class="b" style="margin-top:4px;">Waste treatment options</div>
+    <div class="b" style="margin-top:2px;">Appropriate disposal / Product:</div>
+    <div class="ind">Consult the appropriate local waste disposal expert about waste disposal.</div>
+    <div class="b" style="margin-top:2px;">Appropriate disposal / Package:</div>
+    <div class="ind">Completely emptied packages can be recycled.</div>
   </div>
 </div>
 
@@ -618,29 +711,29 @@ tr { page-break-inside: avoid; }
       <tr><td>{{ section_14.land.un_number }}</td><td>{{ section_14.inland.un_number }}</td><td>{{ section_14.sea.un_number }}</td><td>{{ section_14.air.un_number }}</td></tr>
       <tr><td colspan="4" style="font-weight:bold;background:#f0f0f0;">14.2. UN proper shipping name</td></tr>
       <tr><td>{{ section_14.land.shipping_name }}</td><td>{{ section_14.inland.shipping_name }}</td><td>{{ section_14.sea.shipping_name }}</td><td>{{ section_14.air.shipping_name }}</td></tr>
-      <tr><td colspan="4" style="font-weight:bold;background:#f0f0f0;">14.3. Transport hazard class(es)</td></tr>
+      <tr><td colspan="4" style="font-weight:bold;background:#f0f0f0;"><span class="chg">14.3. Transport hazard class(es)</span></td></tr>
       <tr>
         <td class="td-cell">
-          {% if section_14.land.transport_class %}<img class="td-img" src="transport/class{{ section_14.land.transport_class }}.png"  onerror="this.style.display='none'"><br>{% endif %}
+          {% if section_14.land.transport_class %}<img class="td-img" src="symbole/transport/class{{ section_14.land.transport_class }}.png"  onerror="this.style.display='none'"><br>{% endif %}
           <div class="b">{{ section_14.land.transport_class }}</div>
         </td>
         <td class="td-cell">
-          {% if section_14.inland.transport_class %}<img class="td-img" src="transport/class{{ section_14.inland.transport_class }}.png"  onerror="this.style.display='none'"><br>{% endif %}
+          {% if section_14.inland.transport_class %}<img class="td-img" src="symbole/transport/class{{ section_14.inland.transport_class }}.png"  onerror="this.style.display='none'"><br>{% endif %}
           <div class="b">{{ section_14.inland.transport_class }}</div>
         </td>
         <td class="td-cell">
-          {% if section_14.sea.transport_class %}<img class="td-img" src="transport/class{{ section_14.sea.transport_class }}.png"  onerror="this.style.display='none'"><br>{% endif %}
+          {% if section_14.sea.transport_class %}<img class="td-img" src="symbole/transport/class{{ section_14.sea.transport_class }}.png"  onerror="this.style.display='none'"><br>{% endif %}
           <div class="b">{{ section_14.sea.transport_class }}</div>
         </td>
         <td class="td-cell">
-          {% if section_14.air.transport_class %}<img class="td-img" src="transport/class{{ section_14.air.transport_class }}.png"  onerror="this.style.display='none'"><br>{% endif %}
+          {% if section_14.air.transport_class %}<img class="td-img" src="symbole/transport/class{{ section_14.air.transport_class }}.png"  onerror="this.style.display='none'"><br>{% endif %}
           <div class="b">{{ section_14.air.transport_class }}</div>
         </td>
       </tr>
       <tr><td colspan="4" style="font-weight:bold;background:#f0f0f0;">14.4. Packing group</td></tr>
       <tr><td>{{ section_14.land.packing_group }}</td><td>{{ section_14.inland.packing_group }}</td><td>{{ section_14.sea.packing_group }}</td><td>{{ section_14.air.packing_group }}</td></tr>
       <tr><td colspan="4" style="font-weight:bold;background:#f0f0f0;">14.5. Environmental hazards</td></tr>
-      <tr style="text-align:center;">
+      <tr>
         <td>
           {% if 'yes' in section_14.land.environmental_hazards|lower or 'ja' in section_14.land.environmental_hazards|lower %}<img class="td-img" src="ghs/env_hazard.png"  onerror="this.style.display='none'"><br>{% endif %}
           {{ section_14.land.environmental_hazards }}
@@ -697,10 +790,10 @@ tr { page-break-inside: avoid; }
   <div class="sec-head">SECTION 15: Regulatory information</div>
   <div class="sec-body">
     <div class="sh">15.1. Safety, health and environmental regulations/legislation specific for the substance or mixture</div>
-    <div class="ssh">15.1.1. EU regulations</div>
+    <div class="ssh">15.1.1. EU legislation</div>
     <div class="ind">{{ section_15.eu_legislation | safe | default('No data available.', true) }}</div>
-    <div class="ssh">15.1.2. National regulations</div>
-    <div style="display:flex;align-items:center;gap:0;margin-bottom:3px;padding-left:14px;">
+    <div class="ssh" style="margin-top:4px;">15.1.2. National regulations</div>
+    <div style="display:flex;align-items:center;gap:0;margin-bottom:3px;">
       <span style="display:inline-block;width:13px;height:8px;background:#000;"></span>
       <span style="display:inline-block;width:13px;height:8px;background:#d00;"></span>
       <span style="display:inline-block;width:13px;height:8px;background:#ffce00;"></span>
@@ -762,7 +855,7 @@ tr { page-break-inside: avoid; }
         {% endfor %}
     </table>
     <div class="sh">16.3. Key literature references and sources for data</div>
-    <div class="ind" style="margin-bottom:3px;">{{ other_information.literature_references }}</div>
+    <div style="font-size:7.5pt;margin-bottom:3px;">{{ other_information.literature_references }}</div>
     {% if other_information.literature_references_table %}
     <table class="lit">
       <tr><th style="width:30%;">Substance name</th><th style="width:38%;">Type</th><th>source of supply</th></tr>
@@ -776,19 +869,19 @@ tr { page-break-inside: avoid; }
     </table>
     {% endif %}
     
-    <div class="sh">16.4. Classification for mixtures and used evaluation method</div>
+    <div class="sh">16.4. Classification for mixtures and used evaluation method according to regulation (EC) No 1272/2008 [CLP]</div>
     <table>
-        <tr><th>Hazard classes</th><th>Hazard statements</th><th>Procedure</th></tr>
+        <tr><th style="width:38%;">Hazard classes and hazard categories</th><th style="width:42%;">Hazard statements</th><th>Classification procedure</th></tr>
         {% for item in hazard_identification.clp_classifications %}
         <tr><td>{{ item.clp_hazard_class_category }}</td><td>H{{ item.clp_hazard_statement_code }}: {{ item.clp_hazard_statement_text }}</td><td>{{ item.clp_classification_procedure }}</td></tr>
         {% endfor %}
     </table>
 
-    <div class="sh">16.5. List of relevant hazard statements and/or precautionary statements</div>
+    <div class="sh chg" style="margin-top:5px;">16.5. List of relevant hazard statements and/or precautionary statements from sections 2 to 15</div>
     <table style="margin-top:2px;">
-      <tr><th colspan="2" style="text-align:left;">Hazard statements</th></tr>
+      <tr><th colspan="2">Hazard statements</th></tr>
       {% for item in hazard_identification.clp_classifications %}
-      <tr><td style="width:120px;">H{{ item.clp_hazard_statement_code }}</td><td>{{ item.clp_hazard_statement_text }}</td></tr>
+      <tr><td style="width:60px;">H{{ item.clp_hazard_statement_code }}</td><td>{{ item.clp_hazard_statement_text }}</td></tr>
       {% endfor %}
     </table>
     <div class="sh">16.6. Training advice</div>
@@ -796,9 +889,12 @@ tr { page-break-inside: avoid; }
     <div class="sh">16.7. Additional information</div>
     <div class="ind">
         {% for line in other_information.additional_info_lines %}
-        <div>{{ line }}</div>
+        {% if not '* Data changed' in line %}<div>{{ line }}</div>{% endif %}
         {% endfor %}
     </div>
+    {% for line in other_information.additional_info_lines %}
+    {% if '* Data changed' in line %}<div style="margin-top:8px;font-size:8pt;">{{ line }}</div>{% endif %}
+    {% endfor %}
   </div>
 </div>
 

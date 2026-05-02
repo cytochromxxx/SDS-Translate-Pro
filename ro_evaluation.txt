@@ -1,0 +1,82 @@
+=== Statistik der rumänischen (RO) Übersetzungen ===
+Gesamtanzahl ausgefüllter RO-Phrasen: 7898
+Zu kurz / Leer: 91
+1:1 Kopie von DE oder EN (nicht übersetzt): 954
+Potenziell echte Übersetzungen: 6853
+
+=== Stichprobe zur Qualitätsprüfung (15 zufällige, längere Phrasen) ===
+
+1. [Code: 03.11.01.01.03.02.1005]
+   DE: Wahrscheinlich reproduktionstoxischer Stoff.
+   EN: Group 4: Probably not carcinogenic to humans
+   RO: Grupa 4: Probabil că nu este cancerigen pentru oameni.
+
+2. [Code: 01.02.03.02.4000]
+   DE: Das Produkt entwickelt mit Feuchtigkeit einen alk alischen pH-Wert und kann dann reizend wirken.
+   EN: The product develops an alkaline pH value with moisture and can cause irritation.
+   RO: Produsul dezvoltă o valoare a pH-ului alcalin cu umiditatea și poate provoca iritații.
+
+3. [Code: 01.02.01.01.00.02.02.27000]
+   DE: Kann das Kind im Mutterleib schädigen.
+   EN: May damage the unborn child.
+   RO: Poate dăuna copilului nenăscut.
+
+4. [Code: 7241]
+   DE: BEI Exposition oder falls betroffen
+   EN: IF exposed or concerned:
+   RO: ÎN CAZ DE expunere sau de posibilă expunere:
+
+5. [Code: 01.09.01.09.04.00.4000]
+   DE: Keine Prüfung erforderlich, da der Stoff bekannte rmaßen in Wasser unlöslich ist
+   EN: The study does not need to be conducted because the gas has no flammable range.
+   RO: Studiul nu trebuie efectuat deoarece gazul nu are un interval de inflamabilitate.
+
+6. [Code: 01.08.02.02.02.01.04.]
+   DE: Empfohlene Handschuhfabrikate
+   EN: Recommended glove articles
+   RO: Articole pentru mănuși recomandate
+
+7. [Code: 01.07.03.02.01.1044]
+   DE: Klarlacke/Holzlasuren
+   EN: Water-based varnishes/wood glazes
+   RO: Lacuri pe bază de apă/lacuri pentru lemn
+
+8. [Code: 01.04.03.01.6000]
+   DE: Keine Medikamente der Adrenalin-Ephedrin-Gruppe v erabreichen.
+   EN: Do not apply drugs of the adrenaline ephedrine group.
+   RO: Nu aplicați medicamente din grupul de adrenalină efedrină.
+
+9. [Code: 7214]
+   DE: SIDS-Erstbeurteilungsprofil aus dem laufenden Chemikalienprogramm der OECD
+   EN: SIDS Initial Assessment Profile
+   RO: profil de evaluare iniţială SIDS
+
+10. [Code: 01.02.02.02.06.02.02.01.02.1000]
+   DE: sofort mit viel Wasser abwaschen and soap.
+   EN: After contact with skin
+   RO: După contactul cu pielea.
+
+11. [Code: 07.01.01.06.]
+   DE: Umweltfreisetzungskategorien [ERC]
+   EN: Environmental release categories [ERC]
+   RO: Categorii de eliberare în mediu [ERC]
+
+12. [Code: 7235]
+   DE: BEI BERÜHRUNG MIT DER HAUT:
+   EN: IF ON SKIN:
+   RO: ÎN CAZ DE CONTACT CU PIELEA:
+
+13. [Code: 21618]
+   DE: numerische Identifikation
+   EN: CAS RN
+   RO: identificator numeric
+
+14. [Code: 01.15.01.01.01.03.2000]
+   DE: Beschäftigungsbeschränkungen nach der Mutterschut zrichtlinienverordnung (92/85/EWG) für werdende oder stillende Mütter beac
+   EN: Observe employment restrictions for women of child-bearing age.
+   RO: Respectați restricțiile de angajare pentru femeile aflate la vârsta fertilă.
+
+15. [Code: 01.02.02.01.06.7000]
+   DE: Achtung! Nicht zusammen mit anderen Produkten verwenden, da gefährliche Gase (Chlor) freigesetzt werden können.
+   EN: Warning! Do not use together with other products. May release dangerous gases (chlorine).
+   RO: Atenţie! A nu se folosi împreună cu alte produse. Poate elibera gaze periculoase (clor).
