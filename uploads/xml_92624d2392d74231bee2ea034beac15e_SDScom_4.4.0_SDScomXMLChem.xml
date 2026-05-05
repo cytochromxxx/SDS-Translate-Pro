@@ -1,0 +1,797 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:DatasheetFeed xmlns:ns2="http://www.esdscom.eu/SDScom">
+    <Datasheet>
+        <InformationFromExportingSystem>
+            <XmlStandardVersionNo>4.4.0</XmlStandardVersionNo>
+            <PhraseCatalogue PhraseCatalogueId="0">
+                <PhraseCatalogueName>EuPhraC</PhraseCatalogueName>
+                <PhraseCatalogueIssuer>Qualisys</PhraseCatalogueIssuer>
+                <PhraseCatalogueVersion>5.6</PhraseCatalogueVersion>
+                <PhraseCatalogueDate>2024-11-18</PhraseCatalogueDate>
+            </PhraseCatalogue>
+            <Language>
+                <FreetextLanguageCode>en</FreetextLanguageCode>
+            </Language>
+            <RegulationsRelatedToCountryOrRegion>
+                <RegulationsRelatedToCountryOrRegionCode>DE</RegulationsRelatedToCountryOrRegionCode>
+            </RegulationsRelatedToCountryOrRegion>
+            <SystemUsedInPreparation>GeSi³ 12.2.0 www.gesi3.de</SystemUsedInPreparation>
+            <DateGeneratedExport>2026-03-12</DateGeneratedExport>
+            <XMLStandardSubset>EDASXChem</XMLStandardSubset>
+        </InformationFromExportingSystem>
+        <IdentificationSubstPrep>
+            <IssueDate>2025-01-13</IssueDate>
+            <RevisionDate>2025-01-13</RevisionDate>
+            <VersionNo>1</VersionNo>
+            <ItemNo>SMB95-6000</ItemNo>
+            <ProductNo>
+                <UserId>GeSi-UID</UserId>
+                <ProductNoUser>642e5b20-c913-4e82-acfe-d38545f643bd</ProductNoUser>
+            </ProductNo>
+            <ProductNo>
+                <UserId>GefKommBau_ProduktStammID</UserId>
+                <ProductNoUser>642e5b20-c913-4e82-acfe-d38545f643bd</ProductNoUser>
+            </ProductNo>
+            <ProductIdentity>
+                <TradeName>Cyclus® Bead Extraction, Proteinase K</TradeName>
+                <Ufi>XRCA-DYQS-CS63-VGRR</Ufi>
+            </ProductIdentity>
+            <RelevantIdentifiedUse>
+                <IdentifiedUse/>
+                <ProductType PhraseId="9215141101" PhraseCatalogueId="0">
+                    <FullText>The product is intended for research, analysis and scientific education.</FullText>
+                </ProductType>
+            </RelevantIdentifiedUse>
+            <UseAdvisedAgainst>
+                <NotToBeUsedIn/>
+            </UseAdvisedAgainst>
+            <SupplierInformation>
+                <Role/>
+                <Country>DE</Country>
+                <Name>Minerva Biolabs GmbH</Name>
+                <Address>
+                    <PostAddressLine1></PostAddressLine1>
+                    <PostAddressLine2>Schkopauer Ring 13</PostAddressLine2>
+                    <PostCode>12681</PostCode>
+                    <PostCity>Berlin</PostCity>
+                </Address>
+                <Phone>+49 30 2000437 0</Phone>
+                <Fax></Fax>
+                <Email>ehs@minerva-biolabs.com</Email>
+                <CompanyUrl>www.minerva-biolabs.com</CompanyUrl>
+            </SupplierInformation>
+            <EmergencyPhone>
+                <No>+49 761 19240</No>
+                <EmergencyPhoneDescription PhraseCatalogueId="0">
+                    <FullText>24h</FullText>
+                </EmergencyPhoneDescription>
+            </EmergencyPhone>
+            <EmergencyPhone>
+                <No>+49 761 19240</No>
+                <EmergencyPhoneDescription PhraseCatalogueId="0">
+                    <FullText>24h</FullText>
+                </EmergencyPhoneDescription>
+            </EmergencyPhone>
+            <InternalSdsId>642e5b20-c913-4e82-acfe-d38545f643bd</InternalSdsId>
+        </IdentificationSubstPrep>
+        <HazardIdentification>
+            <Classification>
+                <ClpClassification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Skin Irrit. 2</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="9269125102" PhraseCatalogueId="0">
+                            <PhraseCode>315</PhraseCode>
+                            <FullText>Causes skin irritation.</FullText>
+                        </ClpHazardStatement>
+                        <ClpClassificationProcedure PhraseId="9218152431" PhraseCatalogueId="0">
+                            <FullText>Calculation method.</FullText>
+                        </ClpClassificationProcedure>
+                    </ClpHazardClassification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Skin Sens. 1</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="9269125206" PhraseCatalogueId="0">
+                            <PhraseCode>317</PhraseCode>
+                            <FullText>May cause an allergic skin reaction.</FullText>
+                        </ClpHazardStatement>
+                        <ClpClassificationProcedure PhraseId="9218152431" PhraseCatalogueId="0">
+                            <FullText>Calculation method.</FullText>
+                        </ClpClassificationProcedure>
+                    </ClpHazardClassification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Eye Irrit. 2</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="9269125137" PhraseCatalogueId="0">
+                            <PhraseCode>319</PhraseCode>
+                            <FullText>Causes serious eye irritation.</FullText>
+                        </ClpHazardStatement>
+                        <ClpClassificationProcedure PhraseId="9218152431" PhraseCatalogueId="0">
+                            <FullText>Calculation method.</FullText>
+                        </ClpClassificationProcedure>
+                    </ClpHazardClassification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Resp. Sens. 1</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="9269125213" PhraseCatalogueId="0">
+                            <PhraseCode>334</PhraseCode>
+                            <FullText>May cause allergy or asthma symptoms or breathing difficulties if inhaled.</FullText>
+                        </ClpHazardStatement>
+                        <ClpClassificationProcedure PhraseId="9218152431" PhraseCatalogueId="0">
+                            <FullText>Calculation method.</FullText>
+                        </ClpClassificationProcedure>
+                    </ClpHazardClassification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>STOT SE 3</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="9269125023" PhraseCatalogueId="0">
+                            <PhraseCode>335</PhraseCode>
+                            <FullText>May cause respiratory irritation.</FullText>
+                        </ClpHazardStatement>
+                        <ClpClassificationProcedure PhraseId="9218152431" PhraseCatalogueId="0">
+                            <FullText>Calculation method.</FullText>
+                        </ClpClassificationProcedure>
+                    </ClpHazardClassification>
+                </ClpClassification>
+            </Classification>
+            <HazardLabelling>
+                <ClpLabellingInfo>
+                    <ClpHazardPictogram>
+                        <PhraseCode>GHS07</PhraseCode>
+                    </ClpHazardPictogram>
+                    <ClpHazardPictogram>
+                        <PhraseCode>GHS08</PhraseCode>
+                    </ClpHazardPictogram>
+                    <ClpSignalWord PhraseId="9269141427">
+                        <PhraseCode>DGR</PhraseCode>
+                        <FullText>Danger</FullText>
+                    </ClpSignalWord>
+                    <ClpHazardStatement PhraseId="9269125102" PhraseCatalogueId="0">
+                        <PhraseCode>315</PhraseCode>
+                        <FullText>Causes skin irritation.</FullText>
+                    </ClpHazardStatement>
+                    <ClpHazardStatement PhraseId="9269125206" PhraseCatalogueId="0">
+                        <PhraseCode>317</PhraseCode>
+                        <FullText>May cause an allergic skin reaction.</FullText>
+                    </ClpHazardStatement>
+                    <ClpHazardStatement PhraseId="9269125137" PhraseCatalogueId="0">
+                        <PhraseCode>319</PhraseCode>
+                        <FullText>Causes serious eye irritation.</FullText>
+                    </ClpHazardStatement>
+                    <ClpHazardStatement PhraseId="9269125213" PhraseCatalogueId="0">
+                        <PhraseCode>334</PhraseCode>
+                        <FullText>May cause allergy or asthma symptoms or breathing difficulties if inhaled.</FullText>
+                    </ClpHazardStatement>
+                    <ClpHazardStatement PhraseId="9269125023" PhraseCatalogueId="0">
+                        <PhraseCode>335</PhraseCode>
+                        <FullText>May cause respiratory irritation.</FullText>
+                    </ClpHazardStatement>
+                    <ClpPrecautionaryStatement PhraseId="9294221525" PhraseCatalogueId="0">
+                        <PhraseCode>261</PhraseCode>
+                        <FullText>Avoid breathing dust/fume/gas/mist/vapours/spray.</FullText>
+                    </ClpPrecautionaryStatement>
+                    <ClpPrecautionaryStatement PhraseId="9294221528" PhraseCatalogueId="0">
+                        <PhraseCode>264</PhraseCode>
+                        <FullText>hands</FullText>
+                        <MergePhrase PhraseId="ea13cade-9aa7-48d8-9f12-1ee5723a9369" PhraseCatalogueId="0" MergePhraseNo="0">
+                            <MergeText>hands</MergeText>
+                        </MergePhrase>
+                    </ClpPrecautionaryStatement>
+                    <ClpPrecautionaryStatement PhraseId="9294221860" PhraseCatalogueId="0">
+                        <PhraseCode>302</PhraseCode>
+                        <PhraseCode>352</PhraseCode>
+                        <FullText>Soap</FullText>
+                        <MergePhrase PhraseId="9268175145" PhraseCatalogueId="0" MergePhraseNo="0">
+                            <MergeText>Soap</MergeText>
+                        </MergePhrase>
+                    </ClpPrecautionaryStatement>
+                    <ClpPrecautionaryStatement PhraseId="16180110100" PhraseCatalogueId="0">
+                        <PhraseCode>305</PhraseCode>
+                        <PhraseCode>351</PhraseCode>
+                        <FullText>IF IN EYES: Rinse cautiously with water for several minutes. Remove contact lenses, if present and easy to do. Continue rinsing.</FullText>
+                    </ClpPrecautionaryStatement>
+                    <ClpPrecautionaryStatement PhraseId="16180121100" PhraseCatalogueId="0">
+                        <PhraseCode>312</PhraseCode>
+                        <FullText>First aider</FullText>
+                        <MergePhrase PhraseCatalogueId="0" MergePhraseNo="0">
+                            <MergeText>First aider</MergeText>
+                        </MergePhrase>
+                    </ClpPrecautionaryStatement>
+                    <ClpPrecautionaryStatement PhraseId="9294221874" PhraseCatalogueId="0">
+                        <PhraseCode>342</PhraseCode>
+                        <PhraseCode>311</PhraseCode>
+                        <FullText>First aider</FullText>
+                        <MergePhrase PhraseCatalogueId="0" MergePhraseNo="0">
+                            <MergeText>First aider</MergeText>
+                        </MergePhrase>
+                    </ClpPrecautionaryStatement>
+                </ClpLabellingInfo>
+            </HazardLabelling>
+            <OtherHazardsInfo/>
+        </HazardIdentification>
+        <Composition>
+            <CompositionType>Mixture</CompositionType>
+            <Component ComponentId="1">
+                <Substance>
+                    <GenericName>Proteinase K</GenericName>
+                    <CasNo>39450-01-6</CasNo>
+                    <EcNo>254-457-8</EcNo>
+                </Substance>
+                <Classification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Skin Irrit. 2</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="9269125102" PhraseCatalogueId="0">
+                            <PhraseCode>315</PhraseCode>
+                            <FullText>Causes skin irritation.</FullText>
+                        </ClpHazardStatement>
+                    </ClpHazardClassification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Skin Sens. 1A</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="9269125206" PhraseCatalogueId="0">
+                            <PhraseCode>317</PhraseCode>
+                            <FullText>May cause an allergic skin reaction.</FullText>
+                        </ClpHazardStatement>
+                    </ClpHazardClassification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Eye Irrit. 2</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="9269125137" PhraseCatalogueId="0">
+                            <PhraseCode>319</PhraseCode>
+                            <FullText>Causes serious eye irritation.</FullText>
+                        </ClpHazardStatement>
+                    </ClpHazardClassification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Resp. Sens. 1</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="9269125213" PhraseCatalogueId="0">
+                            <PhraseCode>334</PhraseCode>
+                            <FullText>May cause allergy or asthma symptoms or breathing difficulties if inhaled.</FullText>
+                        </ClpHazardStatement>
+                    </ClpHazardClassification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>STOT SE 3</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="9269125023" PhraseCatalogueId="0">
+                            <PhraseCode>335</PhraseCode>
+                            <FullText>May cause respiratory irritation.</FullText>
+                        </ClpHazardStatement>
+                    </ClpHazardClassification>
+                </Classification>
+                <Concentration UnitId="9269144149" UnitSetId="1003">
+                    <UpperValueSymbol>le</UpperValueSymbol>
+                    <UpperValue>100.0</UpperValue>
+                    <Unit>Weight-%</Unit>
+                </Concentration>
+                <ToxicologicalInformation>
+                    <AcuteToxicity/>
+                </ToxicologicalInformation>
+                <EcologicalInformation>
+                    <EcotoxicologicalInformation/>
+                </EcologicalInformation>
+            </Component>
+        </Composition>
+        <FirstAidMeasures>
+            <DescriptionOfFirstAidMeasures>
+                <GeneralInformation PhraseId="9267225017" PhraseCatalogueId="0">
+                    <FullText>In case of accident or unwellness, seek medical advice immediately (show directions for use or safety data sheet if possible).</FullText>
+                </GeneralInformation>
+                <GeneralInformation PhraseId="9267225015" PhraseCatalogueId="0">
+                    <FullText>Remove victim out of the danger area.</FullText>
+                </GeneralInformation>
+                <GeneralInformation PhraseId="9267225019" PhraseCatalogueId="0">
+                    <FullText>Remove contaminated, saturated clothing immediately.</FullText>
+                </GeneralInformation>
+                <GeneralInformation PhraseId="9267225027" PhraseCatalogueId="0">
+                    <FullText>If unconscious but breathing normally, place in recovery position and seek medical advice.</FullText>
+                </GeneralInformation>
+                <GeneralInformation PhraseId="9267225014" PhraseCatalogueId="0">
+                    <FullText>Do not leave affected person unattended.</FullText>
+                </GeneralInformation>
+                <FirstAidInhalation PhraseId="9267225039" PhraseCatalogueId="0">
+                    <FullText>Provide fresh air.</FullText>
+                </FirstAidInhalation>
+                <FirstAidInhalation PhraseId="9267225037" PhraseCatalogueId="0">
+                    <FullText>In case of respiratory tract irritation, consult a physician.</FullText>
+                </FirstAidInhalation>
+                <FirstAidInhalation PhraseId="9267225032" PhraseCatalogueId="0">
+                    <FullText>If breathing is irregular or stopped, administer artificial respiration.</FullText>
+                </FirstAidInhalation>
+                <FirstAidInhalation PhraseId="9267225030" PhraseCatalogueId="0">
+                    <FullText>No mouth-to-mouth or mouth-to-nose resuscitation. Use Ambu bag or ventilator.</FullText>
+                </FirstAidInhalation>
+                <FirstAidInhalation PhraseId="9294221815" PhraseCatalogueId="0">
+                    <FullText>Get immediate medical advice/attention.</FullText>
+                </FirstAidInhalation>
+                <FirstAidInhalation PhraseId="9294221814" PhraseCatalogueId="0">
+                    <FullText>Get medical advice/attention if you feel unwell.</FullText>
+                </FirstAidInhalation>
+                <FirstAidSkin PhraseId="9294233629" PhraseCatalogueId="0">
+                    <FullText>After contact with skin, wash immediately with plenty of water and soap.</FullText>
+                </FirstAidSkin>
+                <FirstAidSkin PhraseId="9294221871" PhraseCatalogueId="0">
+                    <FullText>If skin irritation or rash occurs: Get medical advice/attention.</FullText>
+                </FirstAidSkin>
+                <FirstAidSkin PhraseId="9294221836" PhraseCatalogueId="0">
+                    <FullText>Take off immediately all contaminated clothing.</FullText>
+                </FirstAidSkin>
+                <FirstAidEye PhraseId="9294221832" PhraseCatalogueId="0">
+                    <FullText>Rinse cautiously with water for several minutes.</FullText>
+                </FirstAidEye>
+                <FirstAidEye PhraseId="9294221827" PhraseCatalogueId="0">
+                    <FullText>Remove contact lenses, if present and easy to do. Continue rinsing.</FullText>
+                </FirstAidEye>
+                <FirstAidEye PhraseId="9294221873" PhraseCatalogueId="0">
+                    <FullText>If eye irritation persists: Get medical advice/attention.</FullText>
+                </FirstAidEye>
+                <FirstAidIngestion PhraseId="9294221819" PhraseCatalogueId="0">
+                    <FullText>Rinse mouth.</FullText>
+                </FirstAidIngestion>
+                <FirstAidIngestion PhraseId="9267225134" PhraseCatalogueId="0">
+                    <FullText>Let water be drunken in little sips (dilution effect).</FullText>
+                </FirstAidIngestion>
+                <FirstAidIngestion PhraseId="9294221814" PhraseCatalogueId="0">
+                    <FullText>Get medical advice/attention if you feel unwell.</FullText>
+                </FirstAidIngestion>
+                <PersonalProtectionFirstAider PhraseId="9267230003" PhraseCatalogueId="0">
+                    <FullText>Use personal protection equipment.</FullText>
+                </PersonalProtectionFirstAider>
+            </DescriptionOfFirstAidMeasures>
+            <InformationToHealthProfessionals>
+                <SymptomsAndEffectsGeneral PhraseId="10059215913" PhraseCatalogueId="0">
+                    <FullText>Skin corrosion/irritation</FullText>
+                </SymptomsAndEffectsGeneral>
+                <SymptomsAndEffectsGeneral PhraseCatalogueId="0">
+                    <FullText>.</FullText>
+                </SymptomsAndEffectsGeneral>
+                <SymptomsAndEffectsGeneral PhraseId="9267225144" PhraseCatalogueId="0">
+                    <FullText>Allergic reactions</FullText>
+                </SymptomsAndEffectsGeneral>
+                <SymptomsAndEffectsGeneral PhraseCatalogueId="0">
+                    <FullText>.</FullText>
+                </SymptomsAndEffectsGeneral>
+                <SymptomsAndEffectsGeneral PhraseId="10059215917" PhraseCatalogueId="0">
+                    <FullText>Serious eye damage/eye irritation</FullText>
+                </SymptomsAndEffectsGeneral>
+                <SymptomsAndEffectsGeneral PhraseCatalogueId="0">
+                    <FullText>.</FullText>
+                </SymptomsAndEffectsGeneral>
+                <SymptomsAndEffectsGeneral PhraseId="9267225145" PhraseCatalogueId="0">
+                    <FullText>Asthmatic complaints</FullText>
+                </SymptomsAndEffectsGeneral>
+                <SymptomsAndEffectsGeneral PhraseCatalogueId="0">
+                    <FullText>.</FullText>
+                </SymptomsAndEffectsGeneral>
+                <SymptomsAndEffectsGeneral PhraseId="9267225147" PhraseCatalogueId="0">
+                    <FullText>Respiratory complaints</FullText>
+                </SymptomsAndEffectsGeneral>
+                <SymptomsAndEffectsGeneral PhraseCatalogueId="0">
+                    <FullText>.</FullText>
+                </SymptomsAndEffectsGeneral>
+                <SymptomsAndEffectsGeneral PhraseId="9269125139" PhraseCatalogueId="0">
+                    <FullText>Irritation to respiratory tract</FullText>
+                </SymptomsAndEffectsGeneral>
+                <SymptomsAndEffectsGeneral PhraseCatalogueId="0">
+                    <FullText>.</FullText>
+                </SymptomsAndEffectsGeneral>
+            </InformationToHealthProfessionals>
+            <MedicalAttentionAndSpecialTreatmentNeeded>
+                <MedicalTreatment PhraseId="9267225328" PhraseCatalogueId="0">
+                    <FullText>Treat symptomatically.</FullText>
+                </MedicalTreatment>
+            </MedicalAttentionAndSpecialTreatmentNeeded>
+        </FirstAidMeasures>
+        <FireFightingMeasures>
+            <ExtinguishingMedia>
+                <MediaToBeUsed PhraseId="9267225712" PhraseCatalogueId="0">
+                    <FullText>Carbon dioxide (CO2)</FullText>
+                </MediaToBeUsed>
+                <MediaToBeUsed PhraseCatalogueId="0">
+                    <FullText>,</FullText>
+                </MediaToBeUsed>
+                <MediaToBeUsed PhraseId="9267225727" PhraseCatalogueId="0">
+                    <FullText>Water spray jet</FullText>
+                </MediaToBeUsed>
+                <MediaToBeUsed PhraseId="9267225705" PhraseCatalogueId="0">
+                    <FullText>Foam</FullText>
+                </MediaToBeUsed>
+                <MediaToBeUsed PhraseCatalogueId="0">
+                    <FullText>,</FullText>
+                </MediaToBeUsed>
+                <MediaToBeUsed PhraseId="9267225707" PhraseCatalogueId="0">
+                    <FullText>Dry extinguishing powder</FullText>
+                </MediaToBeUsed>
+                <MediaToBeUsed PhraseCatalogueId="0">
+                    <FullText>.</FullText>
+                </MediaToBeUsed>
+                <MediaToBeUsed PhraseId="9267225778" PhraseCatalogueId="0">
+                    <FullText>Co-ordinate fire-fighting measures to the fire surroundings.</FullText>
+                </MediaToBeUsed>
+                <MediaNotBeUsed PhraseId="9267225717" PhraseCatalogueId="0">
+                    <FullText>Full water jet</FullText>
+                </MediaNotBeUsed>
+            </ExtinguishingMedia>
+            <HazardCombustionProd PhraseId="9294221839" PhraseCatalogueId="0">
+                <FullText>In case of fire:</FullText>
+            </HazardCombustionProd>
+            <HazardCombustionProd PhraseId="9267225735" PhraseCatalogueId="0">
+                <FullText>Carbon monoxide</FullText>
+            </HazardCombustionProd>
+            <HazardCombustionProd PhraseCatalogueId="0">
+                <FullText>,</FullText>
+            </HazardCombustionProd>
+            <HazardCombustionProd PhraseId="9267225734" PhraseCatalogueId="0">
+                <FullText>Nitrogen oxides (NOx)</FullText>
+            </HazardCombustionProd>
+            <SpecialProtectiveEquipmentForFirefighters PhraseId="9294221843" PhraseCatalogueId="0">
+                <FullText>Fight fire with normal precautions from a reasonable distance.</FullText>
+            </SpecialProtectiveEquipmentForFirefighters>
+            <SpecialProtectiveEquipmentForFirefighters PhraseId="9267225766" PhraseCatalogueId="0">
+                <FullText>Wear a self-contained breathing apparatus and chemical protective clothing.</FullText>
+            </SpecialProtectiveEquipmentForFirefighters>
+            <SpecialProtectiveEquipmentForFirefighters PhraseId="9267225759" PhraseCatalogueId="0">
+                <FullText>Wear full chemical protective clothing.</FullText>
+            </SpecialProtectiveEquipmentForFirefighters>
+            <FireAndExplosionComments PhraseId="9267225774" PhraseCatalogueId="0">
+                <FullText>Collect contaminated fire extinguishing water separately. Do not allow entering drains or surface water.</FullText>
+            </FireAndExplosionComments>
+        </FireFightingMeasures>
+        <AccidentalReleaseMeasures>
+            <ForNonEmergencyPersonnel>
+                <PersonalPrecautions PhraseId="9267230008" PhraseCatalogueId="0">
+                    <FullText>Remove persons to safety.</FullText>
+                </PersonalPrecautions>
+                <PersonalPrecautions PhraseId="9294221611" PhraseCatalogueId="0">
+                    <FullText>Use personal protective equipment as required.</FullText>
+                </PersonalPrecautions>
+                <PersonalPrecautions PhraseId="9313214646" PhraseCatalogueId="0">
+                    <FullText>Avoid contact with skin, eyes and clothes.</FullText>
+                </PersonalPrecautions>
+                <PersonalPrecautions PhraseId="9267230227" PhraseCatalogueId="0">
+                    <FullText>Do not breathe dust.</FullText>
+                </PersonalPrecautions>
+                <ProtectiveEquipment PhraseId="9294221608" PhraseCatalogueId="0">
+                    <FullText>Wear protective gloves/protective clothing and eye protection/face protection.</FullText>
+                </ProtectiveEquipment>
+            </ForNonEmergencyPersonnel>
+            <ForEmergencyResponders PhraseId="10337143200" PhraseCatalogueId="0">
+                <FullText>Personal protection equipment: see section 8</FullText>
+            </ForEmergencyResponders>
+            <EnvironmentalPrecautions PhraseId="9267230017" PhraseCatalogueId="0">
+                <FullText>Do not allow to enter into surface water or drains.</FullText>
+            </EnvironmentalPrecautions>
+            <ContainmentAndCleaningUp>
+                <Containment PhraseId="9294221854" PhraseCatalogueId="0">
+                    <FullText>Collect spillage.</FullText>
+                </Containment>
+                <Containment PhraseId="9267230304" PhraseCatalogueId="0">
+                    <FullText>Measures to prevent aerosol and dust generation</FullText>
+                </Containment>
+                <Containment PhraseId="9267230101" PhraseCatalogueId="0">
+                    <FullText>Wet clean or vacuum up solids.</FullText>
+                </Containment>
+                <CleaningUp PhraseId="9267230049" PhraseCatalogueId="0">
+                    <FullText>Water (with cleaning agent)</FullText>
+                </CleaningUp>
+            </ContainmentAndCleaningUp>
+            <ReferenceToOtherSections PhraseId="10337142900" PhraseCatalogueId="0">
+                <FullText>Safe handling: see section 7</FullText>
+            </ReferenceToOtherSections>
+            <ReferenceToOtherSections PhraseCatalogueId="0">
+                <FullText>,</FullText>
+            </ReferenceToOtherSections>
+            <ReferenceToOtherSections PhraseId="10337143200" PhraseCatalogueId="0">
+                <FullText>Personal protection equipment: see section 8</FullText>
+            </ReferenceToOtherSections>
+            <ReferenceToOtherSections PhraseCatalogueId="0">
+                <FullText>,</FullText>
+            </ReferenceToOtherSections>
+            <ReferenceToOtherSections PhraseId="10337143100" PhraseCatalogueId="0">
+                <FullText>Disposal: see section 13</FullText>
+            </ReferenceToOtherSections>
+            <AdditionalInformation PhraseId="9294233717" PhraseCatalogueId="0">
+                <FullText>Use appropriate container to avoid environmental contamination.</FullText>
+            </AdditionalInformation>
+        </AccidentalReleaseMeasures>
+        <HandlingAndStorage>
+            <SafeHandling>
+                <HandlingPrecautions PhraseId="9267230260" PhraseCatalogueId="0">
+                    <FullText>Wear personal protection equipment (refer to section 8).</FullText>
+                </HandlingPrecautions>
+                <HandlingPrecautions PhraseId="9267233960" PhraseCatalogueId="0">
+                    <FullText>Wash hands before breaks and after work.</FullText>
+                </HandlingPrecautions>
+                <HandlingPrecautions PhraseId="9267230433" PhraseCatalogueId="0">
+                    <FullText>Keep away from:</FullText>
+                </HandlingPrecautions>
+                <HandlingPrecautions PhraseId="9267230629" PhraseCatalogueId="0">
+                    <FullText>Food and feedingstuffs</FullText>
+                </HandlingPrecautions>
+                <HandlingPrecautions PhraseCatalogueId="0">
+                    <FullText>.</FullText>
+                </HandlingPrecautions>
+                <HandlingPrecautions PhraseId="18133105800" PhraseCatalogueId="0">
+                    <FullText>In case of inadequate ventilation wear respiratory protection.</FullText>
+                </HandlingPrecautions>
+                <PrecautionaryMeasures>
+                    <MeasuresToPreventAerosolAndDust PhraseId="9267230319" PhraseCatalogueId="0">
+                        <FullText>Dust should be exhausted directly at the point of origin.</FullText>
+                    </MeasuresToPreventAerosolAndDust>
+                </PrecautionaryMeasures>
+                <GeneralOccupationalHygiene PhraseId="9294233610" PhraseCatalogueId="0">
+                    <FullText>When using do not eat, drink or smoke.</FullText>
+                </GeneralOccupationalHygiene>
+                <GeneralOccupationalHygiene PhraseId="9294233620" PhraseCatalogueId="0">
+                    <FullText>Avoid contact with eyes and skin.</FullText>
+                </GeneralOccupationalHygiene>
+            </SafeHandling>
+            <ConditionsForSafeStorage>
+                <TechnicalMeasuresAndStorageConditions PhraseId="9267230724" PhraseCatalogueId="0">
+                    <FullText>Keep container tightly closed in a cool, well-ventilated place.</FullText>
+                </TechnicalMeasuresAndStorageConditions>
+                <TechnicalMeasuresAndStorageConditions PhraseId="9294221892" PhraseCatalogueId="0">
+                    <FullText>Protect from sunlight.</FullText>
+                </TechnicalMeasuresAndStorageConditions>
+                <HintsOnStorageAssembly PhraseId="9267230627" PhraseCatalogueId="0">
+                    <FullText>Do not store together with:</FullText>
+                </HintsOnStorageAssembly>
+                <HintsOnStorageAssembly PhraseId="9267230629" PhraseCatalogueId="0">
+                    <FullText>Food and feedingstuffs</FullText>
+                </HintsOnStorageAssembly>
+            </ConditionsForSafeStorage>
+            <SpecificEndUses/>
+        </HandlingAndStorage>
+        <ExposureControlPersonalProtection>
+            <ControlParameters/>
+            <PersonalProtectionEquipment>
+                <RespiratoryProtection>
+                    <SuitableRespiratoryProtectionEquipment PhraseId="9267233730" PhraseCatalogueId="0">
+                        <FullText>Particle filter device (EN 143)</FullText>
+                    </SuitableRespiratoryProtectionEquipment>
+                    <SuitableRespiratoryProtectionEquipment PhraseCatalogueId="0">
+                        <FullText>.</FullText>
+                    </SuitableRespiratoryProtectionEquipment>
+                    <SuitableRespiratoryProtectionEquipment PhraseId="9267233780" PhraseCatalogueId="0">
+                        <FullText>Observe the wear time limits according GefStoffV in combination with the rules for using respiratory protection apparatus (BGR 190).</FullText>
+                    </SuitableRespiratoryProtectionEquipment>
+                </RespiratoryProtection>
+                <EyeProtection>
+                    <SuitableEyeProtection PhraseId="9267233850" PhraseCatalogueId="0">
+                        <FullText>Eye glasses with side protection</FullText>
+                    </SuitableEyeProtection>
+                    <SuitableEyeProtection PhraseCatalogueId="0">
+                        <FullText>(</FullText>
+                    </SuitableEyeProtection>
+                    <SuitableEyeProtection PhraseId="9267233859" PhraseCatalogueId="0">
+                        <FullText>EN 166</FullText>
+                    </SuitableEyeProtection>
+                    <SuitableEyeProtection PhraseCatalogueId="0">
+                        <FullText>)</FullText>
+                    </SuitableEyeProtection>
+                </EyeProtection>
+                <SkinProtection>
+                    <SuitableProtectiveClothing PhraseId="9267233788" PhraseCatalogueId="0">
+                        <FullText>Tested protective gloves must be worn</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9267233832" PhraseCatalogueId="0">
+                        <FullText>EN ISO 374</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseCatalogueId="0">
+                        <FullText>.</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9267233801" PhraseCatalogueId="0">
+                        <FullText>Suitable material:</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9267233808" PhraseCatalogueId="0">
+                        <FullText>NBR (Nitrile rubber)</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseCatalogueId="0">
+                        <FullText>,</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9267233823" PhraseCatalogueId="0">
+                        <FullText>Breakthrough time:</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseCatalogueId="0">
+                        <FullText>480</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9269144260" PhraseCatalogueId="0">
+                        <FullText>min</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseCatalogueId="0">
+                        <FullText>,</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9267233824" PhraseCatalogueId="0">
+                        <FullText>Thickness of the glove material</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseCatalogueId="0">
+                        <FullText>: &gt; 0,35 mm.</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9267233841" PhraseCatalogueId="0">
+                        <FullText>In the case of wanting to use the gloves again, clean them before taking off and air them well.</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9267233840" PhraseCatalogueId="0">
+                        <FullText>Take recovery periods for skin regeneration.</FullText>
+                    </SuitableProtectiveClothing>
+                </SkinProtection>
+            </PersonalProtectionEquipment>
+            <EnvironmentalExposureControls>
+                <AppropriateEnvionmentalExposureControl>
+                    <OrganisationalMeasures PhraseId="9267230017" PhraseCatalogueId="0">
+                        <FullText>Do not allow to enter into surface water or drains.</FullText>
+                    </OrganisationalMeasures>
+                </AppropriateEnvionmentalExposureControl>
+            </EnvironmentalExposureControls>
+        </ExposureControlPersonalProtection>
+        <PhysicalChemicalProperties>
+            <Appearance>
+                <Form>other</Form>
+                <Colour>white</Colour>
+                <Odour PhraseId="9269144392" PhraseCatalogueId="0">
+                    <FullText>not determined</FullText>
+                </Odour>
+            </Appearance>
+            <SafetyRelevantInformation>
+                <PhValue>
+                    <Value>
+                        <Value>
+                            <ExactValue>7.8</ExactValue>
+                        </Value>
+                        <Temperature UnitId="9269144108" UnitSetId="1001">
+                            <ExactValue>20.0</ExactValue>
+                            <Unit>C</Unit>
+                        </Temperature>
+                    </Value>
+                </PhValue>
+                <MeltingPointRelated/>
+                <BoilingPointRelated/>
+                <Flammability PhraseCatalogueId="0">
+                    <FullText>nicht brennbar</FullText>
+                </Flammability>
+                <Densities/>
+            </SafetyRelevantInformation>
+        </PhysicalChemicalProperties>
+        <StabilityReactivity>
+            <ReactivityDescription PhraseId="9269123021" PhraseCatalogueId="0">
+                <FullText>The product in the delivered form is not dust explosion capable; the enrichment of fine dust however leads to the danger of dust explosion.</FullText>
+            </ReactivityDescription>
+            <ConditionsToAvoid PhraseId="14345112600" PhraseCatalogueId="0">
+                <FullText>Avoid high temperatures or direct sunlight.</FullText>
+            </ConditionsToAvoid>
+            <MaterialsToAvoid PhraseId="17303171700" PhraseCatalogueId="0">
+                <FullText>No further relevant information available.</FullText>
+            </MaterialsToAvoid>
+            <HazardousDecompositionProducts PhraseId="12083144100" PhraseCatalogueId="0">
+                <FullText>No known hazardous decomposition products.</FullText>
+            </HazardousDecompositionProducts>
+        </StabilityReactivity>
+        <ToxicologicalInformation>
+            <AcuteToxicity>
+                <AcuteToxicityHumanExperience PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Based on available data, the classification criteria are not met.</FullText>
+                </AcuteToxicityHumanExperience>
+                <AcuteToxicityHumanExperience PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Based on available data, the classification criteria are not met.</FullText>
+                </AcuteToxicityHumanExperience>
+                <AcuteToxicityHumanExperience PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Based on available data, the classification criteria are not met.</FullText>
+                </AcuteToxicityHumanExperience>
+            </AcuteToxicity>
+            <SkinCorrosionIrritation>
+                <Irritation PhraseId="9269125102" PhraseCatalogueId="0">
+                    <FullText>Causes skin irritation.</FullText>
+                </Irritation>
+            </SkinCorrosionIrritation>
+            <EyeDamageOrIrritation>
+                <EyeIrritation PhraseId="9269125137" PhraseCatalogueId="0">
+                    <FullText>Causes serious eye irritation.</FullText>
+                </EyeIrritation>
+            </EyeDamageOrIrritation>
+            <RespiratoryOrSkinSensitisation>
+                <RespiratoryOrSkinSensitisationOtherInformation>
+                    <RespiratoryOrSkinSensitisationGeneral PhraseId="9269125213" PhraseCatalogueId="0">
+                        <FullText>May cause allergy or asthma symptoms or breathing difficulties if inhaled.</FullText>
+                    </RespiratoryOrSkinSensitisationGeneral>
+                </RespiratoryOrSkinSensitisationOtherInformation>
+            </RespiratoryOrSkinSensitisation>
+            <GermCellMutagenicity>
+                <AssessmentGermCellMutagenicityClassification PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Based on available data, the classification criteria are not met.</FullText>
+                </AssessmentGermCellMutagenicityClassification>
+            </GermCellMutagenicity>
+            <Carcinogenicity>
+                <AssessmentCarcinogenicityClassification PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Based on available data, the classification criteria are not met.</FullText>
+                </AssessmentCarcinogenicityClassification>
+            </Carcinogenicity>
+            <ReproductiveToxicity>
+                <ReproductiveToxicityOtherInfo PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Based on available data, the classification criteria are not met.</FullText>
+                </ReproductiveToxicityOtherInfo>
+            </ReproductiveToxicity>
+            <SpecificTargetOrganSE>
+                <SpecificTargetOrganSEHumanExperience PhraseId="9269125023" PhraseCatalogueId="0">
+                    <FullText>May cause respiratory irritation.</FullText>
+                </SpecificTargetOrganSEHumanExperience>
+            </SpecificTargetOrganSE>
+            <SpecificTargetOrganRE>
+                <SpecificTargetOrganREHumanExperience PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Based on available data, the classification criteria are not met.</FullText>
+                </SpecificTargetOrganREHumanExperience>
+            </SpecificTargetOrganRE>
+            <AspirationHazard>
+                <AssessmentAspirationHazardClassification PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Based on available data, the classification criteria are not met.</FullText>
+                </AssessmentAspirationHazardClassification>
+            </AspirationHazard>
+        </ToxicologicalInformation>
+        <EcologicalInformation>
+            <EcotoxicologicalInformation>
+                <AquaticToxicity>
+                    <AcuteAlgaeToxicity/>
+                </AquaticToxicity>
+                <SedimentToxicity/>
+                <TerrestrialToxicity>
+                    <AcutePlantToxicity/>
+                </TerrestrialToxicity>
+            </EcotoxicologicalInformation>
+            <PersistenceDegradability>
+                <BiologicalDegradability>
+                    <Parameter PhraseId="9269144395" PhraseCatalogueId="0">
+                        <FullText>No data available</FullText>
+                    </Parameter>
+                </BiologicalDegradability>
+                <AbioticDegradationInAir>
+                    <Type PhraseId="9269144395" PhraseCatalogueId="0">
+                        <FullText>No data available</FullText>
+                    </Type>
+                </AbioticDegradationInAir>
+            </PersistenceDegradability>
+            <Bioaccumulation/>
+            <Mobility>
+                <Distribution PhraseId="9269144395" PhraseCatalogueId="0">
+                    <FullText>No data available</FullText>
+                </Distribution>
+            </Mobility>
+            <AdditionalEcotoxInformation/>
+        </EcologicalInformation>
+        <DisposalConsiderations>
+            <WasteTreatment>
+                <ProductWaste PhraseId="9269140541" PhraseCatalogueId="0">
+                    <FullText>Consult the appropriate local waste disposal expert about waste disposal.</FullText>
+                </ProductWaste>
+                <PackagingWaste PhraseId="9269140554" PhraseCatalogueId="0">
+                    <FullText>Completely emptied packages can be recycled.</FullText>
+                </PackagingWaste>
+            </WasteTreatment>
+            <EuRequirements>
+                <EuropeanWasteList/>
+                <EuWasteRegulations PhraseId="9313221461" PhraseCatalogueId="0">
+                    <FullText>Dispose of waste according to applicable legislation.</FullText>
+                </EuWasteRegulations>
+            </EuRequirements>
+        </DisposalConsiderations>
+        <TransportInformation>
+            <OtherTransportInformation>
+                <AdrRidOtherInformation/>
+                <AdnOtherInformation/>
+                <ImdgOtherInformation/>
+                <IcaoIataOtherInformation/>
+            </OtherTransportInformation>
+        </TransportInformation>
+        <RegulatoryInfo>
+            <SpecificProvisionsRelatedToProduct>
+                <EuLegislation/>
+            </SpecificProvisionsRelatedToProduct>
+            <NationalLegislation>
+                <NationalLegislationGermany>
+                    <RestrictionsOfOccupation PhraseId="9269141474" PhraseCatalogueId="0">
+                        <FullText>22 JArbSchG.</FullText>
+                    </RestrictionsOfOccupation>
+                    <WaterHazardClass>
+                        <Class>1</Class>
+                    </WaterHazardClass>
+                    <AdditionalInformation PhraseId="19335125000" PhraseCatalogueId="0">
+                        <FullText>Hazardous Substances Ordinance (GefStoffV)</FullText>
+                    </AdditionalInformation>
+                    <AdditionalInformation PhraseId="9269141572" PhraseCatalogueId="0">
+                        <FullText>Berufsgenossenschaftliche Vorschriften (DGUV-Vorschriften)</FullText>
+                    </AdditionalInformation>
+                    <StorageClass>LGK 13</StorageClass>
+                    <GisCode>-</GisCode>
+                </NationalLegislationGermany>
+            </NationalLegislation>
+        </RegulatoryInfo>
+        <OtherInformation/>
+    </Datasheet>
+</ns2:DatasheetFeed>

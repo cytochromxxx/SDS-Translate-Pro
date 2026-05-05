@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safety Data Sheet - MiQuant® SP Beads, Binding Buffer</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9pt;
+    color: #000;
+    background: #fff;
+    line-height: 1.35;
+    position: relative;
+}
+@page {
+    size: A4;
+    margin-top: 25mm;
+    margin-bottom: 20mm;
+    margin-left: 15mm;
+    margin-right: 15mm;
+    @top-center { content: element(header); width: 100%; }
+    @bottom-center { content: element(footer); width: 100%; }
+}
+.running-header { position: running(header); }
+.running-footer { position: running(footer); }
+.page-number-counter::after { content: counter(page) " / " counter(pages); }
+@media screen {
+  body { background-color: #525659; padding: 10mm; display: flex; flex-direction: column; align-items: center; }
+  .sds-document { width: 210mm; background-color: #ffffff; border: 1px solid #000; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 10mm 15mm; margin-bottom: 20px; box-sizing: border-box; position: relative; }
+  .running-header { position: static; border-bottom: 1px solid #ccc; padding-bottom: 10px; margin-bottom: 15px; }
+  .running-footer { position: static; border-top: 1px solid #ccc; padding-top: 10px; margin-top: 20px; }
+}
+/* ── Page header ── */
+.header-table { width: 100%; border-collapse: collapse; margin-bottom: 5px; }
+.header-table td { padding: 0; vertical-align: top; border: none; }
+.header-left { width: 75%; text-align: left; }
+.header-right { width: 25%; text-align: right; }
+.sds-title-small { font-weight: bold; font-size: 9pt; margin-bottom: 4px; }
+.rev { font-size: 9pt; margin-bottom: 4px; }
+.running-header { border-bottom: 2px solid #000; padding-bottom: 3px; margin-bottom: 4px; }
+/* ── Logo ── */
+.logo-img { max-width: 140px; height: auto; max-height: 40px; margin-top: 4px; }
+/* ── Main title ── */
+.main-title { border: 2px solid #000; padding: 4px 6px; margin-bottom: 10px; margin-top: 4px;
+               font-size: 11pt; font-weight: bold; text-align: left; }
+/* ── Sections ── */
+.section { margin-bottom: 10px; break-inside: auto; page-break-inside: auto; }
+.sec-head { background-color: #e6e6e6; border: 1px solid #000; padding: 4px 6px;
+            font-size: 11pt; font-weight: bold; margin-bottom: 6px; break-after: avoid; page-break-after: avoid; }
+.sec-body { padding: 0 0px; }
+.sh  { font-weight: bold; font-size: 10pt; margin-top: 8px; margin-bottom: 4px; break-after: avoid; page-break-after: avoid; }
+.ssh { font-weight: bold; font-size: 9.5pt; margin-top: 6px; margin-bottom: 2px; break-after: avoid; page-break-after: avoid; }
+.b   { font-weight: bold; break-after: avoid; page-break-after: avoid; }
+.ind { padding-left: 10px; margin-bottom: 4px; break-inside: auto; page-break-inside: auto; }
+
+/* changed marker */
+.chg::before { content:"* "; font-weight:bold; }
+/* product name highlight */
+.pname { background-color:#5b5b5b; color:#ffffff; padding:2px 6px; display:inline-block; font-weight:bold; font-size:11pt; margin:3px 0; }
+.emergency-box { background-color:#e6e6e6; padding:4px 8px; border:1px solid #ccc; display:inline-block; margin-top:3px; }
+/* ── Tables ── */
+p, ul, ol { break-inside: auto; page-break-inside: auto; margin-bottom: 3px; }
+table { width:100%; border-collapse:collapse; margin-top:5px; margin-bottom:8px; font-size:8.5pt; break-inside: auto; page-break-inside: auto; }
+td, th { border:1px solid #000; padding:4px 6px; vertical-align:top; line-height:1.3; }
+th { font-weight:bold; background:#e6e6e6; border:1px solid #000; text-align: left; }
+tr, .wcrow, .ghs-row, .kv-list { break-inside: avoid; page-break-inside: avoid; }
+.avoid-break { break-inside: avoid; page-break-inside: avoid; }
+/* ── GHS pictograms ── */
+.ghs-row { display:flex; gap:20px; margin:8px 0; }
+.ghs-item { text-align:center; font-size:8pt; font-weight: bold; }
+.ghs-item img { display:block; margin:0 auto; height:60px; width:auto; margin-bottom: 4px; }
+.signal-word { font-weight: bold; font-size: 10pt; margin-top: 8px; }
+/* ── small GHS in ingredient table ── */
+.ghs-sm img { height:16px; width:auto; vertical-align:middle; }
+/* ── PPE ── */
+.ppe img { height:36px; width:auto; margin-bottom:4px; vertical-align:middle; mix-blend-mode: multiply; }
+/* ── Transport diamonds ── */
+.td-img { height:46px; width:auto; display:block; margin:0 auto; }
+.td-cell { text-align:center; vertical-align:middle; }
+/* ── Footer ── */
+.pfoot { margin-top:auto; padding-top:5px; border-top:1px solid #000;
+          text-align:right; font-size:7.5pt; color:#333; }
+/* italic note */
+.note { font-style:italic; font-size:7.5pt; }
+/* waste code row */
+.wcrow { display:flex; border:1px solid #000; }
+.wc { border-right:1px solid #000; padding:2px 5px; min-width:68px; font-weight:bold; }
+.wd { padding:2px 5px; }
+/* kv list */
+.kv-list table { border:none; margin: 0; }
+.kv-list td { border:none; padding:1px 4px; }
+.kv-list td:first-child { font-weight:bold; white-space:nowrap; }
+/* abbr table */
+.abbr td { border:none; padding:1px 3px; font-size:7.5pt; }
+.abbr td:first-child { font-weight:bold; white-space:nowrap; min-width:52px; }
+/* lit table */
+.lit td { font-size:7.5pt; }
+/* tox/eco shaded rows */
+.trow-h { background:#e6e6e6; font-weight:bold; }
+.trow-d { background:#f9f9f9; font-weight:bold; }
+</style>
+</head>
+<body>
+
+<div class="sds-document original-content">
+<div class="running-header">
+  <table class="header-table">
+    <tr>
+      <td class="header-left">
+        <div class="sds-title-small">Safety Data Sheet according to Regulation (EC) No. 1907/2006 (REACH)</div>
+        <div class="pname">MiQuant® SP Beads, Binding Buffer</div>
+      </td>
+      <td class="header-right">
+        <div style="font-size:9pt; margin-bottom:4px;">Page <span class="page-number-counter"></span></div>
+        <img class="logo-img" src="mb_logo.svg" onerror="this.src='https://www.minerva-biolabs.com/assets/images/logo.png'">
+      </td>
+    </tr>
+  </table>
+  <div class="rev">Revision date: 16.09.2024 &nbsp; Version: 1 &nbsp; Print date: 12.03.2026</div>
+</div>
+
+<div class="main-title">Safety Data Sheet according to Regulation (EC) No. 1907/2006 (REACH)</div>
+
+<div class="section">
+  <div class="sec-head">SECTION 1: Identification of the substance/mixture and of the company/undertaking</div>
+  <div class="sec-body">
+    <div class="sh">1.1. Product identifier</div>
+    <div class="b">Trade name/designation:</div>
+    <div class="pname">MiQuant® SP Beads, Binding Buffer</div>
+    <div style="margin-top:4px;"><span class="b">Article No.:</span><br>
+      <span class="ind">56-4010, 56-4100</span></div>
+    <div><span class="b">UFI:</span><br>
+      <span class="ind">EEE6-EMSY-Q27T-NR1N</span></div>
+
+    <div class="sh">1.2. Relevant identified uses of the substance or mixture and uses advised against</div>
+    <div class="b">Use of the substance/mixture:</div>
+    <div class="ind">The product is intended for research, analysis and scientific education.</div>
+    
+    
+
+    <div class="sh chg">1.3. Details of the supplier of the safety data sheet</div>
+    <div class="b">Supplier (manufacturer/importer/only representative/downstream user/distributor):</div>
+    <div class="ind">
+      <div class="b">Minerva Biolabs GmbH</div>
+      <div>Schkopauer Ring 13, 12681 Berlin</div><div>DE</div>
+      <div><span class="b">Telephone:</span> +49 30 2000437 0</div>
+      <div><span class="b">E-mail:</span> ehs@minerva-biolabs.com</div>
+      <div><span class="b">Website:</span> www.minerva-biolabs.com</div>
+    </div>
+
+    <div class="sh">1.4. Emergency telephone number</div>
+    <div class="ind"><span class="emergency-box">24h, +49 761 19240</span></div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-head">SECTION 2: Hazards identification</div>
+  <div class="sec-body">
+    <div class="sh">2.1. Classification of the substance or mixture</div>
+    <div class="b" style="margin-bottom:2px;">Classification according to Regulation (EC) No 1272/2008 [CLP]</div>
+    <table>
+      <tr><th style="width:38%;">Hazard classes and hazard categories</th><th style="width:42%;">Hazard statements</th><th>Classification procedure</th></tr>
+      
+      <tr><td>Acute toxicity (oral) Category 4</td><td>H302: Harmful if swallowed.</td><td>Calculation method.</td></tr>
+      
+      <tr><td>Skin irritation Category 2</td><td>H315: Causes skin irritation.</td><td>Calculation method.</td></tr>
+      
+      <tr><td>Eye irritation Category 2</td><td>H319: Causes serious eye irritation.</td><td>Calculation method.</td></tr>
+      
+      <tr><td>Hazardous to aquatic environment (acute) Category 1</td><td>H400: Very toxic to aquatic life.</td><td>Calculation method.</td></tr>
+      
+      <tr><td>Hazardous to aquatic environment (chronic) Category 3</td><td>H412: Harmful to aquatic life with long lasting effects.</td><td>Calculation method.</td></tr>
+      
+    </table>
+
+    <div class="sh chg">2.2. Label elements</div>
+    
+    <div class="b" style="margin-bottom:2px;">Labelling according to Regulation (EC) No. 1272/2008 [CLP]</div>
+    
+    <div class="b" style="margin-top: 2px;">Hazard pictograms:</div>
+    <div class="ghs-row">
+      
+      <div class="ghs-item">
+        <img src="ghs/ghs07.png" alt="GHS07"  onerror="this.style.display='none'">
+        <div><strong>GHS07</strong></div>
+        <div style="font-style:italic;">
+        Exclamation mark
+        
+        </div>
+      </div>
+      
+      <div class="ghs-item">
+        <img src="ghs/ghs09.png" alt="GHS09"  onerror="this.style.display='none'">
+        <div><strong>GHS09</strong></div>
+        <div style="font-style:italic;">
+        Environment
+        
+        </div>
+      </div>
+      
+    </div>
+    
+
+    
+    <div class="signal-word" style="text-align:left;"><span class="b">Signal word:</span> Warning</div>
+    
+
+    
+    <div class="b" style="margin-top:2px;">Hazard components for labelling:</div>
+    <div class="ind">Guanidinhydrochlorid, Cetrimoniumbromid</div>
+    
+
+    <table style="margin-top:3px;">
+      <tr><th colspan="2">Hazard statements</th></tr>
+      
+      <tr><td style="width:60px;">H302</td><td>Harmful if swallowed.</td></tr>
+      
+      <tr><td style="width:60px;">H315</td><td>Causes skin irritation.</td></tr>
+      
+      <tr><td style="width:60px;">H319</td><td>Causes serious eye irritation.</td></tr>
+      
+      <tr><td style="width:60px;">H400</td><td>Very toxic to aquatic life.</td></tr>
+      
+      <tr><td style="width:60px;">H412</td><td>Harmful to aquatic life with long lasting effects.</td></tr>
+      
+    </table>
+
+    
+    <table style="margin-top:3px;">
+        <tr><th colspan="2">Precautionary statements Prevention</th></tr>
+        
+        <tr>
+            <td style="width:130px;">P264</td>
+            <td>hands</td>
+        </tr>
+        
+        <tr>
+            <td style="width:130px;">P270</td>
+            <td>Do not eat, drink or smoke when using this product.</td>
+        </tr>
+        
+        <tr>
+            <td style="width:130px;">P273</td>
+            <td>Avoid release to the environment.</td>
+        </tr>
+        
+        <tr>
+            <td style="width:130px;">P280</td>
+            <td>Wear protective gloves/protective clothing and eye protection/face protection.</td>
+        </tr>
+        
+    </table>
+    
+
+    
+    <table style="margin-top:3px;">
+        <tr><th colspan="2">Precautionary statements Response</th></tr>
+        
+        <tr>
+            <td style="width:130px;">P301 + P312</td>
+            <td>First aider</td>
+        </tr>
+        
+        <tr>
+            <td style="width:130px;">P302 + P352</td>
+            <td>Soap</td>
+        </tr>
+        
+        <tr>
+            <td style="width:130px;">P305 + P351</td>
+            <td>IF IN EYES: Rinse cautiously with water for several minutes. Remove contact lenses, if present and easy to do. Continue rinsing.</td>
+        </tr>
+        
+        <tr>
+            <td style="width:130px;">P332 + P313</td>
+            <td>If skin irritation occurs: Get medical advice/attention.</td>
+        </tr>
+        
+        <tr>
+            <td style="width:130px;">P337 + P313</td>
+            <td>If eye irritation persists: Get medical advice/attention.</td>
+        </tr>
+        
+        <tr>
+            <td style="width:130px;">P362 + P364</td>
+            <td>Take off contaminated clothing and wash it before reuse.</td>
+        </tr>
+        
+        <tr>
+            <td style="width:130px;">P391</td>
+            <td>Collect spillage.</td>
+        </tr>
+        
+    </table>
+    
+
+    
+    
+
+    <div class="sh">2.3. Other hazards</div>
+    <div class="ind"><span class="b">Adverse physicochemical effects:</span><br>
+      No data available.</div>
+    <div class="ind" style="margin-top:3px;"><span class="b">Adverse human health effects and symptoms:</span><br>
+      This product does not contain any substances with endocrine disrupting properties in humans.</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-head">SECTION 3: Composition/information on ingredients</div>
+  <div class="sec-body">
+    <div class="sh">3.2. Mixtures</div>
+    <div class="b">Hazardous ingredients / Hazardous impurities / Stabilisers:</div>
+    <table>
+      <tr><th style="width:28%;">Product identifiers</th><th>Substance name<br><span style="font-weight:normal;font-size:7.5pt;">Classification according to Regulation (EC) No 1272/2008 [CLP]</span></th><th style="width:18%;">Concentration</th></tr>
+      
+      <tr>
+        <td>
+          CAS No.: 50-01-1<br>
+          EC No.: 200-002-3<br>
+          
+          
+        </td>
+        <td>
+          <div class="b">Guanidinhydrochlorid</div>
+          
+          
+          <div>Acute Tox. 4 (H302): Harmful if swallowed.</div>
+          
+          <div>Eye Irrit. 2 (H319): Causes serious eye irritation.</div>
+          
+          <div>Skin Irrit. 2 (H315): Causes skin irritation.</div>
+          
+          
+          
+          <div class="note" style="margin-top:2px;"><strong>Acute Toxicity Estimate</strong><br>
+            
+            ATE (oral) 729.8 mg/kg<br>
+            
+            ATE (dermal) &gt; 2,000 mg/kg<br>
+            
+            ATE (inhalation, dust/mist) 3.181 mg/L<br>
+            
+          </div>
+          
+        </td>
+        <td>25.0 - &lt; 50.0 Weight-%</td>
+      </tr>
+      
+      <tr>
+        <td>
+          CAS No.: 57-09-0<br>
+          EC No.: 200-311-3<br>
+          
+          
+        </td>
+        <td>
+          <div class="b">Cetrimoniumbromid</div>
+          
+          
+          <div>Acute Tox. 4 (H302): Harmful if swallowed.</div>
+          
+          <div>Skin Irrit. 2 (H315): Causes skin irritation.</div>
+          
+          <div>Eye Dam. 1 (H318): Causes serious eye damage.</div>
+          
+          <div>STOT SE 3 (H335): May cause respiratory irritation.</div>
+          
+          <div>STOT RE 2 (H373): May cause damage to organs through prolonged or repeated exposure. (...)</div>
+          
+          <div>Aquatic Acute 1 (H400): Very toxic to aquatic life.</div>
+          
+          <div>Aquatic Chronic 1 (H410): Very toxic to aquatic life with long lasting effects.</div>
+          
+          <div>Skin Corr. 1 (H314): Causes severe skin burns and eye damage.</div>
+          
+          
+          
+          <div class="note" style="margin-top:2px;"><strong>Acute Toxicity Estimate</strong><br>
+            
+            ATE (oral) 410 mg/kg<br>
+            
+          </div>
+          
+        </td>
+        <td>0.1 - &lt; 2.5 Weight-%</td>
+      </tr>
+      
+    </table>
+    <div class="note" style="margin-top:3px;">Full text of H- and EUH-phrases: see section 16.</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-head">SECTION 4: First aid measures</div>
+  <div class="sec-body">
+    <div class="sh chg">4.1. Description of first aid measures</div>
+    <div class="b">General information:</div>
+    <div class="ind">In case of accident or unwellness, seek medical advice immediately (show directions for use or safety data sheet if possible). Remove victim out of the danger area. Remove contaminated, saturated clothing. If unconscious but breathing normally, place in recovery position and seek medical advice. Do not leave affected person unattended.</div>
+    <div class="b">Following inhalation:</div>
+    <div class="ind">Provide fresh air. In case of respiratory tract irritation, consult a physician.</div>
+    <div class="b" style="margin-top:3px;">In case of skin contact:</div>
+    <div class="ind">After contact with skin, wash immediately with plenty of water and soap. Take off immediately all contaminated clothing. If skin irritation or rash occurs: Get medical advice/attention.</div>
+    <div class="b" style="margin-top:3px;">After eye contact:</div>
+    <div class="ind">Rinse cautiously with water for several minutes. If eye irritation persists: Get medical advice/attention. Remove contact lenses, if present and easy to do. Continue rinsing.</div>
+    <div class="b" style="margin-top:3px;">Following ingestion:</div>
+    <div class="ind">Rinse mouth. Let 1 glass of water be drunken in little sips (dilution effect). Get medical advice/attention if you feel unwell.</div>
+    <div class="b" style="margin-top:3px;">Self-protection of the first aider:</div>
+    <div class="ind">Use personal protection equipment.</div>
+    
+    <div class="sh">4.2. Most important symptoms and effects, both acute and delayed</div>
+    <div class="ind">Skin corrosion/irritation, Serious eye damage/eye irritation</div>
+    
+    <div class="sh">4.3. Indication of any immediate medical attention and special treatment needed</div>
+    <div class="ind">Treat symptomatically.</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-head">SECTION 5: Firefighting measures</div>
+  <div class="sec-body">
+    <div class="sh">5.1. Extinguishing media</div>
+    <div class="ind"><span class="b">Suitable extinguishing media:</span><br> Full water jet, Carbon dioxide (CO2), alcohol resistant foam</div>
+    <div class="ind" style="margin-top:2px;"><span class="b">Unsuitable extinguishing media:</span><br> Full water jet</div>
+    
+    <div class="sh">5.2. Special hazards arising from the substance or mixture</div>
+    <div class="ind">No data available</div>
+    <div class="ind" style="margin-top:3px;"><span class="b">Hazardous combustion products:</span><br> In case of fire: Gases/vapours, toxic</div>
+    
+    <div class="sh">5.3. Advice for firefighters</div>
+    <div class="ind">Wear a self-contained breathing apparatus and chemical protective clothing.</div>
+    
+    <div class="sh">5.4. Additional information</div>
+    <div class="ind">Collect contaminated fire extinguishing water separately. Do not allow entering drains or surface water.</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-head">SECTION 6: Accidental release measures</div>
+  <div class="sec-body">
+    <div class="sh">6.1. Personal precautions, protective equipment and emergency procedures</div>
+    <div class="ssh">6.1.1. For non-emergency personnel</div>
+    <div class="ind"><span class="b">Personal precautions:</span><br> Remove persons to safety.</div>
+    <div class="ind" style="margin-top:2px;"><span class="b">Protective equipment:</span><br> Wear protective gloves/protective clothing/eye protection/face protection.</div>
+    <div class="ssh">6.1.2. For emergency responders</div>
+    <div class="ind">Personal protection equipment: see section 8</div>
+    
+    <div class="sh">6.2. Environmental precautions</div>
+    <div class="ind">Do not allow to enter into surface water or drains.</div>
+    
+    <div class="sh">6.3. Methods and material for containment and cleaning up</div>
+    <div class="ind"><span class="b">For containment:</span><br> Absorb with liquid-binding material (sand, diatomaceous earth, acid- or universal binding agents).</div>
+    <div class="ind" style="margin-top:2px;"><span class="b">For cleaning up:</span><br> Water (with cleaning agent)</div>
+    
+    <div class="sh">6.4. Reference to other sections</div>
+    <div class="ind">Safe handling: see section 7, Personal protection equipment: see section 8, Disposal: see section 13</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-head">SECTION 7: Handling and storage</div>
+  <div class="sec-body">
+    <div class="sh chg">7.1. Precautions for safe handling</div>
+    <div class="b">Protective measures</div>
+    <div class="b">Advices on safe handling:</div>
+    <div class="ind">Wear personal protection equipment (refer to section 8).</div>
+    <div class="b" style="margin-top:3px;">Fire prevent measures:</div>
+    <div class="ind">No data available</div>
+    <div class="b" style="margin-top:3px;">Advices on general occupational hygiene</div>
+    <div class="ind">When using do not eat, drink, smoke, sniff. Avoid contact with skin, eyes and clothes.</div>
+    
+    <div class="sh">7.2. Conditions for safe storage, including any incompatibilities</div>
+    <div class="b">Technical measures and storage conditions:</div>
+    <div class="ind">Keep container tightly closed in a cool, well-ventilated place.</div>
+    <div class="b" style="margin-top:3px;">Requirements for storage rooms and vessels:</div>
+    <div class="ind">Recommended storage temperature : at room temperature .</div>
+    <div class="b" style="margin-top:3px;">Hints on storage assembly:</div>
+    <div class="ind">No data available</div>
+    <div style="margin-top:2px;"><span class="b">Storage class (TRGS 510, Germany):</span> LGK 12</div>
+    
+    <div class="b" style="margin-top:3px;">Further information on storage conditions:</div>
+    <div class="ind">No data available</div>
+    
+    
+    <div class="sh">7.3. Specific end use(s)</div>
+    <div class="ind">No data available</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-head">SECTION 8: Exposure controls/personal protection</div>
+  <div class="sec-body">
+    <div class="sh">8.1. Control parameters</div>
+    <div class="ssh">8.1.1. Occupational exposure limit values</div>
+    <table style="font-size:7.5pt;">
+      <tr>
+        <th style="width:22%;">Limit value type<br>(country of origin)</th>
+        <th style="width:28%;">Substance name</th>
+        <th>① Long-term occupational exposure limit value<br>② Short-term occupational exposure limit value<br>③ Instantaneous value<br>④ Monitoring and observation processes<br>⑤ Remark</th>
+      </tr>
+      
+    </table>
+    <div class="ssh">8.1.2. Biological limit values</div>
+    
+    <table style="font-size:7.5pt;">
+      <tr>
+        <th style="width:20%;">Limit value type<br>(country of origin)</th>
+        <th style="width:20%;">Substance name</th>
+        <th style="width:15%;">Limit value</th>
+        <th>① Parameter<br>② Test material<br>③ Time of sampling<br>④ Remark</th>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          
+          
+          
+          
+        </td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          
+          
+          
+          
+        </td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          
+          
+          
+          
+        </td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          
+          
+          
+          
+        </td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          
+          
+          
+          
+        </td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          
+          
+          
+          
+        </td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          
+          
+          
+          
+        </td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          
+          
+          
+          
+        </td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          
+          
+          
+          
+        </td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          
+          
+          
+          
+        </td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          
+          
+          
+          
+        </td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          
+          
+          
+          
+        </td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          
+          
+          
+          
+        </td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          
+          
+          
+          
+        </td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          
+          
+          
+          
+        </td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          
+          
+          
+          
+        </td>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          
+          
+          
+          
+        </td>
+      </tr>
+      
+    </table>
+    
+    
+    <div class="ssh">8.1.3. DNEL-/PNEC-values</div>
+    
+    <div class="ind">No data available</div>
+    
+    
+    <div class="sh">8.2. Exposure controls</div>
+    <div class="ssh">8.2.1. Appropriate engineering controls</div>
+    <div class="ind">No data available</div>
+    <div class="ssh">8.2.2. Personal protection equipment</div>
+    
+    <div class="b">Eye/face protection:</div>
+    <div class="ind">Eye glasses with side protection EN 166</div>
+    <div class="b" style="margin-top:3px;">Skin protection:</div>
+    <div class="ind">Tested protective gloves must be worn ( EN ISO 374 ). Take recovery periods for skin regeneration. Breakthrough times and swelling properties of the material must be taken into consideration. Suitable material: NBR (Nitrile rubber) , Thickness of the glove material : > 0,35 mm. In the case of wanting to use the gloves again, clean them before taking off and air them well.</div>
+    <div class="b" style="margin-top:3px;">Respiratory protection:</div>
+    <div class="ind">Usually no personal respirative protection necessary. In case of inadequate ventilation wear respiratory protection. Filtering device with filter or ventilator filtering device of type: ABEK-P3 .</div>
+    
+    <div class="b" style="margin-top:3px;">Other protection measures:</div>
+    <div class="ind">No data available</div>
+    
+    <div class="ssh">8.2.3. Environmental exposure controls</div>
+    <div class="ind">No data available</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-head">SECTION 9: Physical and chemical properties</div>
+  <div class="sec-body">
+    <div class="sh">9.1. Information on basic physical and chemical properties</div>
+    <div class="ssh">Appearance</div>
+    <div class="ind">Form: liquid<br>Odour: not determined</div>
+    <div class="ssh">Safety relevant basis data</div>
+    <table>
+      <tr><th style="width:44%;">Parameter</th><th style="width:20%;">Value</th><th style="width:12%;">at °C</th><th>① Method<br>② Remark</th></tr>
+      
+      <tr><td>pH</td><td>No data available</td><td></td><td></td></tr>
+      
+      <tr><td>Melting point</td><td>No data available</td><td></td><td></td></tr>
+      
+      <tr><td>Freezing point</td><td>No data available</td><td></td><td></td></tr>
+      
+      <tr><td>Initial boiling point and boiling range</td><td>100.0 C</td><td></td><td></td></tr>
+      
+      <tr><td>Flash point</td><td>No data available</td><td></td><td></td></tr>
+      
+      <tr><td>Evaporation rate</td><td>No data available</td><td></td><td></td></tr>
+      
+      <tr><td>Auto-ignition temperature</td><td>No data available</td><td></td><td></td></tr>
+      
+      <tr><td>Upper/lower flammability or explosive limits</td><td>No data available</td><td></td><td></td></tr>
+      
+      <tr><td>Vapour pressure</td><td>No data available</td><td></td><td></td></tr>
+      
+      <tr><td>Vapour density</td><td>No data available</td><td></td><td></td></tr>
+      
+      <tr><td>Density</td><td>1.133 g/cm3</td><td>20.0 C</td><td></td></tr>
+      
+      <tr><td>Bulk density</td><td>No data available</td><td></td><td></td></tr>
+      
+      <tr><td>Water solubility</td><td>No data available</td><td></td><td></td></tr>
+      
+      <tr><td>Dynamic viscosity</td><td>No data available</td><td></td><td></td></tr>
+      
+      <tr><td>Kinematic viscosity</td><td>No data available</td><td></td><td></td></tr>
+      
+    </table>
+    
+    <div class="sh">9.2. Other information</div>
+    <div class="ind">No data available.</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-head">SECTION 10: Stability and reactivity</div>
+  <div class="sec-body">
+    <div class="sh">10.1. Reactivity</div>
+    <div class="ind">No data available</div>
+    <div class="sh">10.2. Chemical stability</div>
+    <div class="ind">No data available</div>
+    <div class="sh">10.3. Possibility of hazardous reactions</div>
+    <div class="ind">No data available</div>
+    <div class="sh">10.4. Conditions to avoid</div>
+    <div class="ind">No data available</div>
+    <div class="sh">10.5. Incompatible materials</div>
+    <div class="ind">No data available</div>
+    <div class="sh">10.6. Hazardous decomposition products</div>
+    <div class="ind">No data available</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-head">SECTION 11: Toxicological information</div>
+  <div class="sec-body">
+    <div class="sh">11.1. Information on hazard classes as defined in Regulation (EC) No 1272/2008</div>
+        
+    <table class="avoid-break" style="font-size:7.5pt;margin-bottom:2px;width:100%;">
+        <tr><td class="trow-h" colspan="2">Guanidinhydrochlorid &nbsp; CAS No.: 50-01-1 &nbsp; EC No.: 200-002-3</td></tr>
+        
+        <tr><td class="trow-d" colspan="2">
+            LD50 oral: 729.8 mg/kg (rat) other: Health effects test guidelines, August 1982, EPA 560/6-82-001
+        </td></tr>
+        
+        <tr><td class="trow-d" colspan="2">
+            LD50 dermal: &gt; 2,000 mg/kg (rabbit) other: EPA TS-792 Acute exposure, dermal toxicity. Health effects test guidelines, EPA, August 1982; EPA 560/6-82-001
+        </td></tr>
+        
+        <tr><td class="trow-d" colspan="2">
+            LD50 inhalation(dust/mist): 3.181 mg/L 4.0 h (Rat)
+        </td></tr>
+        
+    </table>
+        
+    <table class="avoid-break" style="font-size:7.5pt;margin-bottom:2px;width:100%;">
+        <tr><td class="trow-h" colspan="2">Cetrimoniumbromid &nbsp; CAS No.: 57-09-0 &nbsp; EC No.: 200-311-3</td></tr>
+        
+        <tr><td class="trow-d" colspan="2">
+            LD50 oral: 410 mg/kg (Rat)
+        </td></tr>
+        
+    </table>
+        
+    <div style="margin-top:5px;">
+        <div class="b">Acute toxicity:</div><div class="ind">Harmful if swallowed. Based on available data, the classification criteria are not met. Based on available data, the classification criteria are not met.</div>
+        <div class="b" style="margin-top:2px;">Skin corrosion/irritation:</div><div class="ind">Causes skin irritation.</div>
+        <div class="b" style="margin-top:2px;">Serious eye damage/irritation:</div><div class="ind">Causes serious eye irritation.</div>
+        <div class="b" style="margin-top:2px;">Respiratory or skin sensitisation:</div><div class="ind">Based on available data, the classification criteria are not met.</div>
+        <div class="b" style="margin-top:2px;">Germ cell mutagenicity:</div><div class="ind">Based on available data, the classification criteria are not met.</div>
+        <div class="b" style="margin-top:2px;">Carcinogenicity:</div><div class="ind">Based on available data, the classification criteria are not met.</div>
+        <div class="b" style="margin-top:2px;">Reproductive toxicity:</div><div class="ind">Based on available data, the classification criteria are not met.</div>
+        <div class="b" style="margin-top:2px;">STOT-single exposure:</div><div class="ind">Based on available data, the classification criteria are not met.</div>
+        <div class="b" style="margin-top:2px;">STOT-repeated exposure:</div><div class="ind">Based on available data, the classification criteria are not met.</div>
+        <div class="b" style="margin-top:2px;">Aspiration hazard:</div><div class="ind">Based on available data, the classification criteria are not met.</div>
+    </div>
+    <div class="sh">11.2. Information on other hazards</div>
+    <div class="ind">No data available.</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-head">SECTION 12: Ecological information</div>
+  <div class="sec-body">
+    <div class="sh">12.1. Toxicity</div>
+    
+    
+    <table class="avoid-break" style="font-size:7.5pt;margin-bottom:2px;width:100%;">
+        <tr><td class="trow-h" colspan="2">Guanidinhydrochlorid &nbsp; CAS No.: 50-01-1 &nbsp; EC No.: 200-002-3</td></tr>
+        
+        <tr><td class="trow-d" colspan="2">LC50: 2,420 mg/L   (Leuciscus idus) other: DIN 38412 L15 (DEV-11. Lieferung 1982)</td></tr>
+        
+        <tr><td class="trow-d" colspan="2">NOEC: >= 181 mg/L   (Pimephales promelas) OECD Guideline 210 (Fish, Early-Life Stage Toxicity Test)</td></tr>
+        
+        <tr><td class="trow-d" colspan="2">LOEC: >= 424 mg/L   (Pimephales promelas) OECD Guideline 210 (Fish, Early-Life Stage Toxicity Test)</td></tr>
+        
+        <tr><td class="trow-d" colspan="2">EC50: 70.2 mg/L   (Daphnia magna) OECD Guideline 202 (Daphnia sp. Acute Immobilisation Test)</td></tr>
+        
+        <tr><td class="trow-d" colspan="2">NOEC: 2.9 mg/L   (Daphnia magna) OECD Guideline 211 (Daphnia magna Reproduction Test)</td></tr>
+        
+        <tr><td class="trow-d" colspan="2">LOEC: 4.2 mg/L   (Daphnia magna) OECD Guideline 211 (Daphnia magna Reproduction Test)</td></tr>
+        
+        <tr><td class="trow-d" colspan="2">EC50: 33.5 mg/L   (Raphidocelis subcapitata (previous names: Pseudokirchneriella subcapitata, Selenastrum capricornutum)) EU Method C.3 (Algal Inhibition test)</td></tr>
+        
+        <tr><td class="trow-d" colspan="2">NOEC: 6.3 mg/L   (Raphidocelis subcapitata (previous names: Pseudokirchneriella subcapitata, Selenastrum capricornutum)) EU Method C.3 (Algal Inhibition test)</td></tr>
+        
+    </table>
+    
+    
+    
+    <table class="avoid-break" style="font-size:7.5pt;margin-bottom:2px;width:100%;">
+        <tr><td class="trow-h" colspan="2">Cetrimoniumbromid &nbsp; CAS No.: 57-09-0 &nbsp; EC No.: 200-311-3</td></tr>
+        
+        <tr><td class="trow-d" colspan="2">LC50: 0.2 mg/L   (Danio rerio (previous name: Brachydanio rerio)) </td></tr>
+        
+        <tr><td class="trow-d" colspan="2">EC50: 0.026 mg/L   (Daphnia magna) </td></tr>
+        
+        <tr><td class="trow-d" colspan="2">NOEC: 0.023 mg/L   (Daphnia magna) OECD Guideline 211 (Daphnia magna Reproduction Test)</td></tr>
+        
+        <tr><td class="trow-d" colspan="2">EC50: 0.00411 mg/L   (Raphidocelis subcapitata (previous names: Pseudokirchneriella subcapitata, Selenastrum capricornutum)) </td></tr>
+        
+        <tr><td class="trow-d" colspan="2">NOEC: 0.0011 mg/L   (Raphidocelis subcapitata (previous names: Pseudokirchneriella subcapitata, Selenastrum capricornutum)) </td></tr>
+        
+    </table>
+    
+    
+    
+    <div class="sh">12.2. Persistence and degradability</div>
+    
+    
+      
+    
+      
+    
+    
+    <div class="ind">No data available</div>
+    
+    
+    <div class="sh">12.3. Bioaccumulative potential</div>
+    
+    
+      
+        
+        <table class="avoid-break" style="font-size:8.5pt;margin-bottom:2px;width:100%;">
+          <tr><td class="trow-h">Guanidinhydrochlorid &nbsp; CAS No.: 50-01-1 &nbsp; EC No.: 200-002-3</td></tr>
+          
+          <tr><td class="trow-d">Bioconcentration factor (BCF): 0.893</td></tr>
+        </table>
+      
+    
+      
+        
+        <table class="avoid-break" style="font-size:8.5pt;margin-bottom:2px;width:100%;">
+          <tr><td class="trow-h">Cetrimoniumbromid &nbsp; CAS No.: 57-09-0 &nbsp; EC No.: 200-311-3</td></tr>
+          
+          <tr><td class="trow-d">Bioconcentration factor (BCF): 80.4</td></tr>
+        </table>
+      
+    
+    
+    <div class="ind">No data available</div>
+    
+
+    <div class="sh">12.4. Mobility in soil</div>
+    <div class="ind">No data available</div>
+
+    <div class="sh">12.5. Results of PBT and vPvB assessment</div>
+    
+    
+      
+    
+      
+    
+    
+    <div class="ind">No data available</div>
+    
+    <div class="sh">12.6. Endocrine disrupting properties</div>
+    <div class="ind">No data available</div>
+    <div class="sh">12.7. Other adverse effects</div>
+    <div class="ind">No data available</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-head">SECTION 13: Disposal considerations</div>
+  <div class="sec-body">
+    <div class="sh">13.1. Waste treatment methods</div>
+    <div class="ind">Dispose of waste according to applicable legislation.</div>
+    <div class="ssh" style="margin-top:4px;">13.1.1. Product/Packaging disposal</div>
+    <div class="b" style="margin-top:3px;">Waste codes/waste designations according to EWC/AVV</div>
+    
+      <div class="b" style="margin-top:2px;">Waste code product</div>
+      <div class="wcrow"><div class="wc">No data available </div><div class="wd"></div></div>
+      <div class="note" style="margin-top:1px;">*: Evidence for disposal must be provided.</div>
+      <div class="b" style="margin-top:3px;">Waste code packaging</div>
+      
+    
+    <div class="b" style="margin-top:4px;">Waste treatment options</div>
+    <div class="b" style="margin-top:2px;">Appropriate disposal / Product:</div>
+    <div class="ind">Consult the appropriate local waste disposal expert about waste disposal.</div>
+    <div class="b" style="margin-top:2px;">Appropriate disposal / Package:</div>
+    <div class="ind">Completely emptied packages can be recycled.</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-head">SECTION 14: Transport information</div>
+  <div class="sec-body">
+    <table style="font-size:8.5pt;">
+      <tr>
+        <th style="width:25%;">Land transport (ADR/RID)</th>
+        <th style="width:25%;">Inland waterway craft (ADN)</th>
+        <th style="width:25%;">Sea transport (IMDG)</th>
+        <th style="width:25%;">Air transport (ICAO-TI / IATA-DGR)</th>
+      </tr>
+      <tr><td colspan="4" style="font-weight:bold;background:#f0f0f0;">14.1. UN number or ID number</td></tr>
+      <tr><td>UN 3082</td><td>UN 3082</td><td>UN 3082</td><td>3082</td></tr>
+      <tr><td colspan="4" style="font-weight:bold;background:#f0f0f0;">14.2. UN proper shipping name</td></tr>
+      <tr><td>ENVIRONMENTALLY HAZARDOUS SUBSTANCE, LIQUID, N.O.S. (cetrimonium bromide)</td><td>ENVIRONMENTALLY HAZARDOUS SUBSTANCE, LIQUID, N.O.S. (cetrimonium bromide)</td><td>ENVIRONMENTALLY HAZARDOUS SUBSTANCE, LIQUID, N.O.S. (cetrimonium bromide)</td><td>ENVIRONMENTALLY HAZARDOUS SUBSTANCE, LIQUID, N.O.S. (cetrimonium bromide)</td></tr>
+      <tr><td colspan="4" style="font-weight:bold;background:#f0f0f0;"><span class="chg">14.3. Transport hazard class(es)</span></td></tr>
+      <tr>
+        <td class="td-cell">
+          <img class="td-img" src="symbole/transport/class9.png"  onerror="this.style.display='none'"><br>
+          <div class="b">9</div>
+        </td>
+        <td class="td-cell">
+          <img class="td-img" src="symbole/transport/class9.png"  onerror="this.style.display='none'"><br>
+          <div class="b">9</div>
+        </td>
+        <td class="td-cell">
+          <img class="td-img" src="symbole/transport/class9.png"  onerror="this.style.display='none'"><br>
+          <div class="b">9</div>
+        </td>
+        <td class="td-cell">
+          <img class="td-img" src="symbole/transport/class9.png"  onerror="this.style.display='none'"><br>
+          <div class="b">9</div>
+        </td>
+      </tr>
+      <tr><td colspan="4" style="font-weight:bold;background:#f0f0f0;">14.4. Packing group</td></tr>
+      <tr><td>III</td><td>III</td><td>III</td><td>III</td></tr>
+      <tr><td colspan="4" style="font-weight:bold;background:#f0f0f0;">14.5. Environmental hazards</td></tr>
+      <tr>
+        <td>
+          
+          Dangerous for the environment
+        </td>
+        <td>
+          
+          Dangerous for the environment
+        </td>
+        <td>
+          <img class="td-img" src="ghs/env_hazard.png"  onerror="this.style.display='none'"><br>
+          MARINE POLLUTANT
+        </td>
+        <td>
+          
+          Dangerous for the environment
+        </td>
+      </tr>
+      <tr><td colspan="4" style="font-weight:bold;background:#f0f0f0;">14.6. Special precautions for user</td></tr>
+      <tr style="vertical-align:top;">
+        <td>
+          Special Provisions:<br>274 | 335 | 375 | 601 | 650<br>
+          Limited quantity (LQ):<br>5 L<br>
+          Excepted Quantities (EQ):<br>E1<br>
+          Hazard identification number (Kemler No.):<br>90<br>
+          Classification code:<br>9<br>
+          Tunnel restriction code:<br>(-)
+        </td>
+        <td>
+          Special Provisions:<br>274 | 335 | 375 | 601 | 650<br>
+          Limited quantity (LQ):<br>5 L<br>
+          Excepted Quantities (EQ):<br>E1<br>
+          Classification code:<br>9
+        </td>
+        <td>
+          Special Provisions:<br>274 | 335 | 375 | 969<br>
+          Limited quantity (LQ):<br>5 L<br>
+          Excepted Quantities (EQ):<br>E1<br>
+          EmS-No.:<br>F-A, S-F<br>
+        </td>
+        <td>
+          Special Provisions:<br>A97 | A158 | A197 | A215<br>
+          Limited quantity (LQ):<br>Y964<br>
+          Excepted Quantities (EQ):<br>E1
+        </td>
+      </tr>
+    </table>
+    
+    <div class="sh">14.7. Maritime transport in bulk according to IMO instruments</div>
+    <div class="ind">No data available</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-head">SECTION 15: Regulatory information</div>
+  <div class="sec-body">
+    <div class="sh">15.1. Safety, health and environmental regulations/legislation specific for the substance or mixture</div>
+    <div class="ssh">15.1.1. EU legislation</div>
+    <div class="ind">No data available</div>
+    <div class="ssh" style="margin-top:4px;">15.1.2. National regulations</div>
+    <div style="display:flex;align-items:center;gap:0;margin-bottom:3px;">
+      <span style="display:inline-block;width:13px;height:8px;background:#000;"></span>
+      <span style="display:inline-block;width:13px;height:8px;background:#d00;"></span>
+      <span style="display:inline-block;width:13px;height:8px;background:#ffce00;"></span>
+      <span class="b" style="margin-left:5px;">[DE] National regulations</span>
+    </div>
+    
+    <div class="b">Restrictions of occupation</div>
+    <div class="ind">22 JArbSchG.</div>
+    
+    
+
+    
+
+    <div class="b" style="margin-top:3px;">Water hazard class</div>
+    <div class="b">WGK:</div>
+    <div class="ind">3</div>
+
+    
+    <div class="b" style="margin-top:3px;">Other regulations</div>
+    <div class="ind">
+        
+        Berufsgenossenschaftliche Vorschriften (DGUV-Vorschriften)<br>
+        
+        Hazardous Substances Ordinance (GefStoffV)<br>
+        
+    </div>
+    
+
+    <div class="sh">15.2. Chemical Safety Assessment</div>
+    <div class="ind">No data available</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="sec-head">SECTION 16: Other information</div>
+  <div class="sec-body">
+    <div class="sh chg">16.1. Indication of changes</div>
+    <table style="font-size:8.5pt;width:auto;">
+      
+    </table>
+    <div class="sh">16.2. Abbreviations and acronyms</div>
+    <table class="abbr">
+        
+    </table>
+    <div class="sh">16.3. Key literature references and sources for data</div>
+    <div style="font-size:8.5pt;margin-bottom:3px;"></div>
+    
+    
+    <div class="sh">16.4. Classification for mixtures and used evaluation method according to regulation (EC) No 1272/2008 [CLP]</div>
+    <table>
+        <tr><th style="width:38%;">Hazard classes and hazard categories</th><th style="width:42%;">Hazard statements</th><th>Classification procedure</th></tr>
+        
+        <tr><td>Acute Tox. 4</td><td>H302: Harmful if swallowed.</td><td>Calculation method.</td></tr>
+        
+        <tr><td>Skin Irrit. 2</td><td>H315: Causes skin irritation.</td><td>Calculation method.</td></tr>
+        
+        <tr><td>Eye Irrit. 2</td><td>H319: Causes serious eye irritation.</td><td>Calculation method.</td></tr>
+        
+        <tr><td>Aquatic Acute 1</td><td>H400: Very toxic to aquatic life.</td><td>Calculation method.</td></tr>
+        
+        <tr><td>Aquatic Chronic 3</td><td>H412: Harmful to aquatic life with long lasting effects.</td><td>Calculation method.</td></tr>
+        
+    </table>
+
+    <div class="sh chg" style="margin-top:5px;">16.5. List of relevant hazard statements and/or precautionary statements from sections 2 to 15</div>
+    <table style="margin-top:2px;">
+      <tr><th colspan="2">Hazard statements</th></tr>
+      
+      <tr><td style="width:60px;">H302</td><td>Harmful if swallowed.</td></tr>
+      
+      <tr><td style="width:60px;">H315</td><td>Causes skin irritation.</td></tr>
+      
+      <tr><td style="width:60px;">H319</td><td>Causes serious eye irritation.</td></tr>
+      
+      <tr><td style="width:60px;">H400</td><td>Very toxic to aquatic life.</td></tr>
+      
+      <tr><td style="width:60px;">H412</td><td>Harmful to aquatic life with long lasting effects.</td></tr>
+      
+    </table>
+    <div class="sh">16.6. Training advice</div>
+    <div class="ind"></div>
+    <div class="sh">16.7. Additional information</div>
+    <div class="ind">
+        
+    </div>
+  </div>
+</div>
+
+<div class="pfoot running-footer">
+    en / DE<br>
+    GeSi.de
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    if (window.matchMedia("print").matches) return;
+
+    const originalDoc = document.querySelector('.sds-document');
+    if (!originalDoc) return;
+
+    const A4_HEIGHT_PX = 1050; 
+    const HEADER_HEIGHT_PX = 120; 
+    const FOOTER_HEIGHT_PX = 40; 
+    const MAX_CONTENT_HEIGHT = A4_HEIGHT_PX - HEADER_HEIGHT_PX - FOOTER_HEIGHT_PX - 20;
+
+    const headerHtml = originalDoc.querySelector('.running-header').outerHTML;
+    const footerHtml = originalDoc.querySelector('.running-footer').outerHTML;
+    
+    originalDoc.classList.add('original-content');
+    originalDoc.style.display = 'none';
+
+    const mainBody = document.body;
+
+    function createNewPage(pageNum) {
+        const page = document.createElement('div');
+        page.className = 'sds-document js-page';
+        let newHeader = headerHtml.replace('<span class="page-number-counter">1</span>', `<span class="page-number-counter">${pageNum}</span>`);
+        page.innerHTML = newHeader + '<div class="content js-content"></div>' + footerHtml;
+        mainBody.appendChild(page);
+        return page.querySelector('.js-content');
+    }
+
+    let currentPageNum = 1;
+    let currentContentBox = createNewPage(currentPageNum);
+
+    function appendWithPagination(node, parentBox) {
+        parentBox.appendChild(node);
+        if (currentContentBox.scrollHeight > MAX_CONTENT_HEIGHT) {
+            parentBox.removeChild(node);
+            
+            if (node.nodeType === 1 && (node.classList.contains('section') || node.classList.contains('sec-body'))) {
+                const clonedContainer = node.cloneNode(false);
+                parentBox.appendChild(clonedContainer);
+                Array.from(node.childNodes).forEach(child => appendWithPagination(child, clonedContainer));
+            } else {
+                currentPageNum++;
+                currentContentBox = createNewPage(currentPageNum);
+                
+                let targetBox = currentContentBox;
+                if (parentBox.classList.contains('sec-body')) {
+                    const newSection = document.createElement('div');
+                    newSection.className = 'section';
+                    const newSecBody = document.createElement('div');
+                    newSecBody.className = 'sec-body';
+                    newSection.appendChild(newSecBody);
+                    currentContentBox.appendChild(newSection);
+                    targetBox = newSecBody;
+                } else if (parentBox.classList.contains('section')) {
+                    const newSection = document.createElement('div');
+                    newSection.className = 'section';
+                    currentContentBox.appendChild(newSection);
+                    targetBox = newSection;
+                }
+                
+                targetBox.appendChild(node.cloneNode(true));
+            }
+        }
+    }
+
+    Array.from(originalDoc.childNodes).filter(node => 
+        node.nodeType === 1 && !node.classList.contains('running-header') && !node.classList.contains('running-footer')
+    ).forEach(node => appendWithPagination(node.cloneNode(true), currentContentBox));
+});
+</script>
+</body>
+</html>

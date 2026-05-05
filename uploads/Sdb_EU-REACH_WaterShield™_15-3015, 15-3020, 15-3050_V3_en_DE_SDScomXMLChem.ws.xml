@@ -1,0 +1,1386 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:DatasheetFeed xmlns:ns2="http://www.esdscom.eu/SDScom">
+    <Datasheet>
+        <InformationFromExportingSystem>
+            <XmlStandardVersionNo>4.4.0</XmlStandardVersionNo>
+            <PhraseCatalogue PhraseCatalogueId="0">
+                <PhraseCatalogueName>EuPhraC</PhraseCatalogueName>
+                <PhraseCatalogueIssuer>Qualisys</PhraseCatalogueIssuer>
+                <PhraseCatalogueVersion>5.6</PhraseCatalogueVersion>
+                <PhraseCatalogueDate>2024-11-18</PhraseCatalogueDate>
+            </PhraseCatalogue>
+            <Language>
+                <FreetextLanguageCode>en</FreetextLanguageCode>
+            </Language>
+            <RegulationsRelatedToCountryOrRegion>
+                <RegulationsRelatedToCountryOrRegionCode>DE</RegulationsRelatedToCountryOrRegionCode>
+            </RegulationsRelatedToCountryOrRegion>
+            <SystemUsedInPreparation>GeSi³ 12.2.0 www.gesi3.de</SystemUsedInPreparation>
+            <DateGeneratedExport>2026-03-12</DateGeneratedExport>
+            <XMLStandardSubset>EDASXChem</XMLStandardSubset>
+        </InformationFromExportingSystem>
+        <IdentificationSubstPrep>
+            <IssueDate>2021-12-13</IssueDate>
+            <RevisionDate>2024-01-10</RevisionDate>
+            <VersionNo>3</VersionNo>
+            <ItemNo>15-3015, 15-3020, 15-3050</ItemNo>
+            <ProductNo>
+                <UserId>GeSi-UID</UserId>
+                <ProductNoUser>7560f37b-1ed4-4437-b164-27a5602ba179</ProductNoUser>
+            </ProductNo>
+            <ProductNo>
+                <UserId>GefKommBau_ProduktStammID</UserId>
+                <ProductNoUser>7560f37b-1ed4-4437-b164-27a5602ba179</ProductNoUser>
+            </ProductNo>
+            <ProductIdentity>
+                <TradeName>WaterShield™</TradeName>
+                <IdentificationComments PhraseId="22dbf083-2b19-49a3-ac4c-0c8076f85371" PhraseCatalogueId="0">
+                    <FullText>BAuA Reg. No.: N-67601</FullText>
+                </IdentificationComments>
+                <IdentificationComments PhraseId="11126105401" PhraseCatalogueId="0">
+                    <FullText>Voluntary product information following the Safety Data Sheet format</FullText>
+                </IdentificationComments>
+                <IdentificationComments PhraseCatalogueId="0">
+                    <FullText>.</FullText>
+                </IdentificationComments>
+            </ProductIdentity>
+            <RelevantIdentifiedUse>
+                <IdentifiedUse>
+                    <SectorOfUse>
+                        <SuCode>SU24</SuCode>
+                        <SuFulltext PhraseId="10088214000" PhraseCatalogueId="0">
+                            <FullText>Scientific research and development</FullText>
+                        </SuFulltext>
+                    </SectorOfUse>
+                    <ProductCategory>
+                        <PcCode>PC8</PcCode>
+                        <PcFulltext PhraseId="9218173607" PhraseCatalogueId="0">
+                            <FullText>Biocidal product</FullText>
+                        </PcFulltext>
+                    </ProductCategory>
+                    <ProductCategory>
+                        <PcCode>PC37</PcCode>
+                        <PcFulltext PhraseId="9218173636" PhraseCatalogueId="0">
+                            <FullText>Water treatment chemicals</FullText>
+                        </PcFulltext>
+                    </ProductCategory>
+                </IdentifiedUse>
+                <ProductType PhraseId="9215141101" PhraseCatalogueId="0">
+                    <FullText>The product is intended for research, analysis and scientific education.</FullText>
+                </ProductType>
+            </RelevantIdentifiedUse>
+            <UseAdvisedAgainst>
+                <NotToBeUsedIn/>
+            </UseAdvisedAgainst>
+            <SupplierInformation>
+                <Role/>
+                <Country>DE</Country>
+                <Name>Minerva Biolabs GmbH</Name>
+                <Address>
+                    <PostAddressLine1></PostAddressLine1>
+                    <PostAddressLine2>Schkopauer Ring 13</PostAddressLine2>
+                    <PostCode>12681</PostCode>
+                    <PostCity>Berlin</PostCity>
+                </Address>
+                <Phone>+49 30 2000437 0</Phone>
+                <Fax></Fax>
+                <Email>ehs@minerva-biolabs.com</Email>
+                <CompanyUrl>www.minerva-biolabs.com</CompanyUrl>
+            </SupplierInformation>
+            <EmergencyPhone>
+                <No>+49 761 19240</No>
+                <EmergencyPhoneDescription PhraseCatalogueId="0">
+                    <FullText>24h</FullText>
+                </EmergencyPhoneDescription>
+            </EmergencyPhone>
+            <EmergencyPhone>
+                <No>+49 761 19240</No>
+                <EmergencyPhoneDescription PhraseCatalogueId="0">
+                    <FullText>24h</FullText>
+                </EmergencyPhoneDescription>
+            </EmergencyPhone>
+            <InternalSdsId>7560f37b-1ed4-4437-b164-27a5602ba179</InternalSdsId>
+        </IdentificationSubstPrep>
+        <HazardIdentification>
+            <Classification>
+                <ClpClassification/>
+            </Classification>
+            <HazardLabelling>
+                <ClpLabellingInfo/>
+            </HazardLabelling>
+            <OtherHazardsInfo/>
+        </HazardIdentification>
+        <Composition>
+            <CompositionType>Mixture</CompositionType>
+            <Component ComponentId="1">
+                <Substance>
+                    <GenericName>2-(2-Butoxyethoxy)ethanol (vgl. Butyldiglykol)</GenericName>
+                    <CasNo>112-34-5</CasNo>
+                    <EcNo>203-961-6</EcNo>
+                </Substance>
+                <Classification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Eye Irrit. 2</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="9269125137" PhraseCatalogueId="0">
+                            <PhraseCode>319</PhraseCode>
+                            <FullText>Causes serious eye irritation.</FullText>
+                        </ClpHazardStatement>
+                    </ClpHazardClassification>
+                </Classification>
+                <Concentration UnitId="9269144149" UnitSetId="1003">
+                    <UpperValueSymbol>lt</UpperValueSymbol>
+                    <UpperValue>0.21</UpperValue>
+                    <LowerValue>0.0</LowerValue>
+                    <Unit>Weight-%</Unit>
+                </Concentration>
+                <ToxicologicalInformation>
+                    <AcuteToxicity>
+                        <TestResults>
+                            <EffectTested>LD50</EffectTested>
+                            <ExposureRoute>Oral</ExposureRoute>
+                            <Value UnitId="9269144160" UnitSetId="1003">
+                                <ExactValue>3305.0</ExactValue>
+                                <Unit>mg/kg</Unit>
+                            </Value>
+                        </TestResults>
+                        <TestResults>
+                            <EffectTested>LD50</EffectTested>
+                            <ExposureRoute>Dermal</ExposureRoute>
+                            <Value UnitId="9269144160" UnitSetId="1003">
+                                <ExactValue>2764.0</ExactValue>
+                                <Unit>mg/kg</Unit>
+                            </Value>
+                            <Species>
+                                <Value PhraseCatalogueId="0">
+                                    <FullText>rabbit</FullText>
+                                </Value>
+                            </Species>
+                        </TestResults>
+                    </AcuteToxicity>
+                </ToxicologicalInformation>
+                <EcologicalInformation>
+                    <EcotoxicologicalInformation>
+                        <AquaticToxicity>
+                            <AcuteFishToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>1300.0</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>LC50</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Lepomis macrochirus</FullText>
+                                </Species>
+                                <Method PhraseCatalogueId="0">
+                                    <FullText>OECD Guideline 203 (Fish, Acute Toxicity Test)</FullText>
+                                </Method>
+                            </AcuteFishToxicity>
+                            <AcuteInvertebrateToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <LowerValueSymbol>gt</LowerValueSymbol>
+                                    <LowerValue>100.0</LowerValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>EC50</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Daphnia magna</FullText>
+                                </Species>
+                                <Method PhraseCatalogueId="0">
+                                    <FullText>EU Method C.2 (Acute Toxicity for Daphnia)</FullText>
+                                </Method>
+                            </AcuteInvertebrateToxicity>
+                            <AcuteInvertebrateToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <LowerValueSymbol>ge</LowerValueSymbol>
+                                    <LowerValue>100.0</LowerValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>NOEC</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Daphnia magna</FullText>
+                                </Species>
+                                <Method PhraseCatalogueId="0">
+                                    <FullText>EU Method C.2 (Acute Toxicity for Daphnia)</FullText>
+                                </Method>
+                            </AcuteInvertebrateToxicity>
+                            <ChronicAlgaeToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>1101.0</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>EC50</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Raphidocelis subcapitata (previous names: Pseudokirchneriella subcapitata, Selenastrum capricornutum)</FullText>
+                                </Species>
+                                <Method PhraseCatalogueId="0">
+                                    <FullText>OECD Guideline 201 (Alga, Growth Inhibition Test)</FullText>
+                                </Method>
+                            </ChronicAlgaeToxicity>
+                            <ChronicAlgaeToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <LowerValueSymbol>gt</LowerValueSymbol>
+                                    <LowerValue>100.0</LowerValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>EC50</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Desmodesmus subspicatus (previous name: Scenedesmus subspicatus)</FullText>
+                                </Species>
+                                <Method PhraseCatalogueId="0">
+                                    <FullText>OECD Guideline 201 (Alga, Growth Inhibition Test)</FullText>
+                                </Method>
+                            </ChronicAlgaeToxicity>
+                            <ChronicAlgaeToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <LowerValueSymbol>ge</LowerValueSymbol>
+                                    <LowerValue>100.0</LowerValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>NOEC</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Desmodesmus subspicatus (previous name: Scenedesmus subspicatus)</FullText>
+                                </Species>
+                                <Method PhraseCatalogueId="0">
+                                    <FullText>OECD Guideline 201 (Alga, Growth Inhibition Test)</FullText>
+                                </Method>
+                            </ChronicAlgaeToxicity>
+                        </AquaticToxicity>
+                    </EcotoxicologicalInformation>
+                    <Bioaccumulation>
+                        <BioconcentrationFactor>
+                            <Value>
+                                <ExactValue>100.0</ExactValue>
+                            </Value>
+                        </BioconcentrationFactor>
+                    </Bioaccumulation>
+                </EcologicalInformation>
+            </Component>
+            <Component ComponentId="2">
+                <Substance>
+                    <GenericName>N-(3-Aminopropyl)-N-dodecylpropan-1,3-diamin</GenericName>
+                    <CasNo>2372-82-9</CasNo>
+                    <EcNo>219-145-8</EcNo>
+                    <ReachRegistration>
+                        <RegistrationNumber>01-2119980592-29</RegistrationNumber>
+                    </ReachRegistration>
+                </Substance>
+                <Classification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Acute Tox. 3</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="9269125013" PhraseCatalogueId="0">
+                            <PhraseCode>301</PhraseCode>
+                            <FullText>Toxic if swallowed.</FullText>
+                        </ClpHazardStatement>
+                    </ClpHazardClassification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Skin Corr. 1B</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="16181151800" PhraseCatalogueId="0">
+                            <PhraseCode>314</PhraseCode>
+                            <FullText>Causes severe skin burns and eye damage.</FullText>
+                        </ClpHazardStatement>
+                    </ClpHazardClassification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>STOT RE 2</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="10029213500" PhraseCatalogueId="0">
+                            <PhraseCode>373</PhraseCode>
+                            <FullText>May cause damage to organs through prolonged or repeated exposure. (...)</FullText>
+                        </ClpHazardStatement>
+                    </ClpHazardClassification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Aquatic Acute 1</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="9278174515" PhraseCatalogueId="0">
+                            <PhraseCode>400</PhraseCode>
+                            <FullText>Very toxic to aquatic life.</FullText>
+                        </ClpHazardStatement>
+                        <MultiplyingFactor>10</MultiplyingFactor>
+                    </ClpHazardClassification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Aquatic Chronic 1</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="10060180905" PhraseCatalogueId="0">
+                            <PhraseCode>410</PhraseCode>
+                            <FullText>Very toxic to aquatic life with long lasting effects.</FullText>
+                        </ClpHazardStatement>
+                        <MultiplyingFactor>10</MultiplyingFactor>
+                    </ClpHazardClassification>
+                </Classification>
+                <Concentration UnitId="9269144149" UnitSetId="1003">
+                    <UpperValueSymbol>lt</UpperValueSymbol>
+                    <UpperValue>0.1</UpperValue>
+                    <LowerValue>0.0</LowerValue>
+                    <Unit>Weight-%</Unit>
+                </Concentration>
+                <ToxicologicalInformation>
+                    <AcuteToxicity>
+                        <TestResults>
+                            <EffectTested>LD50</EffectTested>
+                            <ExposureRoute>Oral</ExposureRoute>
+                            <Method PhraseCatalogueId="0">
+                                <FullText>OECD 401</FullText>
+                            </Method>
+                            <Value UnitId="9269144160" UnitSetId="1003">
+                                <ExactValue>261.0</ExactValue>
+                                <Unit>mg/kg</Unit>
+                            </Value>
+                        </TestResults>
+                        <TestResults>
+                            <EffectTested>LD50</EffectTested>
+                            <ExposureRoute>Dermal</ExposureRoute>
+                            <Method PhraseCatalogueId="0">
+                                <FullText>OECD 402</FullText>
+                            </Method>
+                            <Value UnitId="9269144160" UnitSetId="1003">
+                                <LowerValueSymbol>gt</LowerValueSymbol>
+                                <LowerValue>600.0</LowerValue>
+                                <Unit>mg/kg</Unit>
+                            </Value>
+                        </TestResults>
+                    </AcuteToxicity>
+                </ToxicologicalInformation>
+                <EcologicalInformation>
+                    <EcotoxicologicalInformation>
+                        <AquaticToxicity>
+                            <AcuteFishToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.45</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>LC50</EffectDoseConcentration>
+                                <Species PhraseId="9269130416" PhraseCatalogueId="0">
+                                    <FullText>Lepomis macrochirus (Bluegill)</FullText>
+                                </Species>
+                            </AcuteFishToxicity>
+                            <AcuteFishToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.431</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>LC50</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Danio rerio (previous name: Brachydanio rerio)</FullText>
+                                </Species>
+                            </AcuteFishToxicity>
+                            <AcuteFishToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.18</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>NOEC</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Danio rerio (previous name: Brachydanio rerio)</FullText>
+                                </Species>
+                            </AcuteFishToxicity>
+                            <AcuteInvertebrateToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.073</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>EC50</EffectDoseConcentration>
+                                <Species PhraseId="9269130502" PhraseCatalogueId="0">
+                                    <FullText>Daphnia magna (Big water flea)</FullText>
+                                </Species>
+                            </AcuteInvertebrateToxicity>
+                            <AcuteInvertebrateToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.077</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>EC50</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Daphnia magna</FullText>
+                                </Species>
+                            </AcuteInvertebrateToxicity>
+                            <AcuteInvertebrateToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.024</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>NOEC</EffectDoseConcentration>
+                                <Species PhraseId="9269130502" PhraseCatalogueId="0">
+                                    <FullText>Daphnia magna (Big water flea)</FullText>
+                                </Species>
+                            </AcuteInvertebrateToxicity>
+                            <AcuteInvertebrateToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.04</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>NOEC</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Daphnia magna</FullText>
+                                </Species>
+                            </AcuteInvertebrateToxicity>
+                            <AcuteInvertebrateToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.024</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>NOEC</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Daphnia magna</FullText>
+                                </Species>
+                            </AcuteInvertebrateToxicity>
+                            <AcuteInvertebrateToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.066</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>LOEC</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Daphnia magna</FullText>
+                                </Species>
+                            </AcuteInvertebrateToxicity>
+                            <ChronicAlgaeToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.012</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>EC50</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Desmodesmus subspicatus (previous name: Scenedesmus subspicatus)</FullText>
+                                </Species>
+                            </ChronicAlgaeToxicity>
+                            <ChronicAlgaeToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.0096</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>NOEC</EffectDoseConcentration>
+                                <Species PhraseId="9269130600" PhraseCatalogueId="0">
+                                    <FullText>Desmodesmus subspicatus</FullText>
+                                </Species>
+                            </ChronicAlgaeToxicity>
+                            <ChronicAlgaeToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.007</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>NOEC</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Desmodesmus subspicatus (previous name: Scenedesmus subspicatus)</FullText>
+                                </Species>
+                            </ChronicAlgaeToxicity>
+                            <ChronicAlgaeToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.054</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>ERC50</EffectDoseConcentration>
+                                <Species PhraseId="9269130533" PhraseCatalogueId="0">
+                                    <FullText>Pseudokirchneriella subcapitata</FullText>
+                                </Species>
+                            </ChronicAlgaeToxicity>
+                            <ChronicAlgaeToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.015</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>ERC50</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Raphidocelis subcapitata (previous names: Pseudokirchneriella subcapitata, Selenastrum capricornutum)</FullText>
+                                </Species>
+                            </ChronicAlgaeToxicity>
+                            <ChronicAlgaeToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.01</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>LOEC</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Raphidocelis subcapitata (previous names: Pseudokirchneriella subcapitata, Selenastrum capricornutum)</FullText>
+                                </Species>
+                            </ChronicAlgaeToxicity>
+                        </AquaticToxicity>
+                    </EcotoxicologicalInformation>
+                </EcologicalInformation>
+            </Component>
+            <Component ComponentId="3">
+                <Substance>
+                    <GenericName>Didecylmethylammoniumpropionat / Bardap 26</GenericName>
+                    <CasNo>94667-33-1</CasNo>
+                    <EcNo>619-057-3</EcNo>
+                    <ReachRegistration>
+                        <RegistrationNumber>01-2119950327-36</RegistrationNumber>
+                    </ReachRegistration>
+                </Substance>
+                <Classification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Acute Tox. 4</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="9269125014" PhraseCatalogueId="0">
+                            <PhraseCode>302</PhraseCode>
+                            <FullText>Harmful if swallowed.</FullText>
+                        </ClpHazardStatement>
+                    </ClpHazardClassification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Skin Corr. 1B</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="16181151800" PhraseCatalogueId="0">
+                            <PhraseCode>314</PhraseCode>
+                            <FullText>Causes severe skin burns and eye damage.</FullText>
+                        </ClpHazardStatement>
+                    </ClpHazardClassification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Eye Dam. 1</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="16181152200" PhraseCatalogueId="0">
+                            <PhraseCode>318</PhraseCode>
+                            <FullText>Causes serious eye damage.</FullText>
+                        </ClpHazardStatement>
+                    </ClpHazardClassification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Aquatic Acute 1</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="9278174515" PhraseCatalogueId="0">
+                            <PhraseCode>400</PhraseCode>
+                            <FullText>Very toxic to aquatic life.</FullText>
+                        </ClpHazardStatement>
+                        <MultiplyingFactor>10</MultiplyingFactor>
+                    </ClpHazardClassification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Aquatic Chronic 1</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="10060180905" PhraseCatalogueId="0">
+                            <PhraseCode>410</PhraseCode>
+                            <FullText>Very toxic to aquatic life with long lasting effects.</FullText>
+                        </ClpHazardStatement>
+                        <MultiplyingFactor>1</MultiplyingFactor>
+                    </ClpHazardClassification>
+                </Classification>
+                <Concentration UnitId="9269144149" UnitSetId="1003">
+                    <UpperValueSymbol>lt</UpperValueSymbol>
+                    <UpperValue>0.09</UpperValue>
+                    <LowerValue>0.0</LowerValue>
+                    <Unit>Weight-%</Unit>
+                </Concentration>
+                <ToxicologicalInformation>
+                    <AcuteToxicity>
+                        <TestResults>
+                            <EffectTested>LD50</EffectTested>
+                            <ExposureRoute>Oral</ExposureRoute>
+                            <Value UnitId="9269144160" UnitSetId="1003">
+                                <ExactValue>871.0</ExactValue>
+                                <Unit>mg/kg</Unit>
+                            </Value>
+                            <Species>
+                                <Value PhraseId="9269124932" PhraseCatalogueId="0">
+                                    <FullText>Rat</FullText>
+                                </Value>
+                            </Species>
+                        </TestResults>
+                        <TestResults>
+                            <EffectTested>LD50</EffectTested>
+                            <ExposureRoute>Dermal</ExposureRoute>
+                            <Method PhraseId="9269124963" PhraseCatalogueId="0">
+                                <FullText>Regulation (EC) No. 440/2008, Annex B.3</FullText>
+                            </Method>
+                            <Value UnitId="9269144160" UnitSetId="1003">
+                                <LowerValueSymbol>gt</LowerValueSymbol>
+                                <LowerValue>600.0</LowerValue>
+                                <Unit>mg/kg</Unit>
+                            </Value>
+                            <Species>
+                                <Value PhraseId="9269124932" PhraseCatalogueId="0">
+                                    <FullText>Rat</FullText>
+                                </Value>
+                            </Species>
+                        </TestResults>
+                    </AcuteToxicity>
+                </ToxicologicalInformation>
+                <EcologicalInformation>
+                    <EcotoxicologicalInformation>
+                        <AquaticToxicity>
+                            <AcuteFishToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.431</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>LC50</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Brachydanio rerio</FullText>
+                                </Species>
+                            </AcuteFishToxicity>
+                            <AcuteFishToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.52</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>LC50</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Lepomis macrochirus</FullText>
+                                </Species>
+                                <Method PhraseCatalogueId="0">
+                                    <FullText>EPA OPPTS 850.1075 (Freshwater and Saltwater Fish Acute Toxicity Test)</FullText>
+                                </Method>
+                            </AcuteFishToxicity>
+                            <AcuteInvertebrateToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.025</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>EC50</EffectDoseConcentration>
+                                <Species PhraseId="9269130502" PhraseCatalogueId="0">
+                                    <FullText>Daphnia magna (Big water flea)</FullText>
+                                </Species>
+                            </AcuteInvertebrateToxicity>
+                            <AcuteInvertebrateToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.07</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>EC50</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Daphnia magna</FullText>
+                                </Species>
+                            </AcuteInvertebrateToxicity>
+                            <AcuteInvertebrateToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.039</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>NOEC</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Daphnia magna</FullText>
+                                </Species>
+                            </AcuteInvertebrateToxicity>
+                            <AcuteInvertebrateToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.01</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>NOEC</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Daphnia magna</FullText>
+                                </Species>
+                                <Method PhraseCatalogueId="0">
+                                    <FullText>OECD Guideline 211 (Daphnia magna Reproduction Test)</FullText>
+                                </Method>
+                            </AcuteInvertebrateToxicity>
+                            <AcuteInvertebrateToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.018</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>LOEC</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Daphnia magna</FullText>
+                                </Species>
+                                <Method PhraseCatalogueId="0">
+                                    <FullText>OECD Guideline 211 (Daphnia magna Reproduction Test)</FullText>
+                                </Method>
+                            </AcuteInvertebrateToxicity>
+                            <ChronicAlgaeToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.044</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>NOEC</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Desmodesmus subspicatus (previous name: Scenedesmus subspicatus)</FullText>
+                                </Species>
+                            </ChronicAlgaeToxicity>
+                            <ChronicAlgaeToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.01</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>ERC50</EffectDoseConcentration>
+                                <Species PhraseId="9269130533" PhraseCatalogueId="0">
+                                    <FullText>Pseudokirchneriella subcapitata</FullText>
+                                </Species>
+                                <Method PhraseId="9269130603" PhraseCatalogueId="0">
+                                    <FullText>OECD 201</FullText>
+                                </Method>
+                            </ChronicAlgaeToxicity>
+                            <ChronicAlgaeToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.34</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>ERC50</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Desmodesmus subspicatus (previous name: Scenedesmus subspicatus)</FullText>
+                                </Species>
+                            </ChronicAlgaeToxicity>
+                        </AquaticToxicity>
+                    </EcotoxicologicalInformation>
+                    <Bioaccumulation>
+                        <BioconcentrationFactor>
+                            <Value>
+                                <ExactValue>140.0</ExactValue>
+                            </Value>
+                            <Species>
+                                <Value PhraseCatalogueId="0">
+                                    <FullText>Lepomis macrochirus</FullText>
+                                </Value>
+                            </Species>
+                        </BioconcentrationFactor>
+                    </Bioaccumulation>
+                </EcologicalInformation>
+            </Component>
+            <Component ComponentId="4">
+                <Substance>
+                    <GenericName>Piperazin</GenericName>
+                    <CasNo>110-85-0</CasNo>
+                    <EcNo>203-808-3</EcNo>
+                    <ReachRegistration>
+                        <RegistrationNumber>01-2119480384-35</RegistrationNumber>
+                    </ReachRegistration>
+                </Substance>
+                <Classification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Repr. 2</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="9278174471" PhraseCatalogueId="0">
+                            <PhraseCode>361fd</PhraseCode>
+                            <FullText>Suspected of damaging fertility. Suspected of damaging the unborn child. (...)</FullText>
+                        </ClpHazardStatement>
+                    </ClpHazardClassification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Skin Corr. 1B</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="16181151800" PhraseCatalogueId="0">
+                            <PhraseCode>314</PhraseCode>
+                            <FullText>Causes severe skin burns and eye damage.</FullText>
+                        </ClpHazardStatement>
+                    </ClpHazardClassification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Resp. Sens. 1</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="9269125213" PhraseCatalogueId="0">
+                            <PhraseCode>334</PhraseCode>
+                            <FullText>May cause allergy or asthma symptoms or breathing difficulties if inhaled.</FullText>
+                        </ClpHazardStatement>
+                    </ClpHazardClassification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Skin Sens. 1</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="9269125206" PhraseCatalogueId="0">
+                            <PhraseCode>317</PhraseCode>
+                            <FullText>May cause an allergic skin reaction.</FullText>
+                        </ClpHazardStatement>
+                    </ClpHazardClassification>
+                </Classification>
+                <Concentration UnitId="9269144149" UnitSetId="1003">
+                    <UpperValueSymbol>lt</UpperValueSymbol>
+                    <UpperValue>0.05</UpperValue>
+                    <LowerValue>0.0</LowerValue>
+                    <Unit>Weight-%</Unit>
+                </Concentration>
+                <ToxicologicalInformation>
+                    <AcuteToxicity>
+                        <TestResults>
+                            <EffectTested>LD50</EffectTested>
+                            <ExposureRoute>Oral</ExposureRoute>
+                            <Method PhraseId="9269124942" PhraseCatalogueId="0">
+                                <FullText>OECD 401</FullText>
+                            </Method>
+                            <Value UnitId="9269144160" UnitSetId="1003">
+                                <ExactValue>2600.0</ExactValue>
+                                <Unit>mg/kg</Unit>
+                            </Value>
+                            <Species>
+                                <Value PhraseId="9269124932" PhraseCatalogueId="0">
+                                    <FullText>Rat</FullText>
+                                </Value>
+                            </Species>
+                        </TestResults>
+                        <TestResults>
+                            <EffectTested>LD50</EffectTested>
+                            <ExposureRoute>Dermal</ExposureRoute>
+                            <Method PhraseId="9269124962" PhraseCatalogueId="0">
+                                <FullText>OECD 402</FullText>
+                            </Method>
+                            <Value UnitId="9269144160" UnitSetId="1003">
+                                <ExactValue>8300.0</ExactValue>
+                                <Unit>mg/kg</Unit>
+                            </Value>
+                            <Species>
+                                <Value PhraseId="9269124935" PhraseCatalogueId="0">
+                                    <FullText>Rabbit</FullText>
+                                </Value>
+                            </Species>
+                        </TestResults>
+                    </AcuteToxicity>
+                </ToxicologicalInformation>
+                <EcologicalInformation>
+                    <EcotoxicologicalInformation>
+                        <AquaticToxicity>
+                            <AcuteFishToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <LowerValueSymbol>gt</LowerValueSymbol>
+                                    <LowerValue>100.0</LowerValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>LC50</EffectDoseConcentration>
+                                <Species PhraseId="9269130415" PhraseCatalogueId="0">
+                                    <FullText>Oryzias latipes (Ricefish)</FullText>
+                                </Species>
+                                <Method PhraseId="9269130422" PhraseCatalogueId="0">
+                                    <FullText>OECD 203</FullText>
+                                </Method>
+                            </AcuteFishToxicity>
+                            <AcuteFishToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <LowerValueSymbol>gt</LowerValueSymbol>
+                                    <LowerValue>100.0</LowerValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>LC50</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Oryzias latipes</FullText>
+                                </Species>
+                                <Method PhraseCatalogueId="0">
+                                    <FullText>OECD Guideline 203 (Fish, Acute Toxicity Test)</FullText>
+                                </Method>
+                            </AcuteFishToxicity>
+                            <AcuteInvertebrateToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>105.4</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>EC50</EffectDoseConcentration>
+                                <Species PhraseId="9269130502" PhraseCatalogueId="0">
+                                    <FullText>Daphnia magna (Big water flea)</FullText>
+                                </Species>
+                                <Method PhraseId="9269130507" PhraseCatalogueId="0">
+                                    <FullText>OECD 202</FullText>
+                                </Method>
+                            </AcuteInvertebrateToxicity>
+                            <AcuteInvertebrateToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>105.4</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>EC50</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Daphnia magna</FullText>
+                                </Species>
+                                <Method PhraseCatalogueId="0">
+                                    <FullText>OECD Guideline 202 (Daphnia sp. Acute Immobilisation Test)</FullText>
+                                </Method>
+                            </AcuteInvertebrateToxicity>
+                            <AcuteInvertebrateToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>21.0</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>NOEC</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Daphnia magna</FullText>
+                                </Species>
+                                <Method PhraseCatalogueId="0">
+                                    <FullText>OECD Guideline 202 (Daphnia sp. Acute Immobilisation Test)</FullText>
+                                </Method>
+                            </AcuteInvertebrateToxicity>
+                            <AcuteInvertebrateToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>12.5</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>NOEC</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Daphnia magna</FullText>
+                                </Species>
+                                <Method PhraseCatalogueId="0">
+                                    <FullText>OECD Guideline 211 (Daphnia magna Reproduction Test)</FullText>
+                                </Method>
+                            </AcuteInvertebrateToxicity>
+                            <ChronicAlgaeToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>153.1</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>EC50</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Raphidocelis subcapitata (previous names: Pseudokirchneriella subcapitata, Selenastrum capricornutum)</FullText>
+                                </Species>
+                                <Method PhraseCatalogueId="0">
+                                    <FullText>OECD Guideline 201 (Alga, Growth Inhibition Test)</FullText>
+                                </Method>
+                            </ChronicAlgaeToxicity>
+                            <ChronicAlgaeToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>109.3</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>NOEC</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Raphidocelis subcapitata (previous names: Pseudokirchneriella subcapitata, Selenastrum capricornutum)</FullText>
+                                </Species>
+                                <Method PhraseCatalogueId="0">
+                                    <FullText>OECD Guideline 201 (Alga, Growth Inhibition Test)</FullText>
+                                </Method>
+                            </ChronicAlgaeToxicity>
+                            <ChronicAlgaeToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>153.1</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>ERC50</EffectDoseConcentration>
+                                <Species PhraseId="9269130533" PhraseCatalogueId="0">
+                                    <FullText>Pseudokirchneriella subcapitata</FullText>
+                                </Species>
+                                <Method PhraseId="9269130603" PhraseCatalogueId="0">
+                                    <FullText>OECD 201</FullText>
+                                </Method>
+                            </ChronicAlgaeToxicity>
+                        </AquaticToxicity>
+                    </EcotoxicologicalInformation>
+                    <Bioaccumulation>
+                        <BioconcentrationFactor>
+                            <Value>
+                                <ExactValue>0.3</ExactValue>
+                            </Value>
+                            <Species>
+                                <Value PhraseId="9269130414" PhraseCatalogueId="0">
+                                    <FullText>Cyprinus carpio (Common Carp)</FullText>
+                                </Value>
+                            </Species>
+                        </BioconcentrationFactor>
+                    </Bioaccumulation>
+                </EcologicalInformation>
+            </Component>
+        </Composition>
+        <FirstAidMeasures>
+            <DescriptionOfFirstAidMeasures>
+                <GeneralInformation PhraseId="9267225017" PhraseCatalogueId="0">
+                    <FullText>In case of accident or unwellness, seek medical advice immediately (show directions for use or safety data sheet if possible).</FullText>
+                </GeneralInformation>
+                <GeneralInformation PhraseId="9267225015" PhraseCatalogueId="0">
+                    <FullText>Remove victim out of the danger area.</FullText>
+                </GeneralInformation>
+                <GeneralInformation PhraseId="9267225019" PhraseCatalogueId="0">
+                    <FullText>Remove contaminated, saturated clothing immediately.</FullText>
+                </GeneralInformation>
+                <GeneralInformation PhraseId="9267225027" PhraseCatalogueId="0">
+                    <FullText>If unconscious but breathing normally, place in recovery position and seek medical advice.</FullText>
+                </GeneralInformation>
+                <GeneralInformation PhraseId="9267225014" PhraseCatalogueId="0">
+                    <FullText>Do not leave affected person unattended.</FullText>
+                </GeneralInformation>
+                <GeneralInformation PhraseId="9267233956" PhraseCatalogueId="0">
+                    <FullText>Remove contaminated, saturated clothing.</FullText>
+                </GeneralInformation>
+                <FirstAidInhalation PhraseId="9267225039" PhraseCatalogueId="0">
+                    <FullText>Provide fresh air.</FullText>
+                </FirstAidInhalation>
+                <FirstAidSkin PhraseId="18133111300" PhraseCatalogueId="0">
+                    <FullText>Rinse skin with water.</FullText>
+                </FirstAidSkin>
+                <FirstAidEye PhraseId="9267225108" PhraseCatalogueId="0">
+                    <FullText>Rinse immediately carefully and thoroughly with eye-bath or water.</FullText>
+                </FirstAidEye>
+                <FirstAidIngestion PhraseId="9294221819" PhraseCatalogueId="0">
+                    <FullText>Rinse mouth.</FullText>
+                </FirstAidIngestion>
+                <FirstAidIngestion PhraseId="9294221814" PhraseCatalogueId="0">
+                    <FullText>Get medical advice/attention if you feel unwell.</FullText>
+                </FirstAidIngestion>
+                <FirstAidIngestion PhraseId="18109165300" PhraseCatalogueId="0">
+                    <FullText>Let 1 glass of water be drunken in little sips (dilution effect).</FullText>
+                </FirstAidIngestion>
+            </DescriptionOfFirstAidMeasures>
+            <InformationToHealthProfessionals>
+                <SymptomsAndEffectsGeneral PhraseId="9267225209" PhraseCatalogueId="0">
+                    <FullText>No known symptoms to date.</FullText>
+                </SymptomsAndEffectsGeneral>
+            </InformationToHealthProfessionals>
+            <MedicalAttentionAndSpecialTreatmentNeeded>
+                <MedicalTreatment PhraseId="9267225328" PhraseCatalogueId="0">
+                    <FullText>Treat symptomatically.</FullText>
+                </MedicalTreatment>
+            </MedicalAttentionAndSpecialTreatmentNeeded>
+        </FirstAidMeasures>
+        <FireFightingMeasures>
+            <ExtinguishingMedia>
+                <MediaToBeUsed PhraseCatalogueId="0">
+                    <FullText>,.</FullText>
+                </MediaToBeUsed>
+                <MediaToBeUsed PhraseId="9267225778" PhraseCatalogueId="0">
+                    <FullText>Co-ordinate fire-fighting measures to the fire surroundings.</FullText>
+                </MediaToBeUsed>
+            </ExtinguishingMedia>
+            <FireAndExplosionHazards PhraseId="9267225777" PhraseCatalogueId="0">
+                <FullText>The product itself does not burn.</FullText>
+            </FireAndExplosionHazards>
+            <HazardCombustionProd PhraseId="9267225735" PhraseCatalogueId="0">
+                <FullText>Carbon monoxide</FullText>
+            </HazardCombustionProd>
+            <HazardCombustionProd PhraseCatalogueId="0">
+                <FullText>,</FullText>
+            </HazardCombustionProd>
+            <HazardCombustionProd PhraseId="9267225712" PhraseCatalogueId="0">
+                <FullText>Carbon dioxide (CO2)</FullText>
+            </HazardCombustionProd>
+            <HazardCombustionProd PhraseCatalogueId="0">
+                <FullText>.</FullText>
+            </HazardCombustionProd>
+            <HazardCombustionProd PhraseId="9294221839" PhraseCatalogueId="0">
+                <FullText>In case of fire:</FullText>
+            </HazardCombustionProd>
+            <HazardCombustionProd PhraseId="9269123102" PhraseCatalogueId="0">
+                <FullText>Gases/vapours, toxic</FullText>
+            </HazardCombustionProd>
+            <SpecialProtectiveEquipmentForFirefighters PhraseId="9267225765" PhraseCatalogueId="0">
+                <FullText>In case of fire: Wear self-contained breathing apparatus.</FullText>
+            </SpecialProtectiveEquipmentForFirefighters>
+            <SpecialProtectiveEquipmentForFirefighters PhraseId="9267225766" PhraseCatalogueId="0">
+                <FullText>Wear a self-contained breathing apparatus and chemical protective clothing.</FullText>
+            </SpecialProtectiveEquipmentForFirefighters>
+            <FireAndExplosionComments PhraseId="9267225777" PhraseCatalogueId="0">
+                <FullText>The product itself does not burn.</FullText>
+            </FireAndExplosionComments>
+            <FireAndExplosionComments PhraseId="9267225774" PhraseCatalogueId="0">
+                <FullText>Collect contaminated fire extinguishing water separately. Do not allow entering drains or surface water.</FullText>
+            </FireAndExplosionComments>
+        </FireFightingMeasures>
+        <AccidentalReleaseMeasures>
+            <ForNonEmergencyPersonnel>
+                <PersonalPrecautions PhraseId="9267230008" PhraseCatalogueId="0">
+                    <FullText>Remove persons to safety.</FullText>
+                </PersonalPrecautions>
+                <PersonalPrecautions PhraseId="9294221525" PhraseCatalogueId="0">
+                    <FullText>Avoid breathing dust/fume/gas/mist/vapours/spray.</FullText>
+                </PersonalPrecautions>
+                <ProtectiveEquipment PhraseId="9294221608" PhraseCatalogueId="0">
+                    <FullText>Wear protective gloves/protective clothing and eye protection/face protection.</FullText>
+                </ProtectiveEquipment>
+                <ProtectiveEquipment PhraseId="9294221604" PhraseCatalogueId="0">
+                    <FullText>Wear protective gloves/protective clothing/eye protection/face protection.</FullText>
+                </ProtectiveEquipment>
+            </ForNonEmergencyPersonnel>
+            <ForEmergencyResponders PhraseId="10337143200" PhraseCatalogueId="0">
+                <FullText>Personal protection equipment: see section 8</FullText>
+            </ForEmergencyResponders>
+            <EnvironmentalPrecautions PhraseId="9267230017" PhraseCatalogueId="0">
+                <FullText>Do not allow to enter into surface water or drains.</FullText>
+            </EnvironmentalPrecautions>
+            <ContainmentAndCleaningUp>
+                <Containment PhraseId="9267230065" PhraseCatalogueId="0">
+                    <FullText>Absorb with liquid-binding material (sand, diatomaceous earth, acid- or universal binding agents).</FullText>
+                </Containment>
+                <CleaningUp PhraseId="9267230049" PhraseCatalogueId="0">
+                    <FullText>Water (with cleaning agent)</FullText>
+                </CleaningUp>
+            </ContainmentAndCleaningUp>
+            <ReferenceToOtherSections PhraseId="10337142900" PhraseCatalogueId="0">
+                <FullText>Safe handling: see section 7</FullText>
+            </ReferenceToOtherSections>
+            <ReferenceToOtherSections PhraseCatalogueId="0">
+                <FullText>,</FullText>
+            </ReferenceToOtherSections>
+            <ReferenceToOtherSections PhraseId="10337143200" PhraseCatalogueId="0">
+                <FullText>Personal protection equipment: see section 8</FullText>
+            </ReferenceToOtherSections>
+            <ReferenceToOtherSections PhraseCatalogueId="0">
+                <FullText>,</FullText>
+            </ReferenceToOtherSections>
+            <ReferenceToOtherSections PhraseId="10337143100" PhraseCatalogueId="0">
+                <FullText>Disposal: see section 13</FullText>
+            </ReferenceToOtherSections>
+            <AdditionalInformation PhraseId="9294233717" PhraseCatalogueId="0">
+                <FullText>Use appropriate container to avoid environmental contamination.</FullText>
+            </AdditionalInformation>
+        </AccidentalReleaseMeasures>
+        <HandlingAndStorage>
+            <SafeHandling>
+                <HandlingPrecautions PhraseId="9267230260" PhraseCatalogueId="0">
+                    <FullText>Wear personal protection equipment (refer to section 8).</FullText>
+                </HandlingPrecautions>
+                <PrecautionaryMeasures>
+                    <MeasuresToPreventFire PhraseId="9267230529" PhraseCatalogueId="0">
+                        <FullText>Usual measures for fire prevention.</FullText>
+                    </MeasuresToPreventFire>
+                    <MeasuresToPreventFire PhraseId="9267225040" PhraseCatalogueId="0">
+                        <FullText>No special measures are necessary.</FullText>
+                    </MeasuresToPreventFire>
+                </PrecautionaryMeasures>
+                <GeneralOccupationalHygiene PhraseId="9267230532" PhraseCatalogueId="0">
+                    <FullText>When using do not eat, drink, smoke, sniff.</FullText>
+                </GeneralOccupationalHygiene>
+                <GeneralOccupationalHygiene PhraseId="9313214646" PhraseCatalogueId="0">
+                    <FullText>Avoid contact with skin, eyes and clothes.</FullText>
+                </GeneralOccupationalHygiene>
+            </SafeHandling>
+            <ConditionsForSafeStorage>
+                <TechnicalMeasuresAndStorageConditions PhraseId="9267230724" PhraseCatalogueId="0">
+                    <FullText>Keep container tightly closed in a cool, well-ventilated place.</FullText>
+                </TechnicalMeasuresAndStorageConditions>
+                <HintsOnStorageAssembly PhraseId="9267230627" PhraseCatalogueId="0">
+                    <FullText>Do not store together with:</FullText>
+                </HintsOnStorageAssembly>
+                <HintsOnStorageAssembly PhraseId="16173221316" PhraseCatalogueId="0">
+                    <FullText>Oxidizing agent</FullText>
+                </HintsOnStorageAssembly>
+            </ConditionsForSafeStorage>
+            <SpecificEndUses/>
+        </HandlingAndStorage>
+        <ExposureControlPersonalProtection>
+            <ControlParameters/>
+            <PersonalProtectionEquipment>
+                <RespiratoryProtection/>
+                <EyeProtection>
+                    <SuitableEyeProtection PhraseId="9267233850" PhraseCatalogueId="0">
+                        <FullText>Eye glasses with side protection</FullText>
+                    </SuitableEyeProtection>
+                    <SuitableEyeProtection PhraseCatalogueId="0">
+                        <FullText>(</FullText>
+                    </SuitableEyeProtection>
+                    <SuitableEyeProtection PhraseId="9267233859" PhraseCatalogueId="0">
+                        <FullText>EN 166</FullText>
+                    </SuitableEyeProtection>
+                    <SuitableEyeProtection PhraseCatalogueId="0">
+                        <FullText>).</FullText>
+                    </SuitableEyeProtection>
+                </EyeProtection>
+                <SkinProtection>
+                    <SuitableProtectiveClothing PhraseId="9267233788" PhraseCatalogueId="0">
+                        <FullText>Tested protective gloves must be worn</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseCatalogueId="0">
+                        <FullText>(</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9267233832" PhraseCatalogueId="0">
+                        <FullText>EN ISO 374</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseCatalogueId="0">
+                        <FullText>).</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9267233841" PhraseCatalogueId="0">
+                        <FullText>In the case of wanting to use the gloves again, clean them before taking off and air them well.</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9267233837" PhraseCatalogueId="0">
+                        <FullText>Breakthrough times and swelling properties of the material must be taken into consideration.</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9267233801" PhraseCatalogueId="0">
+                        <FullText>Suitable material:</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9267233808" PhraseCatalogueId="0">
+                        <FullText>NBR (Nitrile rubber)</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseCatalogueId="0">
+                        <FullText>,</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9267233824" PhraseCatalogueId="0">
+                        <FullText>Thickness of the glove material</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseCatalogueId="0">
+                        <FullText>: &gt; 0,48 mm.</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9267233823" PhraseCatalogueId="0">
+                        <FullText>Breakthrough time:</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9269144260" PhraseCatalogueId="0">
+                        <FullText>min</FullText>
+                    </SuitableProtectiveClothing>
+                </SkinProtection>
+            </PersonalProtectionEquipment>
+            <EnvironmentalExposureControls>
+                <AppropriateEnvionmentalExposureControl/>
+            </EnvironmentalExposureControls>
+        </ExposureControlPersonalProtection>
+        <PhysicalChemicalProperties>
+            <Appearance>
+                <Form>other</Form>
+                <Colour>blue</Colour>
+                <ColourIntensity>dark</ColourIntensity>
+                <Odour PhraseId="9269144392" PhraseCatalogueId="0">
+                    <FullText>not determined</FullText>
+                </Odour>
+            </Appearance>
+            <SafetyRelevantInformation>
+                <MeltingPointRelated/>
+                <BoilingPointRelated>
+                    <BoilingPoint>
+                        <UnitValue UnitId="9269144108" UnitSetId="1001">
+                            <LowerValueSymbol>gt</LowerValueSymbol>
+                            <LowerValue>100.0</LowerValue>
+                            <Unit>C</Unit>
+                        </UnitValue>
+                    </BoilingPoint>
+                </BoilingPointRelated>
+                <Flammability PhraseCatalogueId="0">
+                    <FullText>nicht brennbar</FullText>
+                </Flammability>
+                <Densities>
+                    <Density>
+                        <UnitValue UnitId="9269144130" UnitSetId="1003">
+                            <LowerValueSymbol>ca</LowerValueSymbol>
+                            <LowerValue>1.0</LowerValue>
+                            <Unit>g/cm3</Unit>
+                        </UnitValue>
+                        <Temperature UnitId="9269144108" UnitSetId="1001">
+                            <ExactValue>20.0</ExactValue>
+                            <Unit>C</Unit>
+                        </Temperature>
+                    </Density>
+                </Densities>
+                <Solubilities>
+                    <Solubility>
+                        <Medium>Water</Medium>
+                        <OtherMediumDescription PhraseId="9268175345" PhraseCatalogueId="0">
+                            <FullText>miscible</FullText>
+                        </OtherMediumDescription>
+                        <Value/>
+                    </Solubility>
+                </Solubilities>
+            </SafetyRelevantInformation>
+        </PhysicalChemicalProperties>
+        <StabilityReactivity>
+            <ReactivityDescription PhraseId="12083142700" PhraseCatalogueId="0">
+                <FullText>The product is stable under storage at normal ambient temperatures.</FullText>
+            </ReactivityDescription>
+            <ReactivityDescription PhraseId="9267225777" PhraseCatalogueId="0">
+                <FullText>The product itself does not burn.</FullText>
+            </ReactivityDescription>
+            <ReactivityDescription PhraseId="9269144400" PhraseCatalogueId="0">
+                <FullText>not relevant</FullText>
+            </ReactivityDescription>
+            <StabilityDescription PhraseId="13063145300" PhraseCatalogueId="0">
+                <FullText>The product is chemically stable under recommended conditions of storage, use and temperature.</FullText>
+            </StabilityDescription>
+            <HazardousReactions PhraseId="12083143000" PhraseCatalogueId="0">
+                <FullText>No hazardous reaction when handled and stored according to provisions.</FullText>
+            </HazardousReactions>
+            <ConditionsToAvoid PhraseId="17303170000" PhraseCatalogueId="0">
+                <FullText>Further information on proper storage: see section 7.</FullText>
+            </ConditionsToAvoid>
+            <MaterialsToAvoid PhraseId="17303171700" PhraseCatalogueId="0">
+                <FullText>No further relevant information available.</FullText>
+            </MaterialsToAvoid>
+            <HazardousDecompositionProducts PhraseId="12083144100" PhraseCatalogueId="0">
+                <FullText>No known hazardous decomposition products.</FullText>
+            </HazardousDecompositionProducts>
+            <HazardousDecompositionProducts PhraseId="9294221839" PhraseCatalogueId="0">
+                <FullText>In case of fire:</FullText>
+            </HazardousDecompositionProducts>
+            <HazardousDecompositionProducts PhraseId="9269123102" PhraseCatalogueId="0">
+                <FullText>Gases/vapours, toxic</FullText>
+            </HazardousDecompositionProducts>
+        </StabilityReactivity>
+        <ToxicologicalInformation>
+            <AcuteToxicity>
+                <AcuteToxicityHumanExperience PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Based on available data, the classification criteria are not met.</FullText>
+                </AcuteToxicityHumanExperience>
+                <AcuteToxicityHumanExperience PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Based on available data, the classification criteria are not met.</FullText>
+                </AcuteToxicityHumanExperience>
+                <AcuteToxicityHumanExperience PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Based on available data, the classification criteria are not met.</FullText>
+                </AcuteToxicityHumanExperience>
+            </AcuteToxicity>
+            <SkinCorrosionIrritation>
+                <Irritation PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Based on available data, the classification criteria are not met.</FullText>
+                </Irritation>
+            </SkinCorrosionIrritation>
+            <EyeDamageOrIrritation>
+                <EyeIrritation PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Based on available data, the classification criteria are not met.</FullText>
+                </EyeIrritation>
+            </EyeDamageOrIrritation>
+            <RespiratoryOrSkinSensitisation>
+                <RespiratoryOrSkinSensitisationOtherInformation>
+                    <RespiratoryOrSkinSensitisationGeneral PhraseId="14115163800" PhraseCatalogueId="0">
+                        <FullText>Based on available data, the classification criteria are not met.</FullText>
+                    </RespiratoryOrSkinSensitisationGeneral>
+                </RespiratoryOrSkinSensitisationOtherInformation>
+            </RespiratoryOrSkinSensitisation>
+            <GermCellMutagenicity>
+                <AssessmentGermCellMutagenicityClassification PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Based on available data, the classification criteria are not met.</FullText>
+                </AssessmentGermCellMutagenicityClassification>
+            </GermCellMutagenicity>
+            <Carcinogenicity>
+                <AssessmentCarcinogenicityClassification PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Based on available data, the classification criteria are not met.</FullText>
+                </AssessmentCarcinogenicityClassification>
+            </Carcinogenicity>
+            <ReproductiveToxicity>
+                <ReproductiveToxicityOtherInfo PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Based on available data, the classification criteria are not met.</FullText>
+                </ReproductiveToxicityOtherInfo>
+            </ReproductiveToxicity>
+            <SpecificTargetOrganSE>
+                <SpecificTargetOrganSEHumanExperience PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Based on available data, the classification criteria are not met.</FullText>
+                </SpecificTargetOrganSEHumanExperience>
+            </SpecificTargetOrganSE>
+            <SpecificTargetOrganRE>
+                <SpecificTargetOrganREHumanExperience PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Based on available data, the classification criteria are not met.</FullText>
+                </SpecificTargetOrganREHumanExperience>
+            </SpecificTargetOrganRE>
+            <AspirationHazard>
+                <AssessmentAspirationHazardClassification PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Based on available data, the classification criteria are not met.</FullText>
+                </AssessmentAspirationHazardClassification>
+            </AspirationHazard>
+        </ToxicologicalInformation>
+        <EcologicalInformation>
+            <EcotoxicologicalInformation>
+                <AquaticToxicity>
+                    <AcuteAlgaeToxicity/>
+                </AquaticToxicity>
+                <SedimentToxicity/>
+                <TerrestrialToxicity>
+                    <AcutePlantToxicity/>
+                </TerrestrialToxicity>
+            </EcotoxicologicalInformation>
+            <PersistenceDegradability>
+                <BiologicalDegradability/>
+                <AbioticDegradationInAir/>
+            </PersistenceDegradability>
+            <Bioaccumulation/>
+            <Mobility/>
+            <AdditionalEcotoxInformation/>
+        </EcologicalInformation>
+        <DisposalConsiderations>
+            <WasteTreatment>
+                <ProductWaste PhraseId="9269140541" PhraseCatalogueId="0">
+                    <FullText>Consult the appropriate local waste disposal expert about waste disposal.</FullText>
+                </ProductWaste>
+                <PackagingWaste PhraseId="9269140554" PhraseCatalogueId="0">
+                    <FullText>Completely emptied packages can be recycled.</FullText>
+                </PackagingWaste>
+            </WasteTreatment>
+            <EuRequirements>
+                <EuropeanWasteList>
+                    <EWLProduct>
+                        <WasteCode>07 01 99</WasteCode>
+                        <WasteDescription PhraseId="16169115400" PhraseCatalogueId="0">
+                            <FullText>wastes not otherwise specified</FullText>
+                        </WasteDescription>
+                        <HazardousWaste>false</HazardousWaste>
+                    </EWLProduct>
+                </EuropeanWasteList>
+                <EuWasteRegulations PhraseId="9313221461" PhraseCatalogueId="0">
+                    <FullText>Dispose of waste according to applicable legislation.</FullText>
+                </EuWasteRegulations>
+            </EuRequirements>
+        </DisposalConsiderations>
+        <TransportInformation>
+            <OtherTransportInformation>
+                <AdrRidOtherInformation/>
+                <AdnOtherInformation/>
+                <ImdgOtherInformation/>
+                <IcaoIataOtherInformation/>
+            </OtherTransportInformation>
+        </TransportInformation>
+        <RegulatoryInfo>
+            <SpecificProvisionsRelatedToProduct>
+                <EuLegislation/>
+            </SpecificProvisionsRelatedToProduct>
+            <NationalLegislation>
+                <NationalLegislationGermany>
+                    <RestrictionsOfOccupation PhraseId="9269141474" PhraseCatalogueId="0">
+                        <FullText>22 JArbSchG.</FullText>
+                    </RestrictionsOfOccupation>
+                    <WaterHazardClass>
+                        <Class>1</Class>
+                    </WaterHazardClass>
+                    <AdditionalInformation PhraseId="14079165300" PhraseCatalogueId="0">
+                        <FullText>Regulation (EU) No. 528/2012 on biocides</FullText>
+                    </AdditionalInformation>
+                    <AdditionalInformation PhraseId="9269141572" PhraseCatalogueId="0">
+                        <FullText>Berufsgenossenschaftliche Vorschriften (DGUV-Vorschriften)</FullText>
+                    </AdditionalInformation>
+                    <StorageClass>LGK 12</StorageClass>
+                    <GisCode>-</GisCode>
+                </NationalLegislationGermany>
+            </NationalLegislation>
+        </RegulatoryInfo>
+        <OtherInformation/>
+    </Datasheet>
+</ns2:DatasheetFeed>

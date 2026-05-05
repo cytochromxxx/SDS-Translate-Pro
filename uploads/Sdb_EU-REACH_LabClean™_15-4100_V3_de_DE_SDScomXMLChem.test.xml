@@ -1,0 +1,1120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:DatasheetFeed xmlns:ns2="http://www.esdscom.eu/SDScom">
+    <Datasheet>
+        <InformationFromExportingSystem>
+            <XmlStandardVersionNo>4.4.0</XmlStandardVersionNo>
+            <PhraseCatalogue PhraseCatalogueId="0">
+                <PhraseCatalogueName>EuPhraC</PhraseCatalogueName>
+                <PhraseCatalogueIssuer>Qualisys</PhraseCatalogueIssuer>
+                <PhraseCatalogueVersion>5.6</PhraseCatalogueVersion>
+                <PhraseCatalogueDate>2024-11-18</PhraseCatalogueDate>
+            </PhraseCatalogue>
+            <Language>
+                <FreetextLanguageCode>de</FreetextLanguageCode>
+            </Language>
+            <RegulationsRelatedToCountryOrRegion>
+                <RegulationsRelatedToCountryOrRegionCode>DE</RegulationsRelatedToCountryOrRegionCode>
+            </RegulationsRelatedToCountryOrRegion>
+            <SystemUsedInPreparation>GeSi³ 12.2.0 www.gesi3.de</SystemUsedInPreparation>
+            <DateGeneratedExport>2025-11-20</DateGeneratedExport>
+            <XMLStandardSubset>EDASXChem</XMLStandardSubset>
+        </InformationFromExportingSystem>
+        <IdentificationSubstPrep>
+            <IssueDate>2025-01-23</IssueDate>
+            <RevisionDate>2025-01-23</RevisionDate>
+            <VersionNo>3</VersionNo>
+            <ItemNo>15-4100</ItemNo>
+            <ProductNo>
+                <UserId>GeSi-UID</UserId>
+                <ProductNoUser>2cd23fe1-9313-4794-abd6-6ff69110177a</ProductNoUser>
+            </ProductNo>
+            <ProductNo>
+                <UserId>GefKommBau_ProduktStammID</UserId>
+                <ProductNoUser>2cd23fe1-9313-4794-abd6-6ff69110177a</ProductNoUser>
+            </ProductNo>
+            <ProductIdentity>
+                <TradeName>LabClean™</TradeName>
+                <Ufi>N9WP-4T6Y-EJR8-2XUG</Ufi>
+            </ProductIdentity>
+            <RelevantIdentifiedUse>
+                <IdentifiedUse>
+                    <SectorOfUse>
+                        <SuCode>SU24</SuCode>
+                        <SuFulltext PhraseId="10088214000" PhraseCatalogueId="0">
+                            <FullText>Wissenschaftliche Forschung und Entwicklung</FullText>
+                        </SuFulltext>
+                    </SectorOfUse>
+                    <ProductCategory>
+                        <PcCode>PC35</PcCode>
+                        <PcFulltext PhraseId="9218173634" PhraseCatalogueId="0">
+                            <FullText>Wasch- und Reinigungsmittel</FullText>
+                        </PcFulltext>
+                    </ProductCategory>
+                </IdentifiedUse>
+                <ProductType PhraseId="9215141101" PhraseCatalogueId="0">
+                    <FullText>Das Produkt ist für Forschung, Analyse und wissenschaftliche Ausbildung bestimmt.</FullText>
+                </ProductType>
+                <ProductType PhraseId="16009211800" PhraseCatalogueId="0">
+                    <FullText>Reinigungsmittel</FullText>
+                </ProductType>
+                <ProductType PhraseCatalogueId="0">
+                    <FullText>.</FullText>
+                </ProductType>
+                <ProductType PhraseId="9294222711" PhraseCatalogueId="0">
+                    <FullText>Nur für gewerbliche Anwender.</FullText>
+                </ProductType>
+            </RelevantIdentifiedUse>
+            <UseAdvisedAgainst>
+                <NotToBeUsedIn/>
+            </UseAdvisedAgainst>
+            <SupplierInformation>
+                <Role/>
+                <Country>DE</Country>
+                <Name>Minerva Biolabs GmbH</Name>
+                <Address>
+                    <PostAddressLine1></PostAddressLine1>
+                    <PostAddressLine2>Schkopauer Ring 13</PostAddressLine2>
+                    <PostCode>12681</PostCode>
+                    <PostCity>Berlin</PostCity>
+                </Address>
+                <Phone>+49 30 2000437 0</Phone>
+                <Fax></Fax>
+                <Email>ehs@minerva-biolabs.com</Email>
+                <CompanyUrl>www.minerva-biolabs.com</CompanyUrl>
+            </SupplierInformation>
+            <EmergencyPhone>
+                <No>+49 761 19240</No>
+                <EmergencyPhoneDescription PhraseCatalogueId="0">
+                    <FullText>24h</FullText>
+                </EmergencyPhoneDescription>
+            </EmergencyPhone>
+            <EmergencyPhone>
+                <No>+49 761 19240</No>
+                <EmergencyPhoneDescription PhraseCatalogueId="0">
+                    <FullText>24h</FullText>
+                </EmergencyPhoneDescription>
+            </EmergencyPhone>
+            <InternalSdsId>2cd23fe1-9313-4794-abd6-6ff69110177a</InternalSdsId>
+        </IdentificationSubstPrep>
+        <HazardIdentification>
+            <Classification>
+                <ClpClassification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Skin Corr. 1</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="16181151800" PhraseCatalogueId="0">
+                            <PhraseCode>314</PhraseCode>
+                            <FullText>Verursacht schwere Verätzungen der Haut und schwere Augenschäden.</FullText>
+                        </ClpHazardStatement>
+                        <ClpClassificationProcedure PhraseId="9218152431" PhraseCatalogueId="0">
+                            <FullText>Berechnungsmethode.</FullText>
+                        </ClpClassificationProcedure>
+                    </ClpHazardClassification>
+                </ClpClassification>
+            </Classification>
+            <HazardLabelling>
+                <ClpLabellingInfo>
+                    <ClpHazardPictogram>
+                        <PhraseCode>GHS05</PhraseCode>
+                    </ClpHazardPictogram>
+                    <ClpSignalWord PhraseId="9269141427">
+                        <PhraseCode>DGR</PhraseCode>
+                        <FullText>Gefahr</FullText>
+                    </ClpSignalWord>
+                    <ClpHazardStatement PhraseId="16181151800" PhraseCatalogueId="0">
+                        <PhraseCode>314</PhraseCode>
+                        <FullText>Verursacht schwere Verätzungen der Haut und schwere Augenschäden.</FullText>
+                    </ClpHazardStatement>
+                    <ClpPrecautionaryStatement PhraseId="9294221528" PhraseCatalogueId="0">
+                        <PhraseCode>264</PhraseCode>
+                        <FullText>Hände</FullText>
+                        <MergePhrase PhraseId="ea13cade-9aa7-48d8-9f12-1ee5723a9369" PhraseCatalogueId="0" MergePhraseNo="0">
+                            <MergeText>Hände</MergeText>
+                        </MergePhrase>
+                    </ClpPrecautionaryStatement>
+                    <ClpPrecautionaryStatement PhraseId="9294221608" PhraseCatalogueId="0">
+                        <PhraseCode>280.4</PhraseCode>
+                        <FullText>Schutzhandschuhe/Schutzkleidung und Augenschutz/Gesichtsschutz tragen.</FullText>
+                    </ClpPrecautionaryStatement>
+                    <ClpPrecautionaryStatement PhraseId="16180125200" PhraseCatalogueId="0">
+                        <PhraseCode>301</PhraseCode>
+                        <PhraseCode>330</PhraseCode>
+                        <FullText>BEI VERSCHLUCKEN: Mund ausspülen. KEIN Erbrechen herbeiführen.</FullText>
+                    </ClpPrecautionaryStatement>
+                    <ClpPrecautionaryStatement PhraseId="16180123800" PhraseCatalogueId="0">
+                        <PhraseCode>303</PhraseCode>
+                        <PhraseCode>361</PhraseCode>
+                        <FullText>BEI BERÜHRUNG MIT DER HAUT (oder dem Haar): Alle kontaminierten Kleidungsstücke sofort ausziehen. Haut mit Wasser abwaschen [oder duschen].</FullText>
+                    </ClpPrecautionaryStatement>
+                    <ClpPrecautionaryStatement PhraseId="9294221863" PhraseCatalogueId="0">
+                        <PhraseCode>304</PhraseCode>
+                        <PhraseCode>340</PhraseCode>
+                        <FullText>BEI EINATMEN: Die Person an die frische Luft bringen und für ungehinderte Atmung sorgen.</FullText>
+                    </ClpPrecautionaryStatement>
+                    <ClpPrecautionaryStatement PhraseId="16180110100" PhraseCatalogueId="0">
+                        <PhraseCode>305</PhraseCode>
+                        <PhraseCode>351</PhraseCode>
+                        <FullText>BEI KONTAKT MIT DEN AUGEN: Einige Minuten lang behutsam mit Wasser ausspülen. Eventuell vorhandene Kontaktlinsen nach Möglichkeit entfernen. Weiter spülen.</FullText>
+                    </ClpPrecautionaryStatement>
+                </ClpLabellingInfo>
+            </HazardLabelling>
+            <OtherHazardsInfo/>
+        </HazardIdentification>
+        <Composition>
+            <CompositionType>Mixture</CompositionType>
+            <Component ComponentId="1">
+                <Substance>
+                    <GenericName>Phosphorsäure</GenericName>
+                    <CasNo>7664-38-2</CasNo>
+                    <EcNo>231-633-2</EcNo>
+                    <ReachRegistration>
+                        <RegistrationNumber>01-2119485924-24</RegistrationNumber>
+                    </ReachRegistration>
+                </Substance>
+                <Classification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Skin Corr. 1B</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="16181151800" PhraseCatalogueId="0">
+                            <PhraseCode>314</PhraseCode>
+                            <FullText>Verursacht schwere Verätzungen der Haut und schwere Augenschäden.</FullText>
+                        </ClpHazardStatement>
+                    </ClpHazardClassification>
+                </Classification>
+                <Concentration UnitId="9269144149" UnitSetId="1003">
+                    <UpperValueSymbol>lt</UpperValueSymbol>
+                    <UpperValue>60.0</UpperValue>
+                    <Unit>Weight-%</Unit>
+                </Concentration>
+                <ToxicologicalInformation>
+                    <AcuteToxicity>
+                        <TestResults>
+                            <EffectTested>LD50</EffectTested>
+                            <ExposureRoute>Oral</ExposureRoute>
+                            <Value UnitId="9269144160" UnitSetId="1003">
+                                <ExactValue>1530.0</ExactValue>
+                                <Unit>mg/kg</Unit>
+                            </Value>
+                            <Species>
+                                <Value PhraseId="9269124932" PhraseCatalogueId="0">
+                                    <FullText>Ratte</FullText>
+                                </Value>
+                            </Species>
+                        </TestResults>
+                        <TestResults>
+                            <EffectTested>LD50</EffectTested>
+                            <ExposureRoute>Dermal</ExposureRoute>
+                            <Value UnitId="9269144160" UnitSetId="1003">
+                                <ExactValue>2740.0</ExactValue>
+                                <Unit>mg/kg</Unit>
+                            </Value>
+                            <Species>
+                                <Value PhraseId="9269124935" PhraseCatalogueId="0">
+                                    <FullText>Kaninchen</FullText>
+                                </Value>
+                            </Species>
+                        </TestResults>
+                    </AcuteToxicity>
+                </ToxicologicalInformation>
+                <EcologicalInformation>
+                    <EcotoxicologicalInformation>
+                        <AquaticToxicity>
+                            <AcuteFishToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>138.0</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>LC50</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Gambusia affinis (Belebtschlamm)</FullText>
+                                </Species>
+                            </AcuteFishToxicity>
+                            <AcuteInvertebrateToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <LowerValueSymbol>gt</LowerValueSymbol>
+                                    <LowerValue>100.0</LowerValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>EC50</EffectDoseConcentration>
+                            </AcuteInvertebrateToxicity>
+                            <AcuteInvertebrateToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <LowerValueSymbol>gt</LowerValueSymbol>
+                                    <LowerValue>100.0</LowerValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>EC50</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Daphnia magna</FullText>
+                                </Species>
+                            </AcuteInvertebrateToxicity>
+                            <AcuteInvertebrateToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>56.0</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>NOEC</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Daphnia magna</FullText>
+                                </Species>
+                            </AcuteInvertebrateToxicity>
+                            <ChronicAlgaeToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <LowerValueSymbol>gt</LowerValueSymbol>
+                                    <LowerValue>100.0</LowerValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>EC50</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Desmodesmus subspicatus (previous name: Scenedesmus subspicatus)</FullText>
+                                </Species>
+                            </ChronicAlgaeToxicity>
+                            <ChronicAlgaeToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>100.0</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>NOEC</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Desmodesmus subspicatus (previous name: Scenedesmus subspicatus)</FullText>
+                                </Species>
+                            </ChronicAlgaeToxicity>
+                            <ChronicAlgaeToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <LowerValueSymbol>gt</LowerValueSymbol>
+                                    <LowerValue>100.0</LowerValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>ERC50</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Desmodesmus subspicatus</FullText>
+                                </Species>
+                            </ChronicAlgaeToxicity>
+                        </AquaticToxicity>
+                    </EcotoxicologicalInformation>
+                </EcologicalInformation>
+            </Component>
+            <Component ComponentId="2">
+                <Substance>
+                    <GenericName>Fettalkohol C12-C14, ethoxyliert</GenericName>
+                    <CasNo>68439-50-9</CasNo>
+                </Substance>
+                <Classification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Aquatic Acute 1</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="9278174515" PhraseCatalogueId="0">
+                            <PhraseCode>400</PhraseCode>
+                            <FullText>Sehr giftig für Wasserorganismen.</FullText>
+                        </ClpHazardStatement>
+                        <MultiplyingFactor>1</MultiplyingFactor>
+                    </ClpHazardClassification>
+                    <ClpHazardClassification>
+                        <ClpHazardClassCategory>Aquatic Chronic 3</ClpHazardClassCategory>
+                        <ClpHazardStatement PhraseId="9278174518" PhraseCatalogueId="0">
+                            <PhraseCode>412</PhraseCode>
+                            <FullText>Schädlich für Wasserorganismen, mit langfristiger Wirkung.</FullText>
+                        </ClpHazardStatement>
+                    </ClpHazardClassification>
+                </Classification>
+                <Concentration UnitId="9269144149" UnitSetId="1003">
+                    <UpperValueSymbol>lt</UpperValueSymbol>
+                    <UpperValue>10.0</UpperValue>
+                    <Unit>Weight-%</Unit>
+                </Concentration>
+                <ToxicologicalInformation>
+                    <AcuteToxicity>
+                        <TestResults>
+                            <EffectTested>LD50</EffectTested>
+                            <ExposureRoute>Oral</ExposureRoute>
+                            <Value UnitId="9269144160" UnitSetId="1003">
+                                <LowerValueSymbol>gt</LowerValueSymbol>
+                                <LowerValue>2000.0</LowerValue>
+                                <Unit>mg/kg</Unit>
+                            </Value>
+                            <Species>
+                                <Value PhraseId="9269124932" PhraseCatalogueId="0">
+                                    <FullText>Ratte</FullText>
+                                </Value>
+                            </Species>
+                        </TestResults>
+                    </AcuteToxicity>
+                </ToxicologicalInformation>
+                <EcologicalInformation>
+                    <EcotoxicologicalInformation>
+                        <AquaticToxicity>
+                            <AcuteFishToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.423</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>LC50</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Pimephales promelas</FullText>
+                                </Species>
+                                <Method PhraseCatalogueId="0">
+                                    <FullText>OECD Guideline 203 (Fish, Acute Toxicity Test)</FullText>
+                                </Method>
+                            </AcuteFishToxicity>
+                            <AcuteFishToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.304</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>NOEC</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Pimephales promelas</FullText>
+                                </Species>
+                                <Method PhraseCatalogueId="0">
+                                    <FullText>OECD Guideline 203 (Fish, Acute Toxicity Test)</FullText>
+                                </Method>
+                            </AcuteFishToxicity>
+                            <AcuteInvertebrateToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.125</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>EC50</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Daphnia magna</FullText>
+                                </Species>
+                                <Method PhraseCatalogueId="0">
+                                    <FullText>OECD Guideline 202 (Daphnia sp. Acute Immobilisation Test)</FullText>
+                                </Method>
+                            </AcuteInvertebrateToxicity>
+                            <AcuteInvertebrateToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.045</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>NOEC</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Daphnia magna</FullText>
+                                </Species>
+                                <Method PhraseCatalogueId="0">
+                                    <FullText>OECD Guideline 202 (Daphnia sp. Acute Immobilisation Test)</FullText>
+                                </Method>
+                            </AcuteInvertebrateToxicity>
+                            <ChronicAlgaeToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.044</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>EC50</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Raphidocelis subcapitata (previous names: Pseudokirchneriella subcapitata, Selenastrum capricornutum)</FullText>
+                                </Species>
+                                <Method PhraseCatalogueId="0">
+                                    <FullText>OECD Guideline 201 (Alga, Growth Inhibition Test)</FullText>
+                                </Method>
+                            </ChronicAlgaeToxicity>
+                            <ChronicAlgaeToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <UpperValueSymbol>lt</UpperValueSymbol>
+                                    <UpperValue>1.0</UpperValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>NOEC</EffectDoseConcentration>
+                            </ChronicAlgaeToxicity>
+                            <ChronicAlgaeToxicity>
+                                <Value UnitId="9269144138" UnitSetId="1003">
+                                    <ExactValue>0.037</ExactValue>
+                                    <Unit>mg/L</Unit>
+                                </Value>
+                                <EffectDoseConcentration>NOEC</EffectDoseConcentration>
+                                <Species PhraseCatalogueId="0">
+                                    <FullText>Raphidocelis subcapitata (previous names: Pseudokirchneriella subcapitata, Selenastrum capricornutum)</FullText>
+                                </Species>
+                                <Method PhraseCatalogueId="0">
+                                    <FullText>OECD Guideline 201 (Alga, Growth Inhibition Test)</FullText>
+                                </Method>
+                            </ChronicAlgaeToxicity>
+                        </AquaticToxicity>
+                    </EcotoxicologicalInformation>
+                </EcologicalInformation>
+            </Component>
+        </Composition>
+        <FirstAidMeasures>
+            <DescriptionOfFirstAidMeasures>
+                <GeneralInformation PhraseId="9267225017" PhraseCatalogueId="0">
+                    <FullText>Bei Unfall oder Unwohlsein sofort Arzt hinzuziehen (wenn möglich, Betriebsanweisung oder Sicherheitsdatenblatt vorzeigen).</FullText>
+                </GeneralInformation>
+                <GeneralInformation PhraseId="9267225015" PhraseCatalogueId="0">
+                    <FullText>Verunglückten aus der Gefahrenzone entfernen.</FullText>
+                </GeneralInformation>
+                <GeneralInformation PhraseId="9267225019" PhraseCatalogueId="0">
+                    <FullText>Beschmutzte, getränkte Kleidung sofort ausziehen.</FullText>
+                </GeneralInformation>
+                <GeneralInformation PhraseId="9267225014" PhraseCatalogueId="0">
+                    <FullText>Betroffenen nicht unbeaufsichtigt lassen.</FullText>
+                </GeneralInformation>
+                <GeneralInformation PhraseId="9267225027" PhraseCatalogueId="0">
+                    <FullText>Bei Bewusstlosigkeit und vorhandener Atmung in stabile Seitenlage bringen und ärztlichen Rat einholen.</FullText>
+                </GeneralInformation>
+                <GeneralInformation PhraseId="9269141428" PhraseCatalogueId="0">
+                    <FullText>Achtung</FullText>
+                </GeneralInformation>
+                <GeneralInformation PhraseId="9267225138" PhraseCatalogueId="0">
+                    <FullText>Ersthelfer: Auf Selbstschutz achten!</FullText>
+                </GeneralInformation>
+                <FirstAidInhalation PhraseId="9267225039" PhraseCatalogueId="0">
+                    <FullText>Für Frischluft sorgen.</FullText>
+                </FirstAidInhalation>
+                <FirstAidInhalation PhraseId="9267225037" PhraseCatalogueId="0">
+                    <FullText>Bei Reizung der Atemwege Arzt aufsuchen.</FullText>
+                </FirstAidInhalation>
+                <FirstAidSkin PhraseId="9267225081" PhraseCatalogueId="0">
+                    <FullText>Bei Berührung mit der Haut sofort abwaschen mit viel Wasser und Seife.</FullText>
+                </FirstAidSkin>
+                <FirstAidSkin PhraseId="9294221836" PhraseCatalogueId="0">
+                    <FullText>Alle kontaminierten Kleidungsstücke sofort ausziehen.</FullText>
+                </FirstAidSkin>
+                <FirstAidSkin PhraseId="9294221871" PhraseCatalogueId="0">
+                    <FullText>Bei Hautreizung oder -ausschlag: Ärztlichen Rat einholen/ärztliche Hilfe hinzuziehen.</FullText>
+                </FirstAidSkin>
+                <FirstAidSkin PhraseId="9294221815" PhraseCatalogueId="0">
+                    <FullText>Sofort ärztlichen Rat einholen/ärztliche Hilfe hinzuziehen.</FullText>
+                </FirstAidSkin>
+                <FirstAidEye PhraseId="9267225107" PhraseCatalogueId="0">
+                    <FullText>Bei Berührung mit den Augen sofort bei geöffnetem Lidspalt 10 bis 15 Minuten mit fließendem Wasser spülen und Augenarzt aufsuchen.</FullText>
+                </FirstAidEye>
+                <FirstAidIngestion PhraseId="9267225131" PhraseCatalogueId="0">
+                    <FullText>Nach Verschlucken den Mund mit reichlich Wasser ausspülen (nur wenn die Person bei Bewusstsein ist) und sofort medizinische Hilfe holen.</FullText>
+                </FirstAidIngestion>
+                <FirstAidIngestion PhraseId="9267225127" PhraseCatalogueId="0">
+                    <FullText>Kein Erbrechen herbeiführen.</FullText>
+                </FirstAidIngestion>
+                <FirstAidIngestion PhraseId="9294221815" PhraseCatalogueId="0">
+                    <FullText>Sofort ärztlichen Rat einholen/ärztliche Hilfe hinzuziehen.</FullText>
+                </FirstAidIngestion>
+                <FirstAidIngestion PhraseId="18109165100" PhraseCatalogueId="0">
+                    <FullText>Sofort Mund ausspülen und 1 Glas Wasser nachtrinken.</FullText>
+                </FirstAidIngestion>
+                <PersonalProtectionFirstAider PhraseId="9267230003" PhraseCatalogueId="0">
+                    <FullText>Persönliche Schutzausrüstung verwenden.</FullText>
+                </PersonalProtectionFirstAider>
+            </DescriptionOfFirstAidMeasures>
+            <InformationToHealthProfessionals>
+                <SymptomsAndEffectsGeneral PhraseId="10059215917" PhraseCatalogueId="0">
+                    <FullText>Schwere Augenschädigung/-reizung</FullText>
+                </SymptomsAndEffectsGeneral>
+                <SymptomsAndEffectsGeneral PhraseCatalogueId="0">
+                    <FullText>,</FullText>
+                </SymptomsAndEffectsGeneral>
+                <SymptomsAndEffectsGeneral PhraseId="10059215913" PhraseCatalogueId="0">
+                    <FullText>Ätz-/Reizwirkung auf die Haut</FullText>
+                </SymptomsAndEffectsGeneral>
+                <SymptomsAndEffectsGeneral PhraseCatalogueId="0">
+                    <FullText>,</FullText>
+                </SymptomsAndEffectsGeneral>
+                <SymptomsAndEffectsGeneral PhraseId="9269125139" PhraseCatalogueId="0">
+                    <FullText>Reizung der Atemwege</FullText>
+                </SymptomsAndEffectsGeneral>
+            </InformationToHealthProfessionals>
+            <MedicalAttentionAndSpecialTreatmentNeeded>
+                <MedicalTreatment PhraseId="9267225328" PhraseCatalogueId="0">
+                    <FullText>Symptomatische Behandlung.</FullText>
+                </MedicalTreatment>
+            </MedicalAttentionAndSpecialTreatmentNeeded>
+        </FirstAidMeasures>
+        <FireFightingMeasures>
+            <ExtinguishingMedia>
+                <MediaToBeUsed PhraseId="9267225727" PhraseCatalogueId="0">
+                    <FullText>Wassersprühstrahl</FullText>
+                </MediaToBeUsed>
+                <MediaToBeUsed PhraseCatalogueId="0">
+                    <FullText>,</FullText>
+                </MediaToBeUsed>
+                <MediaToBeUsed PhraseId="9267225705" PhraseCatalogueId="0">
+                    <FullText>Schaum</FullText>
+                </MediaToBeUsed>
+                <MediaToBeUsed PhraseCatalogueId="0">
+                    <FullText>,</FullText>
+                </MediaToBeUsed>
+                <MediaToBeUsed PhraseId="9267225778" PhraseCatalogueId="0">
+                    <FullText>Löschmaßnahmen auf die Umgebung abstimmen.</FullText>
+                </MediaToBeUsed>
+                <MediaNotBeUsed PhraseId="9267225717" PhraseCatalogueId="0">
+                    <FullText>Wasservollstrahl</FullText>
+                </MediaNotBeUsed>
+            </ExtinguishingMedia>
+            <FireAndExplosionHazards PhraseId="9267225777" PhraseCatalogueId="0">
+                <FullText>Das Produkt selbst brennt nicht.</FullText>
+            </FireAndExplosionHazards>
+            <HazardCombustionProd PhraseId="9294221839" PhraseCatalogueId="0">
+                <FullText>Bei Brand:</FullText>
+            </HazardCombustionProd>
+            <HazardCombustionProd PhraseId="9269123102" PhraseCatalogueId="0">
+                <FullText>Gase/Dämpfe, giftig</FullText>
+            </HazardCombustionProd>
+            <HazardCombustionProd PhraseCatalogueId="0">
+                <FullText>.</FullText>
+            </HazardCombustionProd>
+            <HazardCombustionProd PhraseId="9267225734" PhraseCatalogueId="0">
+                <FullText>Stickoxide (NOx)</FullText>
+            </HazardCombustionProd>
+            <HazardCombustionProd PhraseCatalogueId="0">
+                <FullText>,</FullText>
+            </HazardCombustionProd>
+            <HazardCombustionProd PhraseId="9267225736" PhraseCatalogueId="0">
+                <FullText>Phosphoroxide</FullText>
+            </HazardCombustionProd>
+            <HazardCombustionProd PhraseCatalogueId="0">
+                <FullText>,</FullText>
+            </HazardCombustionProd>
+            <HazardCombustionProd PhraseId="9267225712" PhraseCatalogueId="0">
+                <FullText>Kohlendioxid (CO2)</FullText>
+            </HazardCombustionProd>
+            <SpecialProtectiveEquipmentForFirefighters PhraseId="9294221843" PhraseCatalogueId="0">
+                <FullText>Brandbekämpfung mit üblichen Vorsichtsmaßnahmen aus angemessener Entfernung.</FullText>
+            </SpecialProtectiveEquipmentForFirefighters>
+            <SpecialProtectiveEquipmentForFirefighters PhraseId="9267225766" PhraseCatalogueId="0">
+                <FullText>Umgebungsluftunabhängiges Atemschutzgerät und Chemikalienschutzanzug tragen.</FullText>
+            </SpecialProtectiveEquipmentForFirefighters>
+            <SpecialProtectiveEquipmentForFirefighters PhraseId="9267230228" PhraseCatalogueId="0">
+                <FullText>Gas/Rauch/Dampf/Aerosol nicht einatmen.</FullText>
+            </SpecialProtectiveEquipmentForFirefighters>
+            <FireAndExplosionComments PhraseId="9267225774" PhraseCatalogueId="0">
+                <FullText>Kontaminiertes Löschwasser getrennt sammeln. Nicht in die Kanalisation oder Gewässer gelangen lassen.</FullText>
+            </FireAndExplosionComments>
+        </FireFightingMeasures>
+        <AccidentalReleaseMeasures>
+            <ForNonEmergencyPersonnel>
+                <PersonalPrecautions PhraseId="9267230008" PhraseCatalogueId="0">
+                    <FullText>Personen in Sicherheit bringen.</FullText>
+                </PersonalPrecautions>
+                <PersonalPrecautions PhraseId="9294221611" PhraseCatalogueId="0">
+                    <FullText>Vorgeschriebene persönliche Schutzausrüstung verwenden.</FullText>
+                </PersonalPrecautions>
+                <PersonalPrecautions PhraseId="9313214646" PhraseCatalogueId="0">
+                    <FullText>Kontakt mit Haut, Augen und Kleidung vermeiden.</FullText>
+                </PersonalPrecautions>
+                <ProtectiveEquipment PhraseId="9294221608" PhraseCatalogueId="0">
+                    <FullText>Schutzhandschuhe/Schutzkleidung und Augenschutz/Gesichtsschutz tragen.</FullText>
+                </ProtectiveEquipment>
+            </ForNonEmergencyPersonnel>
+            <ForEmergencyResponders PhraseId="10337143200" PhraseCatalogueId="0">
+                <FullText>Persönliche Schutzausrüstung: siehe Abschnitt 8</FullText>
+            </ForEmergencyResponders>
+            <EnvironmentalPrecautions PhraseId="9267230017" PhraseCatalogueId="0">
+                <FullText>Nicht in die Kanalisation oder Gewässer gelangen lassen.</FullText>
+            </EnvironmentalPrecautions>
+            <EnvironmentalPrecautions PhraseId="9267230018" PhraseCatalogueId="0">
+                <FullText>Flächenmäßige Ausdehnung verhindern (z.B. durch Eindämmen oder Ölsperren).</FullText>
+            </EnvironmentalPrecautions>
+            <ContainmentAndCleaningUp>
+                <Containment PhraseId="9267230065" PhraseCatalogueId="0">
+                    <FullText>Mit flüssigkeitsbindendem Material (Sand, Kieselgur, Säurebinder, Universalbinder) aufnehmen.</FullText>
+                </Containment>
+                <Containment PhraseId="9267230030" PhraseCatalogueId="0">
+                    <FullText>Das aufgenommene Material gemäß Abschnitt Entsorgung behandeln.</FullText>
+                </Containment>
+                <CleaningUp PhraseId="9267230049" PhraseCatalogueId="0">
+                    <FullText>Wasser (mit Reinigungsmittel)</FullText>
+                </CleaningUp>
+            </ContainmentAndCleaningUp>
+            <ReferenceToOtherSections PhraseId="10337142900" PhraseCatalogueId="0">
+                <FullText>Sichere Handhabung: siehe Abschnitt 7</FullText>
+            </ReferenceToOtherSections>
+            <ReferenceToOtherSections PhraseCatalogueId="0">
+                <FullText>,</FullText>
+            </ReferenceToOtherSections>
+            <ReferenceToOtherSections PhraseId="10337143200" PhraseCatalogueId="0">
+                <FullText>Persönliche Schutzausrüstung: siehe Abschnitt 8</FullText>
+            </ReferenceToOtherSections>
+            <ReferenceToOtherSections PhraseCatalogueId="0">
+                <FullText>,</FullText>
+            </ReferenceToOtherSections>
+            <ReferenceToOtherSections PhraseId="10337143100" PhraseCatalogueId="0">
+                <FullText>Entsorgung: siehe Abschnitt 13</FullText>
+            </ReferenceToOtherSections>
+            <AdditionalInformation PhraseId="9294233717" PhraseCatalogueId="0">
+                <FullText>Zur Vermeidung einer Kontamination der Umwelt geeigneten Behälter verwenden.</FullText>
+            </AdditionalInformation>
+        </AccidentalReleaseMeasures>
+        <HandlingAndStorage>
+            <SafeHandling>
+                <HandlingPrecautions PhraseId="9267230260" PhraseCatalogueId="0">
+                    <FullText>Persönliche Schutzausrüstung tragen (siehe Abschnitt 8).</FullText>
+                </HandlingPrecautions>
+                <HandlingPrecautions PhraseId="9267233960" PhraseCatalogueId="0">
+                    <FullText>Vor den Pausen und bei Arbeitsende Hände waschen.</FullText>
+                </HandlingPrecautions>
+                <HandlingPrecautions PhraseId="9267230433" PhraseCatalogueId="0">
+                    <FullText>Fernhalten von:</FullText>
+                </HandlingPrecautions>
+                <HandlingPrecautions PhraseId="9267230629" PhraseCatalogueId="0">
+                    <FullText>Nahrungs- und Futtermittel</FullText>
+                </HandlingPrecautions>
+                <HandlingPrecautions PhraseCatalogueId="0">
+                    <FullText>.</FullText>
+                </HandlingPrecautions>
+                <HandlingPrecautions PhraseId="9267230211" PhraseCatalogueId="0">
+                    <FullText>Wenn eine lokale Absaugung nicht möglich oder unzureichend ist, sollte nach Möglichkeit eine gute Belüftung des Arbeitsbereiches sichergestellt werden.</FullText>
+                </HandlingPrecautions>
+                <PrecautionaryMeasures>
+                    <MeasuresToPreventFire PhraseId="9267230529" PhraseCatalogueId="0">
+                        <FullText>Übliche Maßnahmen des vorbeugenden Brandschutzes.</FullText>
+                    </MeasuresToPreventFire>
+                </PrecautionaryMeasures>
+                <GeneralOccupationalHygiene PhraseId="9313214646" PhraseCatalogueId="0">
+                    <FullText>Kontakt mit Haut, Augen und Kleidung vermeiden.</FullText>
+                </GeneralOccupationalHygiene>
+                <GeneralOccupationalHygiene PhraseId="9294233610" PhraseCatalogueId="0">
+                    <FullText>Bei der Arbeit nicht essen, trinken, rauchen.</FullText>
+                </GeneralOccupationalHygiene>
+                <GeneralOccupationalHygiene PhraseId="9294233620" PhraseCatalogueId="0">
+                    <FullText>Kontakt mit Augen und Haut ist zu vermeiden.</FullText>
+                </GeneralOccupationalHygiene>
+            </SafeHandling>
+            <ConditionsForSafeStorage>
+                <TechnicalMeasuresAndStorageConditions PhraseId="9267230724" PhraseCatalogueId="0">
+                    <FullText>Behälter dicht geschlossen halten und an einem kühlen, gut gelüfteten Ort aufbewahren.</FullText>
+                </TechnicalMeasuresAndStorageConditions>
+                <PackagingContainer PhraseId="9267230611" PhraseCatalogueId="0">
+                    <FullText>Nur im Originalbehälter aufbewahren/lagern.</FullText>
+                </PackagingContainer>
+                <RequirementsForStorageRoomsAndVessels PhraseId="9267230724" PhraseCatalogueId="0">
+                    <FullText>Behälter dicht geschlossen halten und an einem kühlen, gut gelüfteten Ort aufbewahren.</FullText>
+                </RequirementsForStorageRoomsAndVessels>
+                <RequirementsForStorageRoomsAndVessels PhraseId="9267230706" PhraseCatalogueId="0">
+                    <FullText>Empfohlene Lagerungstemperatur</FullText>
+                </RequirementsForStorageRoomsAndVessels>
+                <RequirementsForStorageRoomsAndVessels PhraseCatalogueId="0">
+                    <FullText>:</FullText>
+                </RequirementsForStorageRoomsAndVessels>
+                <RequirementsForStorageRoomsAndVessels PhraseId="9268180813" PhraseCatalogueId="0">
+                    <FullText>bei Raumtemperatur</FullText>
+                </RequirementsForStorageRoomsAndVessels>
+                <RequirementsForStorageRoomsAndVessels PhraseCatalogueId="0">
+                    <FullText>.</FullText>
+                </RequirementsForStorageRoomsAndVessels>
+                <RequirementsForStorageRoomsAndVessels PhraseId="9267230433" PhraseCatalogueId="0">
+                    <FullText>Fernhalten von:</FullText>
+                </RequirementsForStorageRoomsAndVessels>
+                <RequirementsForStorageRoomsAndVessels PhraseId="9267230629" PhraseCatalogueId="0">
+                    <FullText>Nahrungs- und Futtermittel</FullText>
+                </RequirementsForStorageRoomsAndVessels>
+                <HintsOnStorageAssembly PhraseId="9267230627" PhraseCatalogueId="0">
+                    <FullText>Nicht zusammen lagern mit:</FullText>
+                </HintsOnStorageAssembly>
+                <HintsOnStorageAssembly PhraseId="9267230434" PhraseCatalogueId="0">
+                    <FullText>Lauge</FullText>
+                </HintsOnStorageAssembly>
+                <HintsOnStorageAssembly PhraseCatalogueId="0">
+                    <FullText>,</FullText>
+                </HintsOnStorageAssembly>
+                <HintsOnStorageAssembly PhraseId="9267230629" PhraseCatalogueId="0">
+                    <FullText>Nahrungs- und Futtermittel</FullText>
+                </HintsOnStorageAssembly>
+            </ConditionsForSafeStorage>
+            <SpecificEndUses/>
+        </HandlingAndStorage>
+        <ExposureControlPersonalProtection>
+            <ControlParameters>
+                <ControlParametersComments PhraseId="9267230211" PhraseCatalogueId="0">
+                    <FullText>Wenn eine lokale Absaugung nicht möglich oder unzureichend ist, sollte nach Möglichkeit eine gute Belüftung des Arbeitsbereiches sichergestellt werden.</FullText>
+                </ControlParametersComments>
+            </ControlParameters>
+            <PersonalProtectionEquipment>
+                <RespiratoryProtection>
+                    <SuitableRespiratoryProtectionEquipment PhraseId="9267233715" PhraseCatalogueId="0">
+                        <FullText>Normalerweise kein persönlicher Atemschutz notwendig.</FullText>
+                    </SuitableRespiratoryProtectionEquipment>
+                </RespiratoryProtection>
+                <EyeProtection>
+                    <SuitableEyeProtection PhraseId="9267233850" PhraseCatalogueId="0">
+                        <FullText>Gestellbrille mit Seitenschutz</FullText>
+                    </SuitableEyeProtection>
+                    <SuitableEyeProtection PhraseCatalogueId="0">
+                        <FullText>(</FullText>
+                    </SuitableEyeProtection>
+                    <SuitableEyeProtection PhraseId="9267233859" PhraseCatalogueId="0">
+                        <FullText>DIN EN 166</FullText>
+                    </SuitableEyeProtection>
+                    <SuitableEyeProtection PhraseCatalogueId="0">
+                        <FullText>).</FullText>
+                    </SuitableEyeProtection>
+                </EyeProtection>
+                <SkinProtection>
+                    <SuitableProtectiveClothing PhraseId="9267233788" PhraseCatalogueId="0">
+                        <FullText>Geprüfte Schutzhandschuhe sind zu tragen</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseCatalogueId="0">
+                        <FullText>(</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9267233832" PhraseCatalogueId="0">
+                        <FullText>EN ISO 374</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseCatalogueId="0">
+                        <FullText>).</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9267233840" PhraseCatalogueId="0">
+                        <FullText>Erholungsphasen zur Regeneration der Haut einlegen.</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9267233837" PhraseCatalogueId="0">
+                        <FullText>Durchbruchszeiten und Quelleigenschaften des Materials sind zu berücksichtigen.</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9267233801" PhraseCatalogueId="0">
+                        <FullText>Geeignetes Material:</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9267233808" PhraseCatalogueId="0">
+                        <FullText>NBR (Nitrilkautschuk)</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseCatalogueId="0">
+                        <FullText>,</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9267233807" PhraseCatalogueId="0">
+                        <FullText>CR (Polychloropren, Chloroprenkautschuk)</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseCatalogueId="0">
+                        <FullText>,</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9267233810" PhraseCatalogueId="0">
+                        <FullText>FKM (Fluorkautschuk)</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseCatalogueId="0">
+                        <FullText>.</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9267233824" PhraseCatalogueId="0">
+                        <FullText>Dicke des Handschuhmaterials</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseCatalogueId="0">
+                        <FullText>: &gt; 0,35 mm.</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9267233823" PhraseCatalogueId="0">
+                        <FullText>Durchbruchszeit:</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseCatalogueId="0">
+                        <FullText>&gt;480 min.</FullText>
+                    </SuitableProtectiveClothing>
+                    <SuitableProtectiveClothing PhraseId="9267233841" PhraseCatalogueId="0">
+                        <FullText>Bei beabsichtigter Wiederverwendung Handschuhe vor dem Ausziehen reinigen und gut durchlüftet aufbewahren.</FullText>
+                    </SuitableProtectiveClothing>
+                </SkinProtection>
+                <PersonalProtectionEquipmentComments PhraseId="9267233960" PhraseCatalogueId="0">
+                    <FullText>Vor den Pausen und bei Arbeitsende Hände waschen.</FullText>
+                </PersonalProtectionEquipmentComments>
+            </PersonalProtectionEquipment>
+            <EnvironmentalExposureControls>
+                <AppropriateEnvionmentalExposureControl/>
+            </EnvironmentalExposureControls>
+        </ExposureControlPersonalProtection>
+        <PhysicalChemicalProperties>
+            <Appearance>
+                <Form>other</Form>
+                <Colour>yellow</Colour>
+                <ColourIntensity>light</ColourIntensity>
+                <Odour PhraseId="9269144392" PhraseCatalogueId="0">
+                    <FullText>nicht bestimmt</FullText>
+                </Odour>
+            </Appearance>
+            <SafetyRelevantInformation>
+                <PhValue>
+                    <Value>
+                        <Value>
+                            <ExactValue>0.5</ExactValue>
+                        </Value>
+                        <Method PhraseCatalogueId="0">
+                            <FullText>DGF H-III 1</FullText>
+                        </Method>
+                        <Temperature UnitId="9269144108" UnitSetId="1001">
+                            <ExactValue>20.0</ExactValue>
+                            <Unit>C</Unit>
+                        </Temperature>
+                    </Value>
+                </PhValue>
+                <MeltingPointRelated>
+                    <MeltingPoint>
+                        <UnitValue UnitId="9269144108" UnitSetId="1001">
+                            <ExactValue>-20.0</ExactValue>
+                            <Unit>C</Unit>
+                        </UnitValue>
+                    </MeltingPoint>
+                </MeltingPointRelated>
+                <BoilingPointRelated>
+                    <BoilingPoint>
+                        <UnitValue UnitId="9269144108" UnitSetId="1001">
+                            <ExactValue>100.0</ExactValue>
+                            <Unit>C</Unit>
+                        </UnitValue>
+                    </BoilingPoint>
+                </BoilingPointRelated>
+                <Flammability PhraseCatalogueId="0">
+                    <FullText>nicht brennbar</FullText>
+                </Flammability>
+                <Densities>
+                    <Density>
+                        <UnitValue UnitId="9269144130" UnitSetId="1003">
+                            <ExactValue>1.36</ExactValue>
+                            <Unit>g/cm3</Unit>
+                        </UnitValue>
+                        <Method PhraseId="9268175307" PhraseCatalogueId="0">
+                            <FullText>DIN 12791</FullText>
+                        </Method>
+                        <Temperature UnitId="9269144108" UnitSetId="1001">
+                            <ExactValue>20.0</ExactValue>
+                            <Unit>C</Unit>
+                        </Temperature>
+                    </Density>
+                </Densities>
+                <Solubilities>
+                    <Solubility>
+                        <Medium>Water</Medium>
+                        <OtherMediumDescription PhraseId="9268175354" PhraseCatalogueId="0">
+                            <FullText>vollständig mischbar</FullText>
+                        </OtherMediumDescription>
+                        <Value/>
+                    </Solubility>
+                </Solubilities>
+            </SafetyRelevantInformation>
+        </PhysicalChemicalProperties>
+        <StabilityReactivity>
+            <ReactivityDescription PhraseId="17303152500" PhraseCatalogueId="0">
+                <FullText>Für dieses Produkt oder seine Inhaltsstoffe liegen keine speziellen Daten bezüglich der Reaktivität vor.</FullText>
+            </ReactivityDescription>
+            <ReactivityDescription PhraseId="9267225777" PhraseCatalogueId="0">
+                <FullText>Das Produkt selbst brennt nicht.</FullText>
+            </ReactivityDescription>
+            <StabilityDescription PhraseId="13063145300" PhraseCatalogueId="0">
+                <FullText>Das Produkt ist unter den empfohlenen Lagerungs-, Verwendungs- und Temperaturbedingungen chemisch stabil.</FullText>
+            </StabilityDescription>
+            <HazardousReactions PhraseId="12083143200" PhraseCatalogueId="0">
+                <FullText>Es sind keine gefährlichen Reaktionen bekannt.</FullText>
+            </HazardousReactions>
+            <ConditionsToAvoid PhraseId="17303170000" PhraseCatalogueId="0">
+                <FullText>Weitere Informationen über sachgemäße Lagerung: siehe Abschnitt 7.</FullText>
+            </ConditionsToAvoid>
+            <ConditionsToAvoid PhraseId="9269123245" PhraseCatalogueId="0">
+                <FullText>Thermische Zersetzung kann zur Freisetzung von reizenden Gasen und Dämpfen führen.</FullText>
+            </ConditionsToAvoid>
+            <MaterialsToAvoid PhraseId="9269123036" PhraseCatalogueId="0">
+                <FullText>Alkalien (Laugen), konzentriert</FullText>
+            </MaterialsToAvoid>
+            <MaterialsToAvoid PhraseCatalogueId="0">
+                <FullText>,</FullText>
+            </MaterialsToAvoid>
+            <MaterialsToAvoid PhraseId="9269123038" PhraseCatalogueId="0">
+                <FullText>Alkalimetalle</FullText>
+            </MaterialsToAvoid>
+            <HazardousDecompositionProducts PhraseId="12083144100" PhraseCatalogueId="0">
+                <FullText>Es sind keine gefährlichen Zersetzungsprodukte bekannt.</FullText>
+            </HazardousDecompositionProducts>
+        </StabilityReactivity>
+        <ToxicologicalInformation>
+            <AcuteToxicity>
+                <AcuteToxicityHumanExperience PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Aufgrund der verfügbaren Daten sind die Einstufungskriterien nicht erfüllt.</FullText>
+                </AcuteToxicityHumanExperience>
+                <AcuteToxicityHumanExperience PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Aufgrund der verfügbaren Daten sind die Einstufungskriterien nicht erfüllt.</FullText>
+                </AcuteToxicityHumanExperience>
+                <AcuteToxicityHumanExperience PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Aufgrund der verfügbaren Daten sind die Einstufungskriterien nicht erfüllt.</FullText>
+                </AcuteToxicityHumanExperience>
+            </AcuteToxicity>
+            <SkinCorrosionIrritation>
+                <Irritation PhraseId="9269125101" PhraseCatalogueId="0">
+                    <FullText>Verursacht schwere Verätzungen der Haut und schwere Augenschäden.</FullText>
+                </Irritation>
+            </SkinCorrosionIrritation>
+            <EyeDamageOrIrritation>
+                <EyeIrritation PhraseId="9269125136" PhraseCatalogueId="0">
+                    <FullText>Verursacht schwere Augenschäden.</FullText>
+                </EyeIrritation>
+            </EyeDamageOrIrritation>
+            <RespiratoryOrSkinSensitisation>
+                <RespiratoryOrSkinSensitisationOtherInformation>
+                    <RespiratoryOrSkinSensitisationGeneral PhraseId="14115163800" PhraseCatalogueId="0">
+                        <FullText>Aufgrund der verfügbaren Daten sind die Einstufungskriterien nicht erfüllt.</FullText>
+                    </RespiratoryOrSkinSensitisationGeneral>
+                </RespiratoryOrSkinSensitisationOtherInformation>
+            </RespiratoryOrSkinSensitisation>
+            <GermCellMutagenicity>
+                <AssessmentGermCellMutagenicityClassification PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Aufgrund der verfügbaren Daten sind die Einstufungskriterien nicht erfüllt.</FullText>
+                </AssessmentGermCellMutagenicityClassification>
+            </GermCellMutagenicity>
+            <Carcinogenicity>
+                <AssessmentCarcinogenicityClassification PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Aufgrund der verfügbaren Daten sind die Einstufungskriterien nicht erfüllt.</FullText>
+                </AssessmentCarcinogenicityClassification>
+            </Carcinogenicity>
+            <ReproductiveToxicity>
+                <ReproductiveToxicityOtherInfo PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Aufgrund der verfügbaren Daten sind die Einstufungskriterien nicht erfüllt.</FullText>
+                </ReproductiveToxicityOtherInfo>
+            </ReproductiveToxicity>
+            <SpecificTargetOrganSE>
+                <SpecificTargetOrganSEHumanExperience PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Aufgrund der verfügbaren Daten sind die Einstufungskriterien nicht erfüllt.</FullText>
+                </SpecificTargetOrganSEHumanExperience>
+            </SpecificTargetOrganSE>
+            <SpecificTargetOrganRE>
+                <SpecificTargetOrganREHumanExperience PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Aufgrund der verfügbaren Daten sind die Einstufungskriterien nicht erfüllt.</FullText>
+                </SpecificTargetOrganREHumanExperience>
+            </SpecificTargetOrganRE>
+            <AspirationHazard>
+                <AssessmentAspirationHazardClassification PhraseId="14115163800" PhraseCatalogueId="0">
+                    <FullText>Aufgrund der verfügbaren Daten sind die Einstufungskriterien nicht erfüllt.</FullText>
+                </AssessmentAspirationHazardClassification>
+            </AspirationHazard>
+        </ToxicologicalInformation>
+        <EcologicalInformation>
+            <EcotoxicologicalInformation>
+                <AquaticToxicity>
+                    <AcuteAlgaeToxicity/>
+                </AquaticToxicity>
+                <SedimentToxicity/>
+                <TerrestrialToxicity>
+                    <AcutePlantToxicity/>
+                </TerrestrialToxicity>
+            </EcotoxicologicalInformation>
+            <PersistenceDegradability>
+                <BiologicalDegradability/>
+                <AbioticDegradationInAir/>
+            </PersistenceDegradability>
+            <Bioaccumulation/>
+            <Mobility/>
+            <AdditionalEcotoxInformation/>
+        </EcologicalInformation>
+        <DisposalConsiderations>
+            <WasteTreatment>
+                <ProductWaste PhraseId="9269140541" PhraseCatalogueId="0">
+                    <FullText>Wegen einer Abfallentsorgung den zuständigen zugelassenen Entsorger ansprechen.</FullText>
+                </ProductWaste>
+                <PackagingWaste PhraseId="9269140554" PhraseCatalogueId="0">
+                    <FullText>Vollständig entleerte Verpackungen können einer Verwertung zugeführt werden.</FullText>
+                </PackagingWaste>
+            </WasteTreatment>
+            <EuRequirements>
+                <EuropeanWasteList>
+                    <EWLProduct>
+                        <WasteCode>20 01 29</WasteCode>
+                        <WasteDescription PhraseId="15007233561" PhraseCatalogueId="0">
+                            <FullText>Reinigungsmittel, die gefährliche Stoffe enthalten</FullText>
+                        </WasteDescription>
+                        <HazardousWaste>true</HazardousWaste>
+                    </EWLProduct>
+                </EuropeanWasteList>
+                <EuWasteRegulations PhraseId="9313221461" PhraseCatalogueId="0">
+                    <FullText>Entsorgung gemäß den behördlichen Vorschriften.</FullText>
+                </EuWasteRegulations>
+            </EuRequirements>
+        </DisposalConsiderations>
+        <TransportInformation>
+            <UnNo>
+                <UnNoAdrRid>1805</UnNoAdrRid>
+                <UnNoAdn>1805</UnNoAdn>
+                <UnNoImdg>1805</UnNoImdg>
+                <UnNoIcao>1805</UnNoIcao>
+            </UnNo>
+            <ProperShippingName>
+                <AdrRid>
+                    <ProperShippingNameNationalAdrRid PhraseId="UN_BEZ_1805012" PhraseCatalogueId="0">
+                        <FullText>PHOSPHORSÄURE, LÖSUNG</FullText>
+                    </ProperShippingNameNationalAdrRid>
+                </AdrRid>
+                <Adn>
+                    <ProperShippingNameNationalAdn PhraseId="UN_BEZ_1805012" PhraseCatalogueId="0">
+                        <FullText>PHOSPHORSÄURE, LÖSUNG</FullText>
+                    </ProperShippingNameNationalAdn>
+                </Adn>
+                <Imdg>
+                    <ProperShippingNameEnglishImdg PhraseId="UN_BEZ_1805012" PhraseCatalogueId="0">
+                        <FullText>PHOSPHORSÄURE, LÖSUNG</FullText>
+                    </ProperShippingNameEnglishImdg>
+                </Imdg>
+                <Icao>
+                    <ProperShippingNameEnglishIcao PhraseId="UN_BEZ_1805012" PhraseCatalogueId="0">
+                        <FullText>PHOSPHORSÄURE, LÖSUNG</FullText>
+                    </ProperShippingNameEnglishIcao>
+                </Icao>
+            </ProperShippingName>
+            <TransportHazardClassification>
+                <AdrRid>
+                    <ClassAdrRid>8</ClassAdrRid>
+                    <ClassCodeAdrRid>8</ClassCodeAdrRid>
+                </AdrRid>
+                <Adn>
+                    <ClassAdn>8</ClassAdn>
+                    <ClassCodeAdn>8</ClassCodeAdn>
+                </Adn>
+                <Imdg>
+                    <ClassImdg>8</ClassImdg>
+                </Imdg>
+                <IcaoIata>
+                    <ClassIcaoIata>8</ClassIcaoIata>
+                </IcaoIata>
+            </TransportHazardClassification>
+            <PackingGroup>
+                <PackingGroupAdrRid>III</PackingGroupAdrRid>
+                <PackingGroupAdn>III</PackingGroupAdn>
+                <PackingGroupImdg>III</PackingGroupImdg>
+                <PackingGroupIcaoIata>III</PackingGroupIcaoIata>
+            </PackingGroup>
+            <EnvironmentalHazards>
+                <EnvironmHazardAccordAdrRid PhraseId="9268180132" PhraseCatalogueId="0">
+                    <FullText>Nein</FullText>
+                </EnvironmHazardAccordAdrRid>
+                <EnvironmHazardAccordAdn PhraseId="9268180132" PhraseCatalogueId="0">
+                    <FullText>Nein</FullText>
+                </EnvironmHazardAccordAdn>
+                <Imdg>
+                    <EnvironmHazardAccordImdg PhraseId="9268180132" PhraseCatalogueId="0">
+                        <FullText>Nein</FullText>
+                    </EnvironmHazardAccordImdg>
+                    <MarinePollutant>false</MarinePollutant>
+                </Imdg>
+                <EnvironmHazardAccordIcaoIata PhraseId="9268180132" PhraseCatalogueId="0">
+                    <FullText>Nein</FullText>
+                </EnvironmHazardAccordIcaoIata>
+            </EnvironmentalHazards>
+            <OtherTransportInformation>
+                <AdrRidOtherInformation>
+                    <AdrRidLimitedQty>5 L</AdrRidLimitedQty>
+                    <AdrRidExceptedQty>E1</AdrRidExceptedQty>
+                    <AdrTunnelRestrictionCode>E</AdrTunnelRestrictionCode>
+                    <AdrHazardIdentificationNo>80</AdrHazardIdentificationNo>
+                </AdrRidOtherInformation>
+                <AdnOtherInformation>
+                    <AdnLimitedQty>5 L</AdnLimitedQty>
+                    <AdnExceptedQty>E1</AdnExceptedQty>
+                </AdnOtherInformation>
+                <ImdgOtherInformation>
+                    <ImdgLimitedQty>5 L</ImdgLimitedQty>
+                    <ImdgExceptedQty>E1</ImdgExceptedQty>
+                    <ImdgSpecialProvisions>223</ImdgSpecialProvisions>
+                    <ImdgEmsCode>F-A, S-B</ImdgEmsCode>
+                </ImdgOtherInformation>
+                <IcaoIataOtherInformation>
+                    <IcaoIataLimitedQty>Y841</IcaoIataLimitedQty>
+                    <IcaoIataExemptedQty>E1</IcaoIataExemptedQty>
+                    <IcaoIataSpecialProvisions>A3</IcaoIataSpecialProvisions>
+                </IcaoIataOtherInformation>
+            </OtherTransportInformation>
+        </TransportInformation>
+        <RegulatoryInfo>
+            <SpecificProvisionsRelatedToProduct>
+                <EuLegislation/>
+            </SpecificProvisionsRelatedToProduct>
+            <NationalLegislation>
+                <NationalLegislationGermany>
+                    <RestrictionsOfOccupation PhraseId="9269141474" PhraseCatalogueId="0">
+                        <FullText>22 JArbSchG.</FullText>
+                    </RestrictionsOfOccupation>
+                    <WaterHazardClass>
+                        <Class>2</Class>
+                    </WaterHazardClass>
+                    <AdditionalInformation PhraseId="9269141572" PhraseCatalogueId="0">
+                        <FullText>Berufsgenossenschaftliche Vorschriften (DGUV-Vorschriften)</FullText>
+                    </AdditionalInformation>
+                    <AdditionalInformation PhraseId="19335125000" PhraseCatalogueId="0">
+                        <FullText>Gefahrstoffverordnung (GefStoffV)</FullText>
+                    </AdditionalInformation>
+                    <StorageClass>LGK 8B</StorageClass>
+                    <GisCode>-</GisCode>
+                </NationalLegislationGermany>
+            </NationalLegislation>
+        </RegulatoryInfo>
+        <OtherInformation/>
+    </Datasheet>
+</ns2:DatasheetFeed>

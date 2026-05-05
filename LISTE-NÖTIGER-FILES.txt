@@ -1,0 +1,60 @@
+# Plan: Identifizierung der kritischen Dateien für SDS-Translate-App (Full-Feature)
+
+## Übersicht
+Die App ist eine Flask-basierte Web-Anwendung zur Übersetzung und Verarbeitung von Safety Data Sheets (SDS). Sie verwendet SQLite-Datenbanken für Übersetzungsdaten, parst XML/HTML/PDF-Dateien und exportiert in verschiedene Formate. Für den vollständigen Betrieb aller Funktionen (full-feature) sind bestimmte Dateien essenziell, während andere optional sind (z.B. Tests, temporäre Uploads).
+
+Die Analyse basiert auf der Codebasis: Hauptlogik in Python-Skripten, Datenbanken für Übersetzungen, Templates für Ausgaben, Abhängigkeiten in requirements.txt. Keine spezifischen Build-Skripte vorhanden, da es eine interpretierte Python-App ist.
+
+## Kritische Dateien (Essenziell für Ausführung)
+
+### Core-Logik (Ausführung der App-Funktionalität)
+Diese Dateien enthalten den Hauptcode für Web-Routen, Parsing, Import und Export. Ohne sie kann die App nicht laufen oder Funktionen ausführen.
+- app.py: Haupteinstiegspunkt der Flask-App, Initialisierung, Routen-Registrierung und Konfiguration.
+- routes/main.py: Haupt-Web-Routen (z.B. UI, Übersetzung).
+- routes/database.py: Datenbank-Management-Routen.
+- routes/pdf.py: PDF-Verarbeitung und Export.
+- routes/ghs.py: GHS-Piktogramm-Handling.
+- routes/json_import.py: JSON-Import-Funktionalität.
+- routes/library.py: Bibliotheks-Verwaltung.
+- routes/__init__.py: Routen-Initialisierung.
+- sds_translator_v4.py: Kern-Übersetzungslogik.
+- sds_parser.py: XML/HTML-Parsing für SDS.
+- sds_xml_importer.py: Import von SDS-XML-Dateien.
+- sds_json_parser.py: JSON-Parsing.
+- sds_json_importer.py: JSON-Import.
+- pdf_gap_filler.py: PDF-Verarbeitung.
+- utils.py: Hilfsfunktionen (Sprachen, Parsing).
+- database.py: SQLite-Datenbank-Handling und -Initialisierung.
+- sds_validator.py: Validierung von SDS-Daten.
+
+### Konfiguration
+Keine separaten Konfigurationsdateien; Konfiguration ist in app.py hartcodiert oder über Umgebungsvariablen.
+
+### Abhängigkeiten
+- requirements.txt: Listet alle erforderlichen Python-Pakete (z.B. Flask, BeautifulSoup, WeasyPrint). Erforderlich für Installation und Laufzeit.
+
+### Assets (Daten und Templates)
+Diese Dateien enthalten die Daten für Übersetzungen und Ausgabe-Formate. Ohne sie fehlen Kernfunktionen wie Übersetzungen oder Export-Templates.
+- SDS_PERFEKT_TEMPLATE.html: HTML-Template für SDS-Ausgaben.
+- sds_phrases_PERFEKT.db: SQLite-DB mit Übersetzungs-Phrasen (essentiell für Übersetzungsfunktion).
+- sds_dictionary_final.db: Finale Übersetzungs-Datenbank.
+- sds_phrases_new.db: Zusätzliche Phrasen-DB (falls verwendet).
+- QUELLEN/sds_PERFEKT.csv: CSV-Quelle für Phrasen-DB (erforderlich, wenn DB neu erstellt werden muss; optional, wenn DB bereits existiert).
+- symbole/: Ordner mit GHS-Piktogrammen (.png, .gif), Transport-Symbolen (class1.png etc.) und Sicherheitszeichen (.jpg). Essentiell für die Anzeige von Symbolen in generierten SDS-Dokumenten (referenziert in Templates und generierten HTMLs).
+
+### Build-Skripte
+Keine spezifischen Build-Skripte; Python erfordert keine Kompilierung. Installation via `pip install -r requirements.txt`.
+
+## Optionale Dateien (Nicht für Funktionalität erforderlich)
+Diese können entfernt werden, ohne die App-Funktionalität zu beeinträchtigen, sind aber nützlich für Entwicklung, Tests oder Beispiele.
+- uploads/: Verzeichnis mit hochgeladenen Dateien (Runtime-Daten, können geleert werden).
+- __pycache__/: Kompilierte Python-Dateien (werden automatisch neu generiert).
+- QUELLEN/: Beispiel-XMLs, PDFs und CSVs (außer sds_PERFEKT.csv, wenn kritisch). Nützlich für Tests, aber nicht für Produktionsbetrieb erforderlich.
+- test_translate.html, test_translated.html: Test-HTML-Dateien.
+- Alle .db-Backups oder temporären Dateien in uploads/.
+
+## Zusätzliche Anmerkungen
+- Datenbanken (.db) sind essenziell, da sie die Übersetzungsdaten enthalten. Wenn sie fehlen, muss die App aus CSV-Quellen neu initialisiert werden.
+- Die App prüft bei Startup auf Verfügbarkeit bestimmter Module (z.B. WeasyPrint für PDF); fehlende Abhängigkeiten deaktivieren Features, aber die App läuft weiter.
+- Für Deployment: Stelle sicher, dass requirements.txt installiert ist und Datenbanken vorhanden sind.
+- Vollständige Funktionalität erfordert alle Core-Logik-Dateien und Assets; entfernen führt zu Fehlern oder deaktivierten Features.
