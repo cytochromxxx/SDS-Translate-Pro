@@ -39,7 +39,9 @@ class SDSPDFGapFiller:
         self.pdf_path = pdf_path
         self._pdf = None
         self._pages_text: Dict[int, str] = {}  # 0-indexed page -> text cache
+        self._section_pages: Dict[int, List[int]] = {}  # Section number -> list of page indices
         self._open_pdf()
+        self._map_sections()
 
     # ------------------------------------------------------------------
     # Internal helpers
@@ -57,16 +59,94 @@ class SDSPDFGapFiller:
             logger.error(f"Failed to open PDF {self.pdf_path}: {e}")
             self._pdf = None
 
+    def _map_sections(self):
+        """Map standard 16 GHS/REACH sections to their respective pages."""
+        if self._pdf is None:
+            return
+
+        logger.info("Mapping PDF sections to pages...")
+        section_pattern = re.compile(r'(?i)(?:^|\n)\s*(?:SECTION|ABSCHNITT)\s*([1-9]|1[0-6])[\.:]?(?!\d)')
+
+        current_section = 1
+        self._section_pages[1] = [0]
+
+        for i in range(len(self._pdf.pages)):
+            text = self._page_text(i)
+            # Find all section headers on this page
+            matches = list(section_pattern.finditer(text))
+
+            if matches:
+                for match in matches:
+                    sec_num = int(match.group(1))
+                    if sec_num >= current_section:
+                        if sec_num not in self._section_pages:
+                            self._section_pages[sec_num] = []
+                        if i not in self._section_pages[sec_num]:
+                            self._section_pages[sec_num].append(i)
+                        current_section = sec_num
+            else:
+                # If no new section found, this page belongs to the current section
+                if current_section not in self._section_pages:
+                    self._section_pages[current_section] = []
+                if i not in self._section_pages[current_section]:
+                    self._section_pages[current_section].append(i)
+
+        # Ensure all pages for a section include bridging pages if a section spans multiple pages
+        for sec in range(1, 17):
+            if sec in self._section_pages and self._section_pages[sec]:
+                start_page = min(self._section_pages[sec])
+                end_page = max(self._section_pages[sec])
+                # Find the start of the NEXT section to know when THIS section really ends
+                next_sec_start = len(self._pdf.pages) - 1
+                for next_sec in range(sec + 1, 17):
+                    if next_sec in self._section_pages and self._section_pages[next_sec]:
+                        next_sec_start = min(self._section_pages[next_sec])
+                        break
+
+                # A section spans from its first page up to the page where the next section starts
+                self._section_pages[sec] = list(range(start_page, next_sec_start + 1))
+
+        logger.info(f"Section mapping completed. Found {len(self._section_pages)} sections.")
+
+    def _get_pages_for_sections(self, start_sec: int, end_sec: int) -> List[int]:
+        """Helper to get a list of page indices covering a range of sections."""
+        pages = set()
+        for sec in range(start_sec, end_sec + 1):
+            if sec in self._section_pages:
+                pages.update(self._section_pages[sec])
+        return sorted(list(pages))
+
     def _page_text(self, page_idx: int) -> str:
-        """Return cached text for a 0-indexed page."""
+        """Return cached text for a 0-indexed page, using OCR as fallback if text is missing/scanned."""
         if self._pdf is None:
             return ""
         if page_idx not in self._pages_text:
+            text = ""
             try:
-                self._pages_text[page_idx] = self._pdf.pages[page_idx].extract_text() or ""
+                text = self._pdf.pages[page_idx].extract_text() or ""
             except Exception as e:
                 logger.warning(f"Could not extract text from page {page_idx + 1}: {e}")
-                self._pages_text[page_idx] = ""
+
+            # Fallback to OCR if page has very little text (likely a scanned PDF)
+            if len(text.strip()) < 50:
+                try:
+                    logger.info(f"Page {page_idx + 1} has little text ({len(text.strip())} chars). Attempting OCR fallback...")
+                    import pytesseract
+                    from pdf2image import convert_from_path
+
+                    # We only convert the specific page to save time (pdf2image is 1-indexed)
+                    images = convert_from_path(self.pdf_path, first_page=page_idx+1, last_page=page_idx+1)
+                    if images:
+                        ocr_text = pytesseract.image_to_string(images[0])
+                        if ocr_text.strip():
+                            text = ocr_text
+                            logger.info(f"OCR successful for page {page_idx + 1}. Extracted {len(text)} chars.")
+                except ImportError:
+                    logger.warning("pytesseract or pdf2image not installed. Cannot perform OCR fallback. Run: pip install pytesseract pdf2image && apt-get install tesseract-ocr poppler-utils")
+                except Exception as e:
+                    logger.warning(f"OCR fallback failed for page {page_idx + 1}: {e}")
+
+            self._pages_text[page_idx] = text
         return self._pages_text[page_idx]
 
     def _page_tables(self, page_idx: int) -> List[List[List[Optional[str]]]]:
