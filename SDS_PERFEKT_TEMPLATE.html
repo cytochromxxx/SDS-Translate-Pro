@@ -716,19 +716,35 @@ tr, .wcrow, .ghs-row, .kv-list { break-inside: avoid; page-break-inside: avoid; 
       <tr><td colspan="4" style="font-weight:bold;background:#f0f0f0;"><span class="chg">14.3. Transport hazard class(es)</span></td></tr>
       <tr>
         <td class="td-cell">
-          {% if section_14.land.transport_class %}<img class="td-img" src="symbole/transport/class{{ section_14.land.transport_class }}.png"  onerror="this.style.display='none'"><br>{% endif %}
+          {% if section_14.transport_icons and section_14.land.transport_class %}
+            {% for icon in section_14.transport_icons %}<img class="td-img" src="{{ icon }}" onerror="this.style.display='none'"> {% endfor %}<br>
+          {% elif section_14.land.transport_class %}
+            <img class="td-img" src="symbole/transport/class{{ section_14.land.transport_class }}.png" onerror="this.style.display='none'"><br>
+          {% endif %}
           <div class="b">{{ section_14.land.transport_class }}</div>
         </td>
         <td class="td-cell">
-          {% if section_14.inland.transport_class %}<img class="td-img" src="symbole/transport/class{{ section_14.inland.transport_class }}.png"  onerror="this.style.display='none'"><br>{% endif %}
+          {% if section_14.transport_icons and section_14.inland.transport_class %}
+            {% for icon in section_14.transport_icons %}<img class="td-img" src="{{ icon }}" onerror="this.style.display='none'"> {% endfor %}<br>
+          {% elif section_14.inland.transport_class %}
+            <img class="td-img" src="symbole/transport/class{{ section_14.inland.transport_class }}.png" onerror="this.style.display='none'"><br>
+          {% endif %}
           <div class="b">{{ section_14.inland.transport_class }}</div>
         </td>
         <td class="td-cell">
-          {% if section_14.sea.transport_class %}<img class="td-img" src="symbole/transport/class{{ section_14.sea.transport_class }}.png"  onerror="this.style.display='none'"><br>{% endif %}
+          {% if section_14.transport_icons and section_14.sea.transport_class %}
+            {% for icon in section_14.transport_icons %}<img class="td-img" src="{{ icon }}" onerror="this.style.display='none'"> {% endfor %}<br>
+          {% elif section_14.sea.transport_class %}
+            <img class="td-img" src="symbole/transport/class{{ section_14.sea.transport_class }}.png" onerror="this.style.display='none'"><br>
+          {% endif %}
           <div class="b">{{ section_14.sea.transport_class }}</div>
         </td>
         <td class="td-cell">
-          {% if section_14.air.transport_class %}<img class="td-img" src="symbole/transport/class{{ section_14.air.transport_class }}.png"  onerror="this.style.display='none'"><br>{% endif %}
+          {% if section_14.transport_icons and section_14.air.transport_class %}
+            {% for icon in section_14.transport_icons %}<img class="td-img" src="{{ icon }}" onerror="this.style.display='none'"> {% endfor %}<br>
+          {% elif section_14.air.transport_class %}
+            <img class="td-img" src="symbole/transport/class{{ section_14.air.transport_class }}.png" onerror="this.style.display='none'"><br>
+          {% endif %}
           <div class="b">{{ section_14.air.transport_class }}</div>
         </td>
       </tr>
@@ -844,16 +860,20 @@ tr, .wcrow, .ghs-row, .kv-list { break-inside: avoid; page-break-inside: avoid; 
       {% else %}
       <tr><td colspan="2" style="border:1px solid #000;padding:2px 5px;">{{ change.description | default(change) }}</td></tr>
       {% endif %}
+      {% else %}
+      <tr><td colspan="2" style="border:1px solid #000;padding:2px 5px;">No data available.</td></tr>
       {% endfor %}
     </table>
     <div class="sh">16.2. Abbreviations and acronyms</div>
     <table class="abbr">
         {% for abbr in other_information.abbreviations %}
         <tr><td>{{ abbr.short }}</td><td>{{ abbr.long }}</td></tr>
+        {% else %}
+        <tr><td>No data available.</td></tr>
         {% endfor %}
     </table>
     <div class="sh">16.3. Key literature references and sources for data</div>
-    <div style="font-size:8.5pt;margin-bottom:3px;">{{ other_information.literature_references }}</div>
+    <div style="font-size:8.5pt;margin-bottom:3px;">{{ other_information.literature_references | default('No data available.', true) }}</div>
     {% if other_information.literature_references_table %}
     <table class="lit">
       <tr><th style="width:30%;">Substance name</th><th style="width:38%;">Type</th><th>source of supply</th></tr>
@@ -883,11 +903,13 @@ tr, .wcrow, .ghs-row, .kv-list { break-inside: avoid; page-break-inside: avoid; 
       {% endfor %}
     </table>
     <div class="sh">16.6. Training advice</div>
-    <div class="ind">{{ other_information.training_advice | replace('\n', '<br>') | safe }}</div>
+    <div class="ind">{{ other_information.training_advice | replace('\n', '<br>') | safe | default('No data available.', true) }}</div>
     <div class="sh">16.7. Additional information</div>
     <div class="ind">
         {% for line in other_information.additional_info_lines %}
         {% if not '* Data changed' in line %}<div>{{ line }}</div>{% endif %}
+        {% else %}
+        <div>No data available.</div>
         {% endfor %}
     </div>
   </div>
