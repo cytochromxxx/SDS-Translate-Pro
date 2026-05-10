@@ -1261,6 +1261,7 @@ class NewSDScomParser:
         
         b64_icons = []
         base_dir = Path(__file__).parent / "symbole"
+        transport_dir = base_dir / "transport"
         if not base_dir.exists():
             return []
             
@@ -1281,12 +1282,17 @@ class NewSDScomParser:
             possible_names = [
                 f"ADR_{tc}.png", f"ADR_{tc}.jpg", f"ADR_{tc}.gif",
                 f"Class_{tc}.png", f"Class_{tc}.jpg", f"Class_{tc}.gif",
+                f"class{tc}.png", f"class{tc}.jpg", f"class{tc}.gif",
+                f"Class{tc}.png", f"Class{tc}.jpg", f"Class{tc}.gif",
                 f"Klasse_{tc}.png", f"Klasse_{tc}.jpg", f"Klasse_{tc}.gif",
                 f"Transport_{tc}.png", f"Transport_{tc}.jpg", f"Transport_{tc}.gif"
             ]
             
+            # First check transport subfolder, then base folder
             for name in possible_names:
-                icon_path = base_dir / name
+                icon_path = transport_dir / name
+                if not icon_path.exists():
+                    icon_path = base_dir / name
                 if icon_path.exists():
                     with open(icon_path, "rb") as f:
                         b64 = base64.b64encode(f.read()).decode("utf-8")
