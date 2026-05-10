@@ -452,7 +452,7 @@ def export_translated_pdf(html_content, target_lang, lang_name):
 
         try:
             from weasyprint import HTML, CSS
-            pdf_css = CSS(string=".page, .sds-document { display: block !important; height: auto !important; min-height: 0 !important; }")
+            pdf_css = CSS(string=".page, .sds-document { display: block !important; height: auto !important; min-height: 0 !important; background-color: #ffffff !important; } body { background-color: #ffffff !important; }")
             html_obj = HTML(filename=html_file, base_url=temp_dir)
             pdf_bytes = html_obj.write_pdf(stylesheets=[pdf_css])
         except Exception as weasy_error:
@@ -473,7 +473,7 @@ def export_translated_pdf(html_content, target_lang, lang_name):
                             h1, h2, h3, h4, h5 { page-break-after: avoid !important; }
                         }
                     """)
-                    pdf_bytes = page.pdf(format="A4", print_background=True)
+                    pdf_bytes = page.pdf(format="A4", print_background=True, prefer_css_page_size=True)
                     browser.close()
             except Exception as playwright_error:
                 raise RuntimeError(
@@ -816,6 +816,7 @@ def process_combined_import():
                 from chandra_pdf_importer import parse_sds_with_chandra
                 sds_data = parse_sds_with_chandra(temp_xml_path, temp_pdf_path)
             except Exception as e:
+                current_app.logger.error(f"Chandra Ultra-Premium-Engine Fehler bei {xml_file.filename}: {str(e)}", exc_info=True)
                 return jsonify({"error": f"Chandra Ultra-Premium-Engine Fehler: {str(e)}"}), 500
                 
         elif pdf_engine == "opendataloader":
@@ -823,12 +824,21 @@ def process_combined_import():
                 from odl_pdf_importer import parse_sds_with_odl
                 sds_data = parse_sds_with_odl(temp_xml_path, temp_pdf_path)
             except ImportError as e:
+                current_app.logger.error(f"OpenDataLoader Integration nicht verfügbar bei {xml_file.filename}: {str(e)}", exc_info=True)
                 return jsonify({"error": f"OpenDataLoader Integration nicht verfügbar: {str(e)}"}), 500
+            except Exception as e:
+                current_app.logger.error(f"OpenDataLoader Fehler bei {xml_file.filename}: {str(e)}", exc_info=True)
+                return jsonify({"error": f"OpenDataLoader Fehler: {str(e)}"}), 500
         else:
-            from sds_parser import parse_sds_xml
-            sds_data = parse_sds_xml(temp_xml_path, temp_pdf_path)
+            try:
+                from sds_parser import parse_sds_xml
+                sds_data = parse_sds_xml(temp_xml_path, temp_pdf_path)
+            except Exception as e:
+                current_app.logger.error(f"Fehler beim XML Parsen von {xml_file.filename}: {str(e)}", exc_info=True)
+                return jsonify({"error": f"Fehler beim Parsen der XML Datei: {str(e)}"}), 500
 
         if not sds_data:
+            current_app.logger.error(f"Datenstruktur ist leer für {xml_file.filename}.")
             return jsonify({"error": "Failed to parse the XML file."}), 400
 
         # Translate classification categories

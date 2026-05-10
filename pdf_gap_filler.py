@@ -39,7 +39,9 @@ class SDSPDFGapFiller:
         self.pdf_path = pdf_path
         self._pdf = None
         self._pages_text: Dict[int, str] = {}  # 0-indexed page -> text cache
+        self._section_pages: Dict[int, List[int]] = {}  # Section number -> list of page indices
         self._open_pdf()
+        self._map_sections()
 
     # ------------------------------------------------------------------
     # Internal helpers
@@ -57,16 +59,94 @@ class SDSPDFGapFiller:
             logger.error(f"Failed to open PDF {self.pdf_path}: {e}")
             self._pdf = None
 
+    def _map_sections(self):
+        """Map standard 16 GHS/REACH sections to their respective pages."""
+        if self._pdf is None:
+            return
+
+        logger.info("Mapping PDF sections to pages...")
+        section_pattern = re.compile(r'(?i)(?:^|\n)\s*(?:SECTION|ABSCHNITT)\s*([1-9]|1[0-6])[\.:]?(?!\d)')
+
+        current_section = 1
+        self._section_pages[1] = [0]
+
+        for i in range(len(self._pdf.pages)):
+            text = self._page_text(i)
+            # Find all section headers on this page
+            matches = list(section_pattern.finditer(text))
+
+            if matches:
+                for match in matches:
+                    sec_num = int(match.group(1))
+                    if sec_num >= current_section:
+                        if sec_num not in self._section_pages:
+                            self._section_pages[sec_num] = []
+                        if i not in self._section_pages[sec_num]:
+                            self._section_pages[sec_num].append(i)
+                        current_section = sec_num
+            else:
+                # If no new section found, this page belongs to the current section
+                if current_section not in self._section_pages:
+                    self._section_pages[current_section] = []
+                if i not in self._section_pages[current_section]:
+                    self._section_pages[current_section].append(i)
+
+        # Ensure all pages for a section include bridging pages if a section spans multiple pages
+        for sec in range(1, 17):
+            if sec in self._section_pages and self._section_pages[sec]:
+                start_page = min(self._section_pages[sec])
+                end_page = max(self._section_pages[sec])
+                # Find the start of the NEXT section to know when THIS section really ends
+                next_sec_start = len(self._pdf.pages) - 1
+                for next_sec in range(sec + 1, 17):
+                    if next_sec in self._section_pages and self._section_pages[next_sec]:
+                        next_sec_start = min(self._section_pages[next_sec])
+                        break
+
+                # A section spans from its first page up to the page where the next section starts
+                self._section_pages[sec] = list(range(start_page, next_sec_start + 1))
+
+        logger.info(f"Section mapping completed. Found {len(self._section_pages)} sections.")
+
+    def _get_pages_for_sections(self, start_sec: int, end_sec: int) -> List[int]:
+        """Helper to get a list of page indices covering a range of sections."""
+        pages = set()
+        for sec in range(start_sec, end_sec + 1):
+            if sec in self._section_pages:
+                pages.update(self._section_pages[sec])
+        return sorted(list(pages))
+
     def _page_text(self, page_idx: int) -> str:
-        """Return cached text for a 0-indexed page."""
+        """Return cached text for a 0-indexed page, using OCR as fallback if text is missing/scanned."""
         if self._pdf is None:
             return ""
         if page_idx not in self._pages_text:
+            text = ""
             try:
-                self._pages_text[page_idx] = self._pdf.pages[page_idx].extract_text() or ""
+                text = self._pdf.pages[page_idx].extract_text() or ""
             except Exception as e:
                 logger.warning(f"Could not extract text from page {page_idx + 1}: {e}")
-                self._pages_text[page_idx] = ""
+
+            # Fallback to OCR if page has very little text (likely a scanned PDF)
+            if len(text.strip()) < 50:
+                try:
+                    logger.info(f"Page {page_idx + 1} has little text ({len(text.strip())} chars). Attempting OCR fallback...")
+                    import pytesseract
+                    from pdf2image import convert_from_path
+
+                    # We only convert the specific page to save time (pdf2image is 1-indexed)
+                    images = convert_from_path(self.pdf_path, first_page=page_idx+1, last_page=page_idx+1)
+                    if images:
+                        ocr_text = pytesseract.image_to_string(images[0])
+                        if ocr_text.strip():
+                            text = ocr_text
+                            logger.info(f"OCR successful for page {page_idx + 1}. Extracted {len(text)} chars.")
+                except ImportError:
+                    logger.warning("pytesseract or pdf2image not installed. Cannot perform OCR fallback. Run: pip install pytesseract pdf2image && apt-get install tesseract-ocr poppler-utils")
+                except Exception as e:
+                    logger.warning(f"OCR fallback failed for page {page_idx + 1}: {e}")
+
+            self._pages_text[page_idx] = text
         return self._pages_text[page_idx]
 
     def _page_tables(self, page_idx: int) -> List[List[List[Optional[str]]]]:
@@ -515,7 +595,8 @@ class SDSPDFGapFiller:
         changes = []
         try:
             # Search across multiple pages
-            text = "\n".join([self._page_text(i) for i in range(8, 12)])
+            pages = self._get_pages_for_sections(16, 16) or range(8, 12)
+            text = "\n".join([self._page_text(i) for i in pages])
             m = re.search(r'16\.1\.?[^\n]*?Indication of changes\s*\n(.*?)(?=16\.\d|SECTION|\Z)', text, re.DOTALL | re.IGNORECASE)
             if m:
                 block = m.group(1)
@@ -587,7 +668,8 @@ class SDSPDFGapFiller:
 
         try:
             # Search across multiple pages where Section 16 could be
-            text = "\n".join([self._page_text(i) for i in range(8, 12)]) # Pages 9-12
+            pages = self._get_pages_for_sections(16, 16) or range(8, 12)
+            text = "\n".join([self._page_text(i) for i in pages])
             
             # 1. Extract source note separately so it doesn't pollute the abbreviations
             note_match = re.search(r'(For abbreviation.*?see:?.*?)(?=\n16\.\d|\Z)', text, re.DOTALL | re.IGNORECASE)
@@ -596,7 +678,8 @@ class SDSPDFGapFiller:
                 
             # 2. Try to extract from tables first
             # IMPORTANT: Verify that the table is actually an abbreviations table, not a hazard statements table
-            for page_idx in range(8, 12):
+            pages = self._get_pages_for_sections(16, 16) or range(8, 12)
+            for page_idx in pages:
                 tables = self._page_tables(page_idx)
                 for table in tables:
                     if not table or len(table) < 2: 
@@ -680,7 +763,8 @@ class SDSPDFGapFiller:
     def _extract_literature_references(self) -> str:
         """Extract 16.3 Key literature references from PDF."""
         try:
-            text = "\n".join([self._page_text(i) for i in range(8, 12)])
+            pages = self._get_pages_for_sections(16, 16) or range(8, 12)
+            text = "\n".join([self._page_text(i) for i in pages])
             m = re.search(
                 r'16\.3\.?[^\n]*?(?:Key literature|Literaturhinweise|Data sources).*?\n(.*?)(?=16\.\d|\Z)',
                 text, re.DOTALL | re.IGNORECASE
@@ -702,7 +786,8 @@ class SDSPDFGapFiller:
         """Extract 16.3 Key literature references table from PDF."""
         results = []
         try:
-            for page_idx in range(8, 12):
+            pages = self._get_pages_for_sections(16, 16) or range(8, 12)
+            for page_idx in pages:
                 tables = self._page_tables(page_idx)
                 for table in tables:
                     if not table or len(table) < 2:
@@ -729,7 +814,8 @@ class SDSPDFGapFiller:
         results = []
         try:
             # Expand search to pages 9-12
-            for page_idx in range(8, 12):
+            pages = self._get_pages_for_sections(16, 16) or range(8, 12)
+            for page_idx in pages:
                 tables = self._page_tables(page_idx)
                 for table in tables:
                     if not table or len(table) < 2:
@@ -770,7 +856,8 @@ class SDSPDFGapFiller:
         results = []
         try:
             # Expand search to pages 9-12
-            for page_idx in range(8, 12):
+            pages = self._get_pages_for_sections(16, 16) or range(8, 12)
+            for page_idx in pages:
                 tables = self._page_tables(page_idx)
                 for table in tables:
                     if not table or len(table) < 2:
@@ -810,7 +897,8 @@ class SDSPDFGapFiller:
     def _extract_training_advice(self) -> str:
         """Extract 16.6 Training advice from PDF."""
         try:
-            text = "\n".join([self._page_text(i) for i in range(8, 12)])
+            pages = self._get_pages_for_sections(16, 16) or range(8, 12)
+            text = "\n".join([self._page_text(i) for i in pages])
             m = re.search(
                 r'16\.6\.?[^\n]*?Training advice\s*\n(.*?)(?=16\.\d|\Z)',
                 text, re.DOTALL | re.IGNORECASE
@@ -827,7 +915,8 @@ class SDSPDFGapFiller:
     def _extract_additional_info(self) -> str:
         """Extract 16.7 Additional information from PDF."""
         try:
-            text = "\n".join([self._page_text(i) for i in range(8, 12)])
+            pages = self._get_pages_for_sections(16, 16) or range(8, 12)
+            text = "\n".join([self._page_text(i) for i in pages])
             m = re.search(
                 r'16\.7\.?[^\n]*?Additional information\s*\n(.*?)(?=\*\s*Data changed|en\s*/\s*DE|\Z)',
                 text, re.DOTALL | re.IGNORECASE
@@ -873,7 +962,8 @@ class SDSPDFGapFiller:
         """
         try:
             # Search on pages where Section 12 is likely to be (pages 7-9, 0-indexed 6-8)
-            text = "\n".join([self._page_text(i) for i in range(6, 9)])
+            pages = self._get_pages_for_sections(12, 12) or range(6, 9)
+            text = "\n".join([self._page_text(i) for i in pages])
             
             # Look for Section 12.4 Mobility in soil
             m = re.search(
@@ -906,7 +996,8 @@ class SDSPDFGapFiller:
         """
         try:
             # Search on pages where Section 12 is likely to be (pages 7-9, 0-indexed 6-8)
-            text = "\n".join([self._page_text(i) for i in range(6, 9)])
+            pages = self._get_pages_for_sections(12, 12) or range(6, 9)
+            text = "\n".join([self._page_text(i) for i in pages])
             
             # Look for Section 12.6 Endocrine disrupting properties
             m = re.search(
@@ -921,7 +1012,8 @@ class SDSPDFGapFiller:
             
             # Fallback: Check if there's component-level endocrine info
             # Search for each component
-            for page_idx in range(6, 9):
+            pages = self._get_pages_for_sections(12, 12) or range(6, 9)
+            for page_idx in pages:
                 tables = self._page_tables(page_idx)
                 for table in tables:
                     if not table or not table[0]:
@@ -947,7 +1039,8 @@ class SDSPDFGapFiller:
         try:
             # Search on pages where Section 12 is likely to be (7-9, 0-indexed 6-8)
             all_tables = []
-            for i in range(6, 9):
+            pages = self._get_pages_for_sections(12, 12) or range(6, 9)
+            for i in pages:
                 all_tables.extend(self._page_tables(i))
 
             current_component = None
@@ -1005,7 +1098,8 @@ class SDSPDFGapFiller:
                 results.append(current_component)
                 
             # Supplement missing values using text regex (Bio/LogKow/BCF)
-            text = "\n".join([self._page_text(i) for i in range(6, 9)])
+            pages = self._get_pages_for_sections(12, 12) or range(6, 9)
+            text = "\n".join([self._page_text(i) for i in pages])
             parts = re.split(r'(?i)CAS No\.:\s*([\d\-]+)', text)
             for i in range(1, len(parts) - 1, 2):
                 cas = parts[i].strip()
@@ -1044,7 +1138,8 @@ class SDSPDFGapFiller:
         }
         try:
             # Section 12 spans pages 7-8 (0-indexed 6-7)
-            full = "\n".join(self._page_text(i) for i in range(6, 9))
+            pages = self._get_pages_for_sections(12, 12) or range(6, 9)
+            full = "\n".join(self._page_text(i) for i in pages)
             patterns = {
                 "mobility_info": r'12\.4\.\s*Mobility in soil\s*\n(.*?)(?=12\.\d|\Z)',
                 "endocrine_disrupting_info": r'12\.6\.\s*Endocrine disrupting properties\s*\n(.*?)(?=12\.\d|\Z)',
@@ -1084,7 +1179,8 @@ class SDSPDFGapFiller:
         Returns the formatted EU legislation paragraph as a string.
         """
         try:
-            text = "\n".join([self._page_text(i) for i in range(8, 12)])
+            pages = self._get_pages_for_sections(15, 15) or range(8, 12)
+            text = "\n".join([self._page_text(i) for i in pages])
             m = re.search(
                 r'15\.1\.1\.\s*EU legislation\s*\n(.*?)(?=15\.1\.2|15\.2|\Z)',
                 text, re.DOTALL | re.IGNORECASE
@@ -1103,7 +1199,8 @@ class SDSPDFGapFiller:
     def extract_section_15_chemical_safety_assessment(self) -> str:
         """Extract Chemical Safety Assessment text from Section 15.2."""
         try:
-            text = "\n".join([self._page_text(i) for i in range(8, 12)])
+            pages = self._get_pages_for_sections(15, 15) or range(8, 12)
+            text = "\n".join([self._page_text(i) for i in pages])
             m = re.search(r'15\.2\.?\s*Chemical Safety Assessment\s*\n(.*?)(?=SECTION 16|\Z)', text, re.DOTALL | re.IGNORECASE)
             if m:
                 val = " ".join(m.group(1).split())
@@ -1230,7 +1327,8 @@ class SDSPDFGapFiller:
         """Extract waste codes for product and packaging."""
         result = {}
         try:
-            text = "\n".join([self._page_text(i) for i in range(7, 10)])
+            pages = self._get_pages_for_sections(13, 13) or range(7, 10)
+            text = "\n".join([self._page_text(i) for i in pages])
             prod_match = re.search(r'Waste code product\s*\n\s*([\d\s\*]+)\s*(.*?)(?=\nWaste|\Z)', text, re.IGNORECASE)
             if prod_match:
                 result['product'] = f"{prod_match.group(1).strip()} {prod_match.group(2).strip()}".strip()
@@ -1317,8 +1415,12 @@ class SDSPDFGapFiller:
         """Extract transport classes for Section 14."""
         result = {}
         try:
-            text = "\n".join([self._page_text(i) for i in range(6, 12)])
+            pages = self._get_pages_for_sections(14, 14)
+            if not pages:
+                pages = range(len(self._pdf.pages)) if self._pdf else []
+            text = "\n".join(self._page_text(i) for i in pages)
             
+            # Using regex to find transport class across modes
             land_match = re.search(r'ADR/RID.*?Class(?:es)?:\s*([\d\.]+)', text, re.S|re.I)
             if land_match: result['land'] = land_match.group(1).strip()
             
@@ -1330,6 +1432,24 @@ class SDSPDFGapFiller:
             
             air_match = re.search(r'IATA.*?Class(?:es)?:\s*([\d\.]+)', text, re.S|re.I)
             if air_match: result['air'] = air_match.group(1).strip()
+
+            # Additional fallback check for tabular data "14.3. Transport hazard class(es)"
+            if not result:
+                for i in pages:
+                    for table in self._page_tables(i):
+                        for row in table:
+                            row_text = " ".join(str(c) for c in row if c).lower()
+                            if "transport hazard class" in row_text or "14.3" in row_text:
+                                # Often the next row has the values
+                                idx = table.index(row)
+                                if idx + 1 < len(table):
+                                    vals = [str(c).strip() for c in table[idx+1] if c]
+                                    if vals:
+                                        # Let's just assume the first is the class
+                                        c = vals[0]
+                                        if c.isdigit() or re.match(r'^\d\.\d$', c):
+                                            result['land'] = result['inland'] = result['sea'] = result['air'] = c
+                                            return result
         except Exception as e:
             logger.warning(f"Could not extract Section 14 classes: {e}")
         return result
@@ -1675,7 +1795,8 @@ class SDSPDFGapFiller:
             if "safety_data" in sec9:
                 for item in sec9["safety_data"]:
                     if "solubility" in item.get("parameter", "").lower() and _is_empty(item.get("value")):
-                        text = "\n".join([self._page_text(i) for i in range(4, 7)])
+                        pages = self._get_pages_for_sections(9, 9) or range(4, 7)
+                        text = "\n".join([self._page_text(i) for i in pages])
                         m = re.search(r'Water solubility\s*(completely miscible|vollständig mischbar|[\d\.]+\s*g/l)', text, re.IGNORECASE)
                         if m and not _is_empty(m.group(1)):
                             item["value"] = m.group(1).strip()
